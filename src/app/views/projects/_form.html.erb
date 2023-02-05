@@ -1,0 +1,30 @@
+<%#
+Project name: Pro Bono Tracker
+Description: Tracker system to manage pro bono works conducted in ACCR
+Filename: _form.html.erb
+Description: Form to show the fields that make up the sub-table called Projects
+Last modified on: 11/17/2022
+%>
+
+<%= form_with(model: project, local: true) do |form| %>
+  <% if project.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(project.errors.count, "error") %> prohibited this project from being saved:</h2>
+
+      <ul>
+        <% project.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :name, "Contributors" %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

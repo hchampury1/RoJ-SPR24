@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <%= render "layouts/head" %>
+  </head>
+  <body>
+    <div class="image-overlay">
+      <%= image_tag("criminaljustice.jpeg") %>
+      <div class="overlay-light"></div>
+      <%= render "layouts/navbar"%>
+      <div class="my-5 no-collapse">
+        <%= render "layouts/alert" %>
+        <%= yield %>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

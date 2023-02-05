@@ -1,0 +1,17 @@
+<%#
+Project name: Pro Bono Tracker
+Description: Tracker system to manage pro bono works conducted in ACCR
+Filename: show.html.erb
+Description: File to show the Project contents that gets displayed on the UI
+Last modified on: 11/17/2022
+%>
+
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Contributors:</strong>
+  <%= @project.name %>
+</p>
+
+<%= link_to 'Edit', edit_project_path(@project) %> |
+<%= link_to 'Back', projects_path %>

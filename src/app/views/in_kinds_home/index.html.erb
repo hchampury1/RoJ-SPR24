@@ -1,0 +1,61 @@
+<style>
+body {
+    font-family: Helvetica;
+}
+
+h1 {
+  color: rgb(34,0,155);
+  text-align: left;
+  font-weight: bold;
+}
+
+h2 {
+  color: rgb(34,0,155);
+  text-align: left;
+  font-weight: bold;
+}
+
+p {
+  font-family: verdana;
+  font-size: 20px;
+}
+
+.btn-indigo {
+  color: rgb(255, 255, 255);
+  background-color: rgb(34,0,155);
+  border-color: rgb(34,0,155);
+  text-align: left;
+}
+
+.btn-lightBlue {
+  color: rgb(255, 255, 255);
+  background-color: rgb(48, 140, 190);
+  border-color: rgb(48, 140, 190);
+  text-align: center;
+}
+
+.btn-darkBlue {
+  color: rgb(255, 255, 255);
+  background-color: rgb(48, 96, 152);
+  border-color: rgb(48, 96, 152);
+  text-align: right;
+}
+
+</style>
+
+<h1>In-Kinds HomePage</h1>
+
+<p>The In-Kinds Donations Tracker aids in keeping a record of donations given to ACCR by outside supporters. Each donation
+    will be described in the databse, including who donated, when they donated, a description of what they donated, and who 
+    input this donation into the system. This module's goal is to make it easy to view what has been donated to discover trends, 
+    such as who are the most frequent supporters or what items have been most frequently donated.
+</p>
+
+<h2>Donations, Donors, and CSVs</h2>
+<p>The first step to adding to this database is creating donors. Once a donor is created and stored in the database, then donations from a
+specific donor can also be created and stored. There are options to create, edit, and delete donors and donations seperately.
+There is also the option to export the master list of all In-Kind donations.
+</p>
+
+
+<%= link_to 'In-Kinds Page',  inkinds_index_path, class: "btn btn-indigo btn-lg", method: :get %>

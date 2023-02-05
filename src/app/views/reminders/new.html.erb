@@ -1,0 +1,18 @@
+<%# Project name: ACCRs Trail of Mail %>
+<%# Description: Reminder system that reminds ACCR about mail recieved by sending an email to them %>
+<%# Filename: new.html.erb %>
+<%# Description: This file renders the form that is needed to create a new reminder %>
+<%# Last modified on: 4/26/22 %>
+<%# Code by Team 24 %>
+
+<br>
+<h1>New Reminder</h1>
+<h2>Instructions:</h2>
+<p>
+On this page, users can generate reminders for specific mail entries so that they may come back to it at a later time. To generate a reminder, users must enter the label of the mail, the email address they wish to be reminded of, the username they are using, and notes for the reminder if any. Users can set the desired reminder time as well as the priority of the reminder. As of now this functionality is not fully integrated with the email regardless of the time and date set, and it will always send the reminder immediately after it was created. 
+</p>
+<%= render 'form', reminder: @reminder %>
+
+
+<br>
+<br>

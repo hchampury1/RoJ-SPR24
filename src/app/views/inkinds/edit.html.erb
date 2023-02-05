@@ -1,0 +1,19 @@
+<style>
+body {
+    font-family: Helvetica;
+}
+
+h1 {
+  color: rgb(34,0,155);
+  text-align: left;
+  font-weight: bold;
+}
+
+</style>
+
+<h1>Editing Donation</h1>
+
+<%= render 'form', inkind: @inkind %>
+
+<%= link_to 'Show', @inkind %> |
+<%= link_to 'Back', inkinds_path %>

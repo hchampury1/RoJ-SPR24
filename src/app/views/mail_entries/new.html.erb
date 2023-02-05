@@ -1,0 +1,22 @@
+<%# 
+  Project name: ACCR Mail Manager
+  Description: Mail database and management system for ACCR community partner
+  Filename: new.html.erb
+  Description: Page in which the form is loaded into for creating new mail entries
+  Last modified on: 4/13/22
+  Code written by Team 13 and Team 14
+%>
+
+<br>
+<h1>New Mail Entry</h1>
+<h2>Instructions:</h2>
+<p>
+    On this page, the user can add a new mail entry to the database. The user must enter the mail entry’s label, the date that the mail was received, the name of the sender, and the case status of the mail entry, where the possible case statuses are Not Started, In Progress, and Complete. The user can optionally also enter an inmate ID, the current age, crime age, and race of the sender, assuming that the sender is justice involved. In the case that the sender is a justice involved, the user can also enter the race of the victim. 
+</p>
+<p>
+    The user can also include a scanned copy of the mail. The user can also indicate the type of inquiry that the mail is, with the options of Internship Application, Job Application/Hiring, General Legal Support/Case Referrals, and NGO Marketing Solicitations. Based on the type of inquiry, a response template is automatically generated in the Manage Responses section. 
+</p>
+
+<%= render 'form', mail_entry: @mail_entry %>
+<br>
+<br>

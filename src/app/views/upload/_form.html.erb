@@ -1,0 +1,14 @@
+<!-- Project name: Mapping Justice -->
+<!-- Description: For our ACCR Collaborative Project we have created an interactive map of PA. The map is color coded by cases + death sentences and population. 
+The user can hover over a county to view its statistics. Additionally, several counties can be clicked to generate charts-->
+<!-- Filename: _form.html.erb -->
+<!-- Description: This file includes the form that allows the user to upload new data -->
+<!-- Last modified on: 4/8/2022 -->
+
+<!-- A form to upload files -->
+<%= form_tag upload_uploadcsv_path, multipart: true, local: true  do %>
+    <%= file_field_tag 'file', class: "form-control", :required => true, :accept => '.csv' %>
+    <br/>
+    <%= submit_tag 'Upload File', class: "btn btn-outline-primary" %>
+<% end %>
+

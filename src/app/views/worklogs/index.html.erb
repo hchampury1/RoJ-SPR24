@@ -1,0 +1,53 @@
+<%#
+Project name: Pro Bono Tracker
+Description: Tracker system to manage pro bono works conducted in ACCR
+Filename: index.html.erb
+Description: Index file to show the fields on the Worklog table that is displayed on UI
+Last modified on: 11/17/2022
+%>
+
+<div class="container">
+  <p id="notice"><%= notice %></p>
+
+  <h1>Worklogs</h1>
+
+  <table class="table table-hover table-striped">
+    <thead>
+      <tr>
+        <th scope="col">User</th>
+        <th scope="col">Project</th>
+        <th scope="col">Description</th>
+        <th scope="col">Hours</th>
+        <th scope="col">Fee</th>
+        <th scope="col">Date</th>
+        <th scope="col">Entered by</th>
+        <th scope="col" colspan="3"></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @worklogs.each do |worklog| %>
+        <tr>
+          <%
+            user = User.find_by(id: worklog.user_id)
+            project = Project.find_by(id: worklog.project_id)
+            entered_by = User.find_by(id: worklog.entered_by_id)
+          %>
+          <td><%= "#{user.first_name} #{user.last_name}" %></td>
+          <td><%= project.name %></td>
+          <td><%= worklog.desc_summary %></td>
+          <td><%= worklog.hours %></td>
+          <td><%= worklog.fee %></td>
+          <td><%= worklog.date %></td>
+          
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  <br>
+  <%= paginate @worklogs %>
+  <br>
+
+  <%= link_to 'New Worklog', new_worklog_path, class:"btn btn-primary" %>
+</div>

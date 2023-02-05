@@ -1,0 +1,15 @@
+<%#
+Project name: Pro Bono Tracker
+Description: Tracker system to manage pro bono works conducted in ACCR
+Filename: edit.html.erb
+Description: Edit file to show the UI of edit page
+Last modified on: 11/17/2022
+%>
+
+<h1>Editing Worklog</h1>
+
+<%= render 'form', worklog: @worklog %>
+
+</br>
+<%= link_to 'Show', @worklog, class:"btn btn-outline-primary" %>
+<%= link_to 'Back', worklogs_path, class:"btn btn-outline-secondary" %>

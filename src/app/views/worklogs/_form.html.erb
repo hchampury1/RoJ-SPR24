@@ -1,0 +1,64 @@
+<%#
+Project name: Pro Bono Tracker
+Description: Tracker system to manage pro bono works conducted in ACCR
+Filename: _form.html.erb
+Description: Form file to show the fields that are part of the Worklog table
+Last modified on: 11/17/2022
+%>
+
+<%= form_with(model: worklog, local: true) do |form| %>
+  <% if worklog.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(worklog.errors.count, "error") %> prohibited this worklog from being saved:</h2>
+
+      <ul>
+        <% worklog.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :user_id %>
+    <%= form.text_field :user_id, placeholder: "#{current_user.first_name} #{current_user.last_name}" %>
+  </div>
+  
+  <div class="field">
+    <%= form.label :date %>
+    <%= form.date_select :date %>
+  </div>
+
+  <%= form.label :project_id, 'Project Type' %>
+  <%# <%= form.search_field :project, :name %>
+  <%= form.select(:project_id, Project.all.collect { |p| [p.name, p.id] }) %>
+
+  <div class="field">
+    <%= form.label :desc_summary, 'Project Description' %>
+    <%= form.text_field :desc_summary %>
+  </div>
+
+  <div class="field">
+    <%= form.label :hours %>
+    <%= form.number_field :hours %>
+  </div>
+
+  <div class="field">
+    <%= form.label :fee %>
+    <%= form.number_field :fee %>
+  </div>
+
+  <div class="field">
+    <%= form.label :entered_by_id %>
+    <%= form.text_field :entered_by_id, placeholder: "#{current_user.first_name} #{current_user.last_name}" %>
+  </div>
+
+  <div class="field">
+    <%= form.label :desc_body, 'Comment' %>
+    <%= form.text_area :desc_body %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit class:'btn btn-primary' %>
+  </div>
+<% end %>

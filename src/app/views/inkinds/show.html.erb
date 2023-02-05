@@ -1,0 +1,58 @@
+<style>
+body {
+    font-family: Helvetica;
+}
+
+h1 {
+  color: rgb(34,0,155);
+  text-align: left;
+  font-weight: bold;
+}
+
+</style>
+
+<p id="notice"><%= notice %></p>
+
+<h1>Donation Details</h1>
+
+<p>
+  <strong>Name:</strong>
+  <%= @inkind.name %>
+</p>
+
+<p>
+  <strong>Date:</strong>
+  <%= @inkind.date %>
+</p>
+
+<p>
+  <strong>Value:</strong>
+  <%= @inkind.value %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @inkind.description %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @inkind.user %>
+</p>
+
+<p>
+  <strong>Type:</strong>
+  <%= @inkind.genre %>
+</p>
+
+<p>
+  <strong>Donor:</strong>
+  <%= @inkind.donor_name %>
+</p>
+
+<p>
+  <strong>Donor ID:</strong>
+  <%= @inkind.donor_id %>
+</p>
+<%= link_to 'Edit', edit_inkind_path(@inkind) %> |
+<%= link_to 'Back', inkinds_path %>

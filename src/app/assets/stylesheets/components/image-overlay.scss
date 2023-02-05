@@ -1,0 +1,36 @@
+.image-overlay {
+  position: relative;
+
+  > img {
+    object-fit: cover;
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    min-width: 100%;
+    min-height: 100%;
+    z-index: -2;
+  }
+
+  .overlay-dark, .overlay-light, .overlay-darker {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: -1;
+  }
+
+  .overlay-dark {
+    background: rgba(9, 18, 29, 0.7);
+  }
+
+  .overlay-darker {
+    background: rgba(5, 9, 15, 0.7);
+  }
+
+  .overlay-light {
+    background: rgba(29, 58, 92, 0.3);
+  }
+}

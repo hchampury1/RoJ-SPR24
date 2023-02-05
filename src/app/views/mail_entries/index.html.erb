@@ -1,0 +1,120 @@
+<%# 
+  Project name: ACCR Mail Manager
+  Description: Mail database and management system for ACCR community partner
+  Filename: index.html.erb
+  Description: Page used for viewing and searching / filtering through all mail entries
+  Last modified on: 4/13/22
+  Code written by Team 13
+%>
+
+<br>
+<h1>Mail Entries</h1>
+<h2>Instructions:</h2>
+<p>On this page, the various mail entries can be viewed by the user. The user can filter between the various mail entries by typing in the specific attributes of the mail entries they wish to see. If the user wishes to perform a general search, a text box is provided in which the user can type in anything they wish and all mail entries are filtered to entries containing that value within it, without regard to which category that value is found in. This feature can be combined with filter functionality. Users can additionally filter by date and also sort the entries that are filtered by entries that are oldest and entries that are newest if they wish to do so.   
+</p>
+
+<br>
+<div class="row">
+<div class="col-sm">
+
+<%# allows multi filtering and general searches %>
+<%= form_tag(mail_entries_path, method: :get) do %>
+  <h4>General Search</h4>
+  <%= text_field_tag(:search, params[:search]) %>
+  <h5>Mail Label</h5>
+  <%= text_field_tag(:search_label, params[:search_label])%>
+  <h5>Mail Sender</h5>
+  <%= text_field_tag(:search_sender, params[:search_sender])%>
+  <h5>Inmate ID</h5>
+  <%= text_field_tag(:search_inmate_id, params[:search_inmate_id])%>
+  <h5>Status</h5>
+  <%= select_tag(:search_case_status, options_for_select(case_status_options("Any"), params[:search_case_status] ), class:"select") %>
+  <h5>Current Age of Offender</h5>
+  <%= number_field_tag(:search_current_age, params[:search_current_age])%>
+  <h5>Age of Offender at Time of Conviction</h5>
+  <%= number_field_tag(:search_crime_age, params[:search_crime_age])%>
+  <h5>Home Institution</h5>
+  <%= text_field_tag(:search_home_institution, params[:search_inmate_id])%>
+  <h5>Sort Method</h5>
+  <%# sorting %>
+  <%= select_tag(:sort, options_for_select(["None", "Sender (A-Z)", "Sender (Z-A)", "Oldest", "Newest", "Label (A-Z)", "Label (Z-A)", ], @sort_method)) %>
+  <br>
+  <br>
+  <%= submit_tag("Search with Selected Filters")%>
+
+</div>
+<div class="col-sm">
+  <h5>Race of Offender</h5>
+  <%= select_tag(:search_offender_race, options_for_select(race_options("Any"), params[:search_offender_race]), class:"select") %>
+  <h5>Race of Victim</h5>
+  <%= select_tag(:search_victim_race, options_for_select(race_options("Any"), params[:search_victim_race]), class:"select") %>
+  <h5>Date of Mail Entry</h5>
+  <%= label_tag(:search_date_lower, "After") %>
+  <%= date_field_tag(:search_date_lower, params[:search_date_lower])%>
+  <br>
+  <%= label_tag(:search_date_upper, "Before") %>
+  <%= date_field_tag(:search_date_upper, params[:search_date_upper])%>
+  
+  <%# tags %>
+  <%= field_set_tag "Tags" do %>
+    <% @tags.each do |tag| %>
+      <%# check if tag should be ticked or blank %>
+      <% if @selected_tags.include?(tag.id) %>
+        <%= check_box_tag "search_tags[]#{tag.id}", tag.id, true %>
+      <% else %>
+        <%= check_box_tag "search_tags[]#{tag.id}", tag.id, false %>
+      <% end %>
+      <%= label_tag("search_tags[]#{tag.id}", tag.name, class: "tag-name") %>
+      <br>
+    <% end %>
+  <% end %>
+<% end %>
+
+
+</div>
+</div>
+
+  <br>
+
+<%# query info %>
+<br>
+<p>Searches and filters matched <strong><%= @num_found %></strong> out of <strong><%= @num_total %></strong> entries</p>
+<table class="table">
+  <thead>
+    <tr>
+      <th>Sender</th>
+      <th>Label</th>
+      <th>Date</th>
+      <th>Status</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @mail_entries.each do |mail_entry| %>
+      <% if @role.include?("admin") %>
+        <tr>
+          <td><%= mail_entry.sender_name %></td>
+          <td><%= mail_entry.label %></td>
+          <%# %m gives format like 02, %d gives format like 04, and %Y gives format like 2000 %>
+          <td><%= mail_entry.date.strftime("%m/%d/%Y") %></td>
+          <td><%= format_case_status(mail_entry.case_status) %></td>
+          <td><%= link_to 'Details', mail_entry %></td>
+          <td><%= link_to 'Edit', edit_mail_entry_path(mail_entry) %></td>
+          <td><%= link_to 'Delete', mail_entry, method: :delete, data: { confirm: 'Are you sure you want to delete this mail entry? This will permanently delete it from the database and it will be irretrievable.' } %></td>
+        </tr>
+      <% elsif @role.include?(mail_entry.relevant_staff) %>
+        <tr>
+          <td><%= mail_entry.sender_name %></td>
+          <td><%= mail_entry.label %></td>
+          <%# %m gives format like 02, %d gives format like 04, and %Y gives format like 2000 %>
+          <td><%= mail_entry.date.strftime("%m/%d/%Y") %></td>
+          <td><%= format_case_status(mail_entry.case_status) %></td>
+          <td><%= link_to 'Details', mail_entry %></td>
+          <td><%= link_to 'Edit', edit_mail_entry_path(mail_entry) %></td>
+          <td><%= link_to 'Delete', mail_entry, method: :delete, data: { confirm: 'Are you sure you want to delete this mail entry? This will permanently delete it from the database and it will be irretrievable.' } %></td>
+        </tr>
+      <% end %>
+    <% end %>
+  </tbody>
+</table>

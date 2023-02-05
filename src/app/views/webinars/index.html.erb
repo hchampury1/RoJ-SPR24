@@ -1,0 +1,42 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Upcoming Webinars</h1>
+
+<table class="table table-bordered table-hover">
+  <thead class="thead-dark">
+    <tr>
+      <th>Webinar Name</th>
+      <th>Description</th>
+      <th>Date and Time</th>
+      <th>Speaker(s)</th>
+      <th colspan="100%"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @webinars.each do |webinar| %>
+      <tr>
+        <td><%= webinar.webinar_name %></td>
+        <td><%= webinar.description %></td>
+        <td><%= webinar.date_and_time.strftime("%B %d, %Y %I:%M%p") %></td>
+        <td><%= webinar.speaker %></td>
+        <td><%= link_to 'Show', webinar, class:'btn btn-primary' %></td>
+        <td><%= link_to 'Register', new_registrant_path(webinar.id), class:'btn btn-primary' %></td>
+        <% if can?(:access, :rails_admin) %>
+        <td><%= link_to 'Edit', edit_webinar_path(webinar), class:'btn btn-primary'  %></td>
+        <td><%= link_to 'Delete', webinar, method: :delete, data: { confirm: 'Are you sure?' }, class:'btn btn-primary'  %></td>
+	<td> <%= link_to 'See registrants', registrants_webinar_path(webinar), class:'btn btn-primary'  %> </td>
+        <% end %>
+        
+
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+<% if can?(:access, :rails_admin) %>
+<%= link_to 'New Webinar', new_webinar_path, class:'btn btn-primary' %>
+<% end %>
+<%= link_to 'View Event Calendar', event_details_path, class:'btn btn-primary' %>
+

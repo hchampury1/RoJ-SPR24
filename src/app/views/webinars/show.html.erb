@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<div class="card text-center">
+  <div class="card-header">
+    Webinar
+  </div>
+  <div class="card-body">
+    <h5 class="card-title"><%= @webinar.webinar_name %></h5>
+    <p class="card-text">
+    <%= @webinar.description %></br></br>
+    Speaker(s):</br>
+    <%= @webinar.speaker %>
+    </p>
+  </div>
+  <div class="card-footer text-muted">
+    <%= @webinar.date_and_time.strftime("%B %d, %Y %I:%M%p") %>
+  </div>
+</div>
+
+</br>
+<%= link_to 'Back', webinars_path, class:'btn btn-primary' %>
+<% if can?(:access, :rails_admin) %>
+| <%= link_to 'Edit', edit_webinar_path(@webinar), class:'btn btn-primary' %>
+<% end %>

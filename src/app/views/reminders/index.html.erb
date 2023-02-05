@@ -1,0 +1,115 @@
+<%# Project name: ACCRs Trail of Mail %>
+<%# Description: Reminder system that reminds ACCR about mail recieved by sending an email to them %>
+<%# Filename: index.html.erb %>
+<%# Description: A table that contains data related to each individual reminder %>
+<%# Last modified on: 4/27/22 %>
+<%# Code by Team 24 %>
+
+<br>
+<h1>Reminders</h1>
+<h2>Instructions:</h2>
+<p>
+On this page, the user can see the list of reminders that have been created for associated mail entries. These reminders can be edited and deleted. 
+</p>
+
+<%# Display of the reminders table %>
+
+<table class ="table">
+
+
+<thead class="table">
+
+    <tr>
+      <th>Reminder Topic</th>
+      <th>User</th>
+      <th>User Email</th>
+      <th>Reminder Time</th>
+      <th>Priority</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @reminders.each do |reminder| %>
+      <tr>
+        <td><%= reminder.mail_entry_id %></td>
+        <td><%= reminder.username %></td>
+        <td><%= reminder.user_email %></td>
+        <td><%= reminder.reminder_time.strftime("%m/%d/%Y")  %></td>
+        <% if reminder.priority == '1' %>
+          <td>High</td>
+        <% elsif reminder.priority == '2' %>
+          <td>Medium</td>
+        <% elsif reminder.priority == '3' %>
+          <td>Low</td>
+        <% else %>
+          <td>None</td>
+        <% end %>
+        <td><%= link_to 'Details', reminder , class: "button btn-sm", style: "color: white; text-decoration: none" %></td>
+        <td><%= link_to 'Edit', edit_reminder_path(reminder), class: "button btn-sm", style: "color: white; text-decoration: none" %></td>
+        <td><%= link_to 'Delete', reminder, class: "btn btn-danger btn-sm", style: "color: white", method: :delete, data: { confirm: 'Are you sure you want to delete this reminder? The reminder will be moved to the archieve in case you need it again.' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+<br/>
+<br/>
+
+  <div>
+    <button onclick="view_archive()", class="button">View Archive</button>
+  </div>
+
+  <br>
+
+  <div id="archive">
+    <h3>Reminders Archive</h3>
+    <table class ="table">
+
+
+    <thead class="table">
+
+        <tr>
+          <th>Reminder Topic</th>
+          <th>User</th>
+          <th>Date Reminded</th>
+          <th>Notes</th>
+          <th colspan="3"></th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @reminders.only_deleted.each do |reminder| %>
+          <tr>
+            <td><%= reminder.mail_entry_id %></td>
+            <td><%= reminder.username %></td>
+            <td><%= reminder.reminder_time.strftime("%m/%d/%Y")  %></td>
+            <td><%= reminder.notes %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </div>  
+</table>
+
+
+<script>
+
+  function view_archive() {
+    var x = document.getElementById("archive");
+    if (x.style.display === "none") {
+      x.style.display = "block";
+    } else {
+      x.style.display = "none";
+    }
+  }
+
+  function loadpage() {
+    var x = document.getElementById("archive");
+    x.style.display = "none";
+  }
+
+
+  window.onload = loadpage()
+
+</script>

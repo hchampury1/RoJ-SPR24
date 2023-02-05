@@ -1,0 +1,79 @@
+  <%# Standard Rails scaffold form code. %>
+
+<%# 
+  Project name: ACCR Pro Bono Breakdown
+  Description: Pro bono hour management system for ACCR community partner
+  Filename: _form.html.erb
+  Description: Page used as a form for inserting pro bono hours
+  Last modified on: 12/4/22
+  Code written by Team 21
+%>
+
+  <script>>
+      $(".date").date_field({
+        format: "yyyy-mm-dd",
+      });
+  </script>
+
+<!-- Meant to display the errors that a user may commit while filling out the form -->
+  <%= form_with(model: donation, local: true) do |f| %>
+    <% if donation.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(donation.errors.count, "error") %> prohibited this donation_entry from being saved:</h2>
+        <ul>
+          <% donation.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+<!-- Shows the required insertions -->
+    <div class="form">
+      <div class="field row d-flex justify-content-center">
+        <%= f.label :lawyername, 'Staff Name', :class => "required" %>
+        <%= f.text_field :lawyername %>
+      </div>
+      <br>
+      <div class="field row d-flex justify-content-center">
+        <%= f.label :caseaddress, 'Service Type' %>
+        <%= f.select :caseaddress, ['', 'Court', 'Training', 'Consulting', 'Direct Representation', 'Other']%>
+      </div>
+      <br>
+
+      <%= f.label :project_id, 'Project Type' %>
+      <%# <%= f.search_field :project, :name %>
+      <%= f.select(:project_id, Project.all.collect { |p| [p.name, p.id] }) %>
+     
+      <br>
+      <div class="field row d-flex justify-content-center">
+        <%= f.label :name, 'Case Name', :class => "required" %>
+        <%= f.text_field :name %>
+      </div>
+      <br>
+      <div class="field row d-flex justify-content-center">
+        <%= f.label :hours, 'Hours' %>
+        <%= f.text_field :hours %>
+      </div>
+      <br>
+      <div class="field row d-flex justify-content-center">
+        <%= f.label :fees, 'Fees' %>
+        <%= f.text_field :fees %>
+      </div>
+      <br>
+      <div class="field row d-flex justify-content-center">
+        <%= f.label :date, 'Date' %>
+        <%= f.date_field :date, value: Date.today.strftime('%Y-%m-%d')%>
+      </div>
+      <br>
+      <div class="field row d-flex justify-content-center">
+        <%= f.label :description %>
+        <%= f.text_area :description, :cols => "73", :rows => "10" %>
+      </div>
+      <br>
+      <div class="text-center">
+        <%= f.submit "Submit" %>
+      </div>
+      <br>
+  </div>
+<% end %>

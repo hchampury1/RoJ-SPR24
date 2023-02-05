@@ -1,0 +1,53 @@
+<%#
+Project name: Pro Bono Tracker
+Description: Tracker system to manage pro bono works conducted in ACCR
+Filename: show.html.erb
+Description: File to display fields that are part of the Worklog table on the UI
+Last modified on: 11/17/2022
+%>
+
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>User:</strong>
+  <% user = User.find_by(id: @worklog.user_id) %>
+  <%= "#{user.first_name} #{user.last_name}" %>
+</p>
+
+<p>
+  <strong>Project:</strong>
+  <%= Project.find_by(id: @worklog.project_id).name %>
+</p>
+
+<p>
+  <strong>Desc summary:</strong>
+  <%= @worklog.desc_summary %>
+</p>
+
+<p>
+  <strong>Desc body:</strong>
+  <%= @worklog.desc_body %>
+</p>
+
+<p>
+  <strong>Hours:</strong>
+  <%= @worklog.hours %>
+</p>
+
+<p>
+  <strong>Fee:</strong>
+  <%= @worklog.fee %>
+</p>
+
+<p>
+  <strong>Date:</strong>
+  <%= @worklog.date %>
+</p>
+
+<p>
+  <strong>Entered by:</strong>
+  <%= @worklog.entered_by_id %>
+</p>
+
+<%= link_to 'Edit', edit_worklog_path(@worklog), class:"btn btn-outline-primary" %>
+<%= link_to 'Back', worklogs_path, class:"btn btn-outline-secondary" %>

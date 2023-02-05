@@ -1,0 +1,151 @@
+// Project name: Rails of Justice Mail Manager
+// Description: Mail database and management system for ACCR community partner
+// Filename: home.scss.erb
+// Description: Stylesheet for styles used by the 'Home' pages
+// Last modified on: 4/13/22
+// Code written by Team 13
+
+// Place all the styles related to the home controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: https://sass-lang.com/
+
+// Need to specify child of div.container, h1 is overriden somewhere.
+
+div.container p,
+div.container h1 {
+  margin-bottom: 24px;
+}
+
+div.container .background h1 {
+  margin: 20px 0 0 0;
+  color: white;
+}
+
+div.container .background h2 {
+  color: white;
+  font-size: 20px;
+  margin: 20px 0 0 0;
+}
+
+div.container .home-content p,
+div.container .home-content h2 {
+  color: white;
+}
+
+div.container .background {
+  width: 100%;
+  height: fit-content;
+  text-align: center;
+}
+
+img {
+  width: 100%;
+}
+
+div.buttons-container {
+  margin: 0 auto;
+  width: 50%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+div.background-filler {
+  background-color: rgb(75,114,175);
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: -100;
+}
+
+label.align {
+  text-align: right;
+  width: 150px;
+}
+
+.line {
+  display: block;
+  margin-left: 65px;
+}
+
+label.left-align {
+  display: block;
+  margin-left: 20px;
+}
+
+div.form_item {
+  display: block;
+}
+
+input[type=checkbox].tag {
+  margin-right: 7px;
+}
+
+section.delete_tags,
+section.add_tags {
+  background-color: rgb(245, 245, 245);
+  filter: drop-shadow(2px 2px 2px rgb(206, 206, 206));
+  border-radius: 10px;
+  width: 45%;
+  padding: 0 2.5%;
+  transition: transform 0.25s;
+}
+
+section.delete_tags:hover,
+section.add_tags:hover {
+  transform: scale(1.0075);
+}
+
+section.delete_tags {
+  float: left;
+}
+
+section.add_tags {
+  float: right;
+}
+
+section.delete_tags h3,
+section.add_tags h3 {
+  text-align: center;
+  padding-top: 20px;
+}
+
+form.add_tags,
+form.delete_tags {
+  font-size: 1.4em;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.form_item#checkboxes {
+  margin: 0 auto;
+  width: fit-content;
+  text-align: right;
+}
+
+form.add_tags div.wrapper {
+  width: fit-content;
+}
+
+.form_item.submit {
+  margin: 0 auto;
+  width: fit-content;
+}
+
+input.big {
+  transform: scale(1.4);
+}
+
+main.manage_tags {
+  display: block;
+  width: 100%;
+  float: left;
+  margin-bottom: 35px;
+}
+
+.form_item .plus {
+  border-radius: 15%;
+  float: right;
+}

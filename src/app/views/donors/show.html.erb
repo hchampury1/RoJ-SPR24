@@ -1,0 +1,39 @@
+<style>
+body {
+    font-family: Helvetica;
+}
+
+h1 {
+  color: rgb(48, 140, 190);
+  text-align: left;
+  font-weight: bold;
+}
+
+</style>
+
+<p id="notice"><%= notice %></p>
+
+<h1>Donor Details</h1>
+
+<p>
+  <strong>Name:</strong>
+  <%= @donor.donor_name %>
+</p>
+
+<p>
+  <strong>Email:</strong>
+  <%= @donor.email %>
+</p>
+
+<p>
+  <strong>Phone Number:</strong>
+  <%= @donor.phoneNumber %>
+</p>
+
+<p>
+  <strong>Location:</strong>
+  <%= @donor.location %>
+</p>
+
+<%= link_to 'Edit', edit_donor_path(@donor) %> |
+<%= link_to 'Back', donors_path %>

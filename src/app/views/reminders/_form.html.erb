@@ -1,0 +1,65 @@
+<%# Project name: ACCRs Trail of Mail %>
+<%# Description: Reminder system that reminds ACCR about mail recieved by sending an email to them %>
+<%# Filename: _form.html.erb %>
+<%# Description: Form for creating a new reminder which contains data input fields %>
+<%# Last modified on: 4/27/22 %>
+<%# Code by Team 24 %>
+
+<%= form_with(model: reminder, local: true) do |form| %>
+  <% if reminder.errors.any? %>
+    <div id="error_explanation">
+
+      <%# An error message will be displayed if there are errors when submitting a form %>
+
+      <h2><%= pluralize(reminder.errors.count, "error") %> prohibited this reminder from being saved:</h2>
+
+      <ul>
+        <% reminder.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <%# The form/UI that is presented to the user %>
+  <%# Each field requires data to be inputted %>
+
+  <div class="field form-group">
+    <%= form.label "Reminder Topic*" %>
+    <%= form.text_field :mail_entry_id, class:"form-control", placeholder:"Seeking Representation, Review letter from Mary Smith, etc.", required: true %>
+  </div>
+
+  <div class="field form-group">
+    <%= form.label :user_email.to_s + "*" %>
+    <%= form.text_field :user_email, class:"form-control", placeholder:"ie. jdoe5@gmail.com", required: true, pattern:".+@.+\..+" %>
+  </div>
+
+  <div class="field form-group">
+    <%= form.label "User Name*" %>
+    <%= form.text_field :username, class:"form-control", placeholder:"ie. jdoe5", required: true %>
+  </div>
+
+  <div class="field form-group">
+    <%= form.label :notes.to_s + "*" %>
+    <%= form.text_field :notes, class:"form-control", required: true %>
+  </div>
+
+  <div class="field form-group">
+    <%= form.label :reminder_time.to_s + "*" %>
+    <%= form.date_field :reminder_time, class:"form-control", required: true %>
+  </div>
+
+  <div class="field">
+    <%= form.label :priority.to_s + "*" %> <br>
+    <%= form.select :priority, [["None", -1], ["High", 1], ["Medium", 2], ["Low", 3]], {}, {class:"priority"} %>
+  </div>
+
+  <br>
+
+  <%# Click a button to submit a new form %>
+<div class="centered-container">
+  <div class="actions">
+    <%= form.submit  %>
+  </div>
+</div>
+<% end %>

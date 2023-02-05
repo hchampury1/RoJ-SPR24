@@ -1,0 +1,99 @@
+// Place all the styles related to the dashboard controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: https://sass-lang.com/
+
+.dashboard {
+  h3 {
+    font-size: 2em;
+    font-weight: bold;
+  }
+
+  a {
+    color: #fff;
+  }
+
+  .container {
+    width:100% !important;
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+  }
+
+  .dash-box {
+    position: relative;
+    color: #fff;
+    padding-top:8%;
+    padding-left: 5%;
+    padding-right: 5%;
+    padding-bottom: 10%;
+    margin: 10% 0;
+
+    &:hover {
+      text-decoration: none;
+      color: #f3f3f3;
+    }
+
+    .inner {
+      padding-top: 2%;
+      padding-left: 5%;
+      padding-right: 5%;
+      padding-bottom: 0;
+    }
+
+    // If you're wondering why you have to explicitly set it to 0,
+    // This is so it doesn't default to margin:auto
+    h3 {
+      margin-top: 0;
+      margin-left: 0;
+      margin-right: 0;
+      margin-bottom: 4%;
+      white-space: nowrap;
+      padding: 0;
+      font-weight: 750 !important;
+    }
+
+    .dash-box-footer {
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      text-align: center;
+      text-decoration: none;
+      background: rgba(0, 0, 0, 0.6);
+      color: #fff;
+      width: 100%;
+      padding: 2% 0;
+    }
+
+    &:hover .dash-box-footer {
+      background: rgba(0, 0, 0, 0.8);
+      color: #f3f3f3 !important;
+    }
+  }
+
+  .card-box p {
+    font-size: 1.4em;
+  }
+
+  .bg-blue {
+    background-color: rgb(8, 8, 49) !important;
+  }
+  .bg-green {
+    background-color: rgb(73, 59, 51) !important;
+  }
+  .bg-orange {
+    background-color: rgba(82, 53, 7, 0.95) !important;
+  }
+  .bg-grey {
+    background-color: rgba(59, 12, 12, 0.95) !important;
+  }
+
+  .mt-10 {
+    margin-top: 10% !important;
+  }
+
+  .outline {
+    color: white;
+    font-size: 3.5em;
+  }
+}

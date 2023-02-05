@@ -1,0 +1,18 @@
+<style>
+body {
+    font-family: Helvetica;
+}
+
+h1 {
+  color: rgb(48, 140, 190);
+  text-align: left;
+  font-weight: bold;
+}
+
+</style>
+
+<h1>New Donor</h1>
+
+<%= render 'form', donor: @donor %>
+
+<%= link_to 'Back', donors_path %>

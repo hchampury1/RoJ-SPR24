@@ -1,0 +1,52 @@
+<!-- 
+# Project name: AMSTR (ACCR Management System Tracker)
+# Description: Pro-Bono Tracker for ACCR to oversee work done on several cases
+# Filename: dash.html.erb
+# Description: Displays navigation options to the user
+# Last modified on: 4/13/22
+-->
+
+<div class="container">
+  <h1 class="text-center mt-5 mb-0 outline"> User Dashboard </h1>
+  <div class="row">
+    <div class="col-lg-6 col-md-6">
+      <div class="dash-box bg-blue">
+        <div class="inner">
+          <h3 class="text-left"> Log Hours </h3>
+          <p> Enter your Contributions </p>
+          <%= link_to 'Navigate' , worklogs_path, class: "dash-box-footer stretched-link" %>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-lg-6 col-md-6">
+      <div class="dash-box bg-green">
+        <div class="inner">
+          <h3 class="text-left"> View Statistics </h3>
+          <p> Track your Contributions </p>
+        </div>
+        <%= link_to 'Navigate' , statistics_index_path, class: "dash-box-footer stretched-link" %>
+      </div>
+    </div>
+
+    <div class="col-lg-6 col-md-6">
+      <div class="dash-box bg-orange">
+        <div class="inner">
+          <h3 class="text-left"> View Report </h3>
+          <p> Download a Database File </p>
+        </div>
+        <%= link_to 'Navigate' , report_index_path, class: "dash-box-footer stretched-link" %>
+      </div>
+    </div>
+
+    <div class="col-lg-6 col-md-6">
+      <div class="dash-box bg-grey">
+        <div class="inner">
+          <h3 class="text-left"> Search Cases</h3>
+          <p> Search Using Specific Filters </p>
+          <%= link_to 'Navigate' , searches_path, class: "dash-box-footer stretched-link" %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

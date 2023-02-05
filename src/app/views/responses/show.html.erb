@@ -1,0 +1,25 @@
+<p>
+  <strong>Response sent:</strong>
+  <% if @response.response_sent %>
+    <%= "Yes" %>
+  <% else %>
+    <%= "No" %>
+  <% end %>
+</p>
+
+<p>
+  <strong>Response message:</strong>
+  <%= @response.response_message %>
+</p>
+
+<p>
+  <strong>Date sent:</strong>
+  <% if @response.date_sent %>
+    <%= @response.date_sent.strftime("%m/%d/%Y") %>
+  <% else %>
+    <%= "NA" %>
+  <% end %>
+</p>
+
+<%= link_to 'Edit', edit_response_path(@response) %> |
+<%= link_to 'Back', responses_path %>

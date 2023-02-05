@@ -1,0 +1,152 @@
+<%# 
+  Project name: ACCR Mail Manager
+  Description: Mail database and management system for ACCR community partner
+  Filename: _form.html.erb
+  Description: Partial view used for generating the form for creating and editing mail entries
+  Last modified on: 4/13/22
+  Code written by Team 13
+%>
+
+<%# Standard Rails scaffold form code. %>
+<%= form_with(model: mail_entry, local: true) do |form| %>
+  <% if mail_entry.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(mail_entry.errors.count, "error") %> prohibited this mail_entry from being saved:</h2>
+
+      <ul>
+        <% mail_entry.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="row">
+  <div class="col-sm">
+  <div class="field" class="form-group" class="form-control">
+    <b><%= form.label :label.to_s + "*" %></b>
+    <%= form.text_field :label, required: true %>
+  </div>
+  <br>
+
+  <div class="field" class="form-group" class="form-control">
+    <b><%= form.label :date.to_s + "*" %></b>
+    <%= form.date_field :date, required: true %>
+  </div>
+  <br>
+
+  <div class="field" class="form-group" class="form-control">
+    <b><%= form.label :sender_name.to_s + "*" %></b>
+    <%= form.text_field :sender_name, required: true %>
+  </div>
+  <br>
+
+  <div class="field" class="form-group" class="form-control">
+    <b><%= form.label "Inmate Id" %></b>
+    <%= form.number_field :inmate_id %>
+  </div>
+  <br>
+
+  <div class="field" class="form-group" class="form-control">
+    <b><%= form.label "Relevant Staff" %></b>
+    <%= form.select :relevant_staff, ['user', 'admin']%>
+  </div>
+  <br>
+
+  <div class="field" class="form-group" class="form-control">
+    <b><%= form.label "Status" + "*" %></b>
+    <%= form.select :case_status, case_status_options(), required: true %>
+    
+  </div>
+  <br>
+
+  <div class="field" class="form-group" class="form-control">
+    <b><%= form.label :current_age %></b>
+    <%= form.number_field :current_age %>
+  </div>
+  <br>
+
+  <div class="field" class="form-group">
+    <b><%= form.label :crime_age %></b>
+    <%= form.number_field :crime_age %>
+  </div>
+  <br>
+
+
+  <div class="field" class="form-group">
+    <b><%= form.label :victim_race %></b>
+    <%= form.select :victim_race, race_options("NA") %>
+  </div>
+
+  </div>
+
+  <div class="col-sm">
+
+  <div class="field" class="form-group">
+    <b><%= form.label :offender_race %></b>
+    <%= form.select :offender_race, race_options("NA") %>
+  </div>
+  <br>
+
+
+  <div class="form-group" class="form-group">
+  <b><%= form.label :inquiry_Type %></b>
+  <%= form.select :inquiryType, ['NA', 'Internship Application', 'Job Application/Hiring', 'General Legal Support/Case Referrals', 'NGO Marketing Solicitations']%>
+  </div>  
+  <br>
+
+  <div class="form-group" class="form-group">
+  <b><%= form.label :PDF %></b>
+  <%= form.file_field :document, 
+      accept: 'application/pdf'%>
+</div>
+<br>
+
+  <div class="field" class="form-group" class="form-control">
+    <b><%= form.label :home_institution.to_s %></b>
+    <%= form.text_field :home_institution %>
+  </div>
+  <br>
+
+
+  <%# Print the tags if there exists at least one. %>
+  <b><p>Tags:</p></b>
+  <% if @tags && @tags.size >= 1 %>
+
+    <div>
+      <% @tags.each do |tag| %>
+
+        <div class='box-and-label'>
+
+          <%# Determine whether to check the box initially or not. %>
+          <% if @assoc_tags && @assoc_tags.include?(tag.id) %>
+            <%= check_box_tag "selected[]", tag.id, true %>
+            <h4 class='tag-name'><%= tag.name %></h4>
+            
+          <% else %>
+          <%= check_box_tag "selected[]", tag.id %>
+            <h4 class='tag-name'><%= tag.name %></h4>
+          <% end %>
+
+        </div>
+
+      <% end %>
+
+    </div>
+  
+  <%# If there are no tags in the system, print that out. %>
+  <% else %>
+    <br>
+    <em>No tags in the system. Try adding some first!</em>
+    <br>
+    <br>
+  <% end %>
+  </div>
+</div>
+<br>
+<br>
+
+  <div class="actions text-center">
+    <%= form.submit "Save Mail Entry" %>
+  </div>
+<% end %>

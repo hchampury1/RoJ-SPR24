@@ -1,0 +1,75 @@
+<%# Project name: AMSTR %>
+<%# Description: ACCR Management System Tracker  %>
+<%# Filename: search.html.erb %>
+<%# Description: Displays search options to the user %>
+<%# Last modified on: 4/13/22 %>
+
+<div class="container">
+  <h1>Search Entries</h1>
+  <br>
+  <div class="row">
+    <div class="col text-left">
+
+      <%# Allow the user to search by description (or :desc_summary) in the database %>
+      <section class="search-form">
+
+      <%# Iterate through the worklogs and search for user's entry by indicated text field tag  %>
+        <%= form_for :worklogs, method: :get do |f| %>
+          <div class="input-group input-group-lg">
+            <%= label_tag :desc_summary, nil, class: "sr-only" %>
+            <%= text_field_tag :desc_summary, nil, placeholder: "Type here to search", class: "form-control input-lg" %>
+            <span class="input-group-btn">
+              <%= submit_tag "Search", class: "btn btn-primary btn-lg" %>
+            </span>
+          </div>
+        <%end%>
+      </section>
+      
+      <br> 
+    </div>
+  </div>
+
+  <p id="notice"><%= notice %></p>
+
+<%# Display results in a table using the below scopes%>
+  <h2>Results</h2>
+  <table class="table table-hover table-striped">
+    <thead>
+      <tr>
+        <th scope="col">User</th>
+        <th scope="col">Project</th>
+        <th scope="col">Description</th>
+        <th scope="col">Hours</th>
+        <th scope="col">Fee</th>
+        <th scope="col">Date</th>
+        <th scope="col">Entered by</th>
+        <th scope="col" colspan="3"></th>
+      </tr>
+    </thead>
+
+    <tbody>
+    <%# loop through each row in the database to populate the above table with information %>
+      <% if not @worklogs.nil? %>
+        <% @worklogs.each do |worklog| %>
+          <tr>
+            <%
+              user = User.find_by(id: worklog.user_id)
+              project = Project.find_by(id: worklog.project_id)
+              entered_by = User.find_by(id: worklog.entered_by_id)
+            %>
+            <td><%= "#{user.first_name} #{user.last_name}" %></td>
+            <td><%= project.name %></td>
+            <td><%= worklog.desc_summary %></td>
+            <td><%= worklog.hours %></td>
+            <td><%= worklog.fee %></td>
+            <td><%= worklog.date %></td>
+            <td><%= entered_by ? entered_by.name : '' %></td>
+          </tr>
+        <% end %>
+      <% end %>
+    </tbody>
+  </table>
+
+  <br>
+  <br>
+</div>

@@ -1,0 +1,107 @@
+<br>
+
+<div class="jumbotron p-5 text-center">
+<%= image_tag("ACCR_Graphic_Small.png", style: 'height:15%;width:15%;') %>
+<h1 class="display-2">Welcome to Rails of Justice!</h1>
+<h4>Developed for the Atlantic Center for Capital Representation (ACCR) by TCNJ Software Engineering students. Read below for descriptions of each of this application's modules.</h4>
+</div>
+<br>
+
+<% if can?(:access, :rails_admin) %>
+<div class="jumbotron">
+    <h1 class="display-4">Pro Bono Tracker</h1>
+    <p class="lead">
+    The Pro Bono Tracker allows for the recording of when ACCR staff, lawyers, and other legal 
+    workers donate time, money, and efforts into the organization's efforts through a timesheet-based system which uses 
+    a database to collect and store data. Key pages of this module provide options to log hours, view statistics of the 
+    logged data, view and download reports, and search through cases in the database.
+    </p>
+    <hr class="my-4">
+    <p>Click the button below or use the navbar at the top of the page to visit the Pro Bono Tracker module.</p>
+    <p class="lead">
+    <%= link_to "View/Search Hours", "/donations", class: "btn btn-primary btn-lg", method: :get %>
+    </p>
+</div>
+<% end %>
+
+<div class="jumbotron">
+    <h1 class="display-4">Mapping Justice</h1>
+    <p class="lead">
+        The Mapping Justice module provides an interactive geographical map for the State of Pennsylvania 
+        broken down by county to show data on the capital punishment such as offence committed, race of offender, 
+        race of victim, age, rate of capital convictions of that county.
+        The map allows users to hover over a county and show data using po-up text. Each county has a color on the map,
+        where a darker color means there is a high rate of people sentenced to capital punishment from that county, 
+        and a lighter color means there is little or no capital punishment sentaces from that county.
+        This module makes it simple to see where prosecutors are seeking the death penalty in certain counties, 
+        in addition to if certain counties seek it more than others.
+    </p>
+    <hr class="my-4">
+    <p>Click the button below or use the navbar at the top of the page to visit the Mapping Justice module.</p>
+    <p class="lead">
+        <%= link_to 'Mapping Justice',  mapping_justice_home_index_path, class: "btn btn-primary btn-lg", method: :get %>
+    </p>
+</div>
+
+<% if can?(:access, :rails_admin) %>
+<div class="jumbotron">
+    <h1 class="display-4">Mail Manager</h1>
+    <p class="lead">
+        The Mail Manager provides ACCR with an efficient way to store and search for mail. Mail entries can be added to the 
+        database as well as deleted and modified. Search filters can also be used to look through mail entries. Examples 
+        of such filters include the status of the case the mail refers to (pending, complete, not started), the date that 
+        mail was received, characteristics of the victim and offender (race, gender, age), the age of the offender when the 
+        crime happened, the location where the crime took place, and the SBI (Offender ID) of the offender. 
+        Keywords/tags can also be searched for. These tags have to be manually inputted when the mail entry is added.
+    </p>
+    <hr class="my-4">
+    <p>Click the button below or use the navbar at the top of the page to visit the Mail Manager module.</p>
+    <p class="lead">
+        <%= link_to 'Mail Manager',  mail_manager_home_index_path, class: "btn btn-primary btn-lg", method: :get %>
+    </p>
+</div>
+<% end %>
+
+<% if can?(:access, :rails_admin) %>
+<div class="jumbotron">
+    <h1 class="display-4">In-Kind Donation Tracker</h1>
+    <p class="lead">
+        The In-Kinds Donation Tracker aids in keeping a record of donations given to ACCR by outside supporters. Each donation
+        will be described in the databse, including who donated, when they donated, a description of what they donated, and who 
+        input this donation into the system. This module's goal is to make it easy to view what has been donated to discover trends, 
+        such as who are the most frequent supporters or what items have been most frequently donated.
+    </p>
+    <hr class="my-4">
+    <p>Click the button below or use the navbar at the top of the page to visit the In-Kinds module.</p>
+    <p class="lead">
+        <%= link_to 'In-Kinds Page', in_kinds_home_index_path, class: "btn btn-primary btn-lg", method: :get %>
+    </p>
+</div>
+<% end %>
+
+<div class="jumbotron">
+    <h1 class="display-4">Webinar Registration</h1>
+    <p class="lead">
+        The Webinar Registration module provides ACCR with an easy way to organize their upcoming events and efficiently
+        track the number of the registrants for a given event. Interested parties have the ability to choose an event 
+        to attend and seamlessly pay using the integrated payment system with Stripe.
+    </p>
+    <hr class="my-4">
+    <p>Click the button below or use the navbar at the top of the page to visit the Webinar Registration module.</p>
+    <p class="lead">
+        <%= link_to 'View Webinars',  webinars_path, class: "btn btn-primary btn-lg", method: :get %>
+    </p>
+</div>
+
+<div class="jumbotron">
+    <h1 class="display-4">Event Calendar</h1>
+    <p class="lead">
+        The Event Calendar module provides ACCR with an easy way to organize their upcoming events and visualize them on an interactive calendar. Interested parties have the ability to choose an event 
+        to attend, click it on the calendar, and fill out the registration form they will be linked to.
+    </p>
+    <hr class="my-4">
+    <p>Click the button below or use the navbar at the top of the page to visit the Event Calendar module.</p>
+    <p class="lead">
+        <%= link_to 'View Event Calendar',  event_details_path, class: "btn btn-primary btn-lg", method: :get %>
+    </p>
+</div>

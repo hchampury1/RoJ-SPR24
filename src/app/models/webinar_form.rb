@@ -1,0 +1,3 @@
+class WebinarForm < ApplicationRecord
+
+end

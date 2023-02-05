@@ -1,0 +1,35 @@
+<%# Project name: ACCRs Trail of Mail %>
+<%# Description: Reminder system that reminds ACCR about mail recieved by sending an email to them %>
+<%# Filename: show.html.erb %>
+<%# Description: Presents a reminder that is created. All data related to a reminder is shown. %>
+<%# Last modified on: 4/26/22 %>
+<%# Code by Team 24 %>
+
+
+<%# Reminder is presented within a jumbotron %>
+
+<div class="jumbotron">
+  <h1 class="display-4">
+  <%= @reminder.mail_entry_id %>
+  <%= @reminder.user_email %>
+
+
+  </h1>
+  <p class="lead">Username: <%= @reminder.username %> | Reminder time: <%= @reminder.reminder_time.strftime("%m/%d/%Y")  %> | Priority: <% if @reminder.priority == '1' %>High<% elsif @reminder.priority == '2' %>Medium<% elsif @reminder.priority == '3' %>Low<% else %>None<% end %>
+
+
+  </p>
+  <hr class="my-4">
+  <p>  <%= @reminder.notes %>
+  </p>
+  <p class="lead">
+  <%= link_to 'Edit', edit_reminder_path(@reminder), class:"btn btn-success" %> 
+  <%= link_to 'Back', reminders_path, class:"btn btn-secondary" %>
+
+  </p>
+</div>
+
+
+
+
+

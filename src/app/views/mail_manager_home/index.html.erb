@@ -1,0 +1,34 @@
+
+<%# 
+  Project name: ACCR Mail Manager
+  Description: Mail database and management system for ACCR community partner
+  Filename: index.html.erb
+  Description: View used for generating the 'Home' informational page
+  Last modified on: 4/13/22
+  Code written by Team 13, Team 14, and Team 24
+%>
+
+<div class="background">
+    <h1>Welcome to Rails of Justice Mail Manager!</h1>
+    <h2>A single location for all physical ACCR mail</h2>
+    <hr>
+    <img src=<%= asset_path 'logo.gif' %>>
+</div>
+<div class="background-filler"></div>
+    <hr>
+    <div class="home-content">
+    <h2>Get Started</h2>
+    <p>The Rails of Justice Mail Manager works best when the system has mail in it to sort. Get started adding mail by using the 'Create Mail' button below. On this page, you will be presented with a form to input all of the most important data related to the mail entry.</p>
+    <p>Already have some mail in the system? Start searching and filtering mail by the vairous attributes and tags assigned to each mail item by using the 'View Mail' button below. You will be presented with an interface that allows you to select exactly which attributes you would like to use to search for mail.</p>
+    <br>
+    <br>
+    <div class="buttons-container">
+        <%# Links to the biggest 2 features of the application. %>
+        <%= link_to "Create Mail", new_mail_entry_path, class: "btn btn-light btn-lg" %>
+        <%= link_to "View Mail", mail_entries_path, class: "btn btn-light btn-lg" %>
+    </div>
+    <br>
+    <br>
+    <br>
+
+</div>

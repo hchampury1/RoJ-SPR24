@@ -1,0 +1,43 @@
+<br>
+<h1>Responses</h1>
+<h2>Instructions:</h2>
+<p>
+On this page, users can edit the automated email response. This feature as of now is not fully integrated, so currently it allows the user to draft up the automated email response and it can be used when responding to a new client, or sending out follow-up emails, and etc. </p>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Label</th>
+      <th>Response Sent</th>
+      <th>Date Sent</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @responses.each do |response| %>
+      <tr>
+        <td><%= response.maillabel %></td>
+        <td>
+          <% if response.response_sent %>
+            <%= "Yes" %>
+          <% else %>
+            <%= "No" %>
+          <% end %>
+        </td>
+        <td>
+          <% if response.date_sent %>
+            <%= response.date_sent.strftime("%m/%d/%Y") %>
+          <% else %>
+            <%= "NA" %>
+          <% end %>
+        </td>
+        <td><%= link_to 'Details', response %></td>
+        <td><%= link_to 'Edit', edit_response_path(response) %></td>
+        <td><%= link_to 'Delete', response, method: :delete, data: { confirm: 'Are you sure you want to delete this response? This will permanently delete it from the database and it will be irretrievable.' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>

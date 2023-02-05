@@ -1,0 +1,103 @@
+<%#
+  Project name: ACCR Webinar Registration
+  Description: Improved Webinar Registration form for ACCR community partner
+  Filename: index.html.erb
+  Description: Draft View used for generating the Webinar Registration form. NOT USED IN FAVOR OF form.html.erb
+  Last modified on: 10/8/22
+  Content provided by Team 22
+%>
+
+<h1 class="display-1">Webinar Registration Page</h1>
+<hr>
+<h4>Please use the form below to register for one of our webinars. a * character
+indicates that there must be an entry in that box in order to succesfully submit a form.</h4>
+<br>
+
+<%= form_with(model: @registrant, local: true) do |form| %> 
+
+  <div class="field form-group">
+  <label class=display-6>Email*</label>
+  <%= form.text_field :Email %>
+  </div>
+
+  <div class="field form-group">
+  <label class=display-6>Full Name</label>
+  <%= form.text_field :Name %>
+  </div>
+
+  <div class="form-group">
+  <h2 class=display-4> Via Zoom, 10/26/22 from 3-4:30</h2>
+  <hr>
+  <h4>We have applied for 1.5 hours of Capital Case CLE credits for the training.
+  It is free for Public Defenders and $25 for private attorneys who do capital case work.
+  The link to pay the attendance fee is at the bottom of this form.  Because this is a seminar
+  for criminal defense attorneys, in order to promote an effective learning environment, no applications
+  will be accepted from attorneys who are currently involved in the prosecution of criminal cases. </h4>
+  <br>
+  </div>
+<div class="form-group">
+<h2 class=display-4> Which of the following best describes your work?</h2>
+<div class="form-check form-check">
+  <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
+  <label class="form-check-label" for="inlineRadio1">Public Defense - full time</label>
+</div>
+<div class="form-check form-check">
+  <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
+  <label class="form-check-label" for="inlineRadio2">Public Defense - part time</label>
+</div>
+<div class="form-check form-check">
+  <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option3">
+  <label class="form-check-label" for="inlineRadio3">Conflict/contract counsel</label>
+</div>
+<div class="form-check form-check">
+  <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option3">
+  <label class="form-check-label" for="inlineRadio3">Private attorney who does capital case defense work</label>
+</div>
+<div class="form-check form-check">
+  <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option3">
+  <label class="form-check-label" for="inlineRadio3">Mitigation Specialist</label>
+</div>
+<div class="form-check form-check">
+  <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option3">
+  <label class="form-check-label" for="inlineRadio3">Criminal defense investigator</label>
+</div>
+<div class="form-check form-check">
+  <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option3">
+  <label class="form-check-label" for="inlineRadio3">Other:</label>
+  <%= form.text_field :Reasoning %>
+</div>
+</div>
+
+<div class="form-group">
+<h2 class=display-4>If you are not already a member of the ACCR/PDAP Capital Case listserv,
+would you like to be added to it? </h2>
+<div class="form-check form-check">
+  <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
+  <label class="form-check-label" for="inlineRadio1">Yes</label>
+</div>
+<div class="form-check form-check">
+  <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
+  <label class="form-check-label" for="inlineRadio2">No</label>
+</div>
+</div>
+
+<div class="form-group">
+<h2 class=display-4>We will have monthly CLE trainings from March until November.
+What other topics you would like to see covered? </h2>
+<%= form.text_field :Suggestions %>
+</div>
+
+<div class="form-group">
+<h2 class=display-4>The fee for private attorneys seeking CLE credits is $25. Pay $25.00 for ACCR/PDAP Webinar here: </h2>
+<h3 class=display-6> https://www.paypal.com/donate?hosted_button_id=ZXTDJ74ZLX4EC&source=url </h3>
+
+<div class="form-group">
+<h2 class=display-4>The fee for conflict counsel seeking CLE credits is $5. Pay $5.00 for ACCR/PDAP Webinar here: </h2>
+<h3 class=display-6> https://www.paypal.com/biz/fund?id=3NMJUP57WRR56 <h3>  
+
+<div class="form-check">
+    <input type="checkbox" class="form-check-input" id="exampleCheck1">
+    <label class="form-check-label" for="exampleCheck1">Check indicates that you are not a prosecutor.</label>
+  </div>
+  <button type="submit" class="btn btn-primary">Submit</button>
+<% end %>

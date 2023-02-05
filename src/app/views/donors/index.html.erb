@@ -1,0 +1,68 @@
+<style>
+body {
+    font-family: Helvetica;
+}
+
+h1 {
+  color: rgb(48, 140, 190);
+  text-align: left;
+  font-weight: bold;
+}
+
+p {
+  font-family: verdana;
+  font-size: 20px;
+}
+
+.btn-indigo {
+  color: rgb(255, 255, 255);
+  background-color: rgb(34,0,155);
+  border-color: rgb(34,0,155);
+  text-align: left;
+}
+
+.btn-lightBlue {
+  color: rgb(255, 255, 255);
+  background-color: rgb(48, 140, 190);
+  border-color: rgb(48, 140, 190);
+  text-align: center;
+}
+
+</style>
+
+<p id="notice"><%= notice %></p>
+
+<h1>Donors</h1>
+
+<table class="table table-striped table-light table-bordered table-hover">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Email</th>
+      <th>Phone Number</th>
+      <th>Location</th>
+      <th>ID</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @donors.each do |donor| %>
+      <tr>
+        <td><%= donor.donor_name %></td>
+        <td><%= donor.email %></td>
+        <td><%= donor.phoneNumber %></td>
+        <td><%= donor.location %></td>
+        <td><%= donor.id %></td>
+        <td><%= link_to 'Show', donor %></td>
+        <td><%= link_to 'Edit', edit_donor_path(donor) %></td>
+        <td><%= link_to 'Remove', donor, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Donor', new_donor_path, class: "btn btn-lightBlue text-center" %>
+<%= link_to 'View Donations', inkinds_path, class: "btn btn-indigo text-center" %>

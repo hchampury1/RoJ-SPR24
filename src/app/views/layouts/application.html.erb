@@ -1,0 +1,73 @@
+<%# 
+  Project name: ACCR Mail Manager
+  Description: Mail database and management system for ACCR community partner
+  Filename: application.html.erb
+  Description: Partial view used for generating each of the basic page layouts
+  Last modified on: 4/13/22
+  Code written by Team 13, Team 14, and Team 24
+%>
+
+<!DOCTYPE html>
+<html>
+  <head>
+  <%= favicon_link_tag asset_path('ACCR_Graphic_Small.png') %>
+  <title><%= yield(:title).presence || 'Rails of Justice' %></title>
+  <%= render "layouts/head" %>
+  </head>
+  <body>
+    <%= render "layouts/navbar" %>
+    <div class="mt-5 no-collapse">
+      <%= render "layouts/alert" %>
+      <div class="my-5"> 
+
+    <%# Bootstrap meta tags %>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Rails of Justice Mail Storage System</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <!-- if following line is uncommented, dropdown menus do not work -->
+    <!-- <%= javascript_include_tag 'application' %> -->
+    <%# Bootstrap css %>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <!-- app/assets/images/ -->
+    <%= favicon_link_tag asset_path('icon.png') %>
+
+  </head>
+  <body>
+    <%# Bootstrap js & dependencies %>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/css/bootstrap4-toggle.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>
+    <script src="https://www.gstatic.com/charts/loader.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <%# Navigation Bar %>
+    <%= render 'layouts/navbar' %>    
+
+    <%# Notices and alerts are printed after navbar and before main content. %>
+    <div class="container">
+    
+      <!--
+      BUG: caused double modal popups. See _alert.erb instead.
+      
+      <% if notice %>
+        <p class="alert alert-success"><%= notice %></p>
+      <% end %>
+      <% if alert %>
+        <p class="alert alert-danger"><%= alert %></p>
+      <% end %>
+      -->
+
+      <%# Main content of each page will be inserted here. %>
+      <%= yield %>
+      
+    </div>
+  </body>
+</html>

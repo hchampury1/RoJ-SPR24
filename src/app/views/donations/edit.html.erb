@@ -1,0 +1,23 @@
+<%# 
+  Project name: ACCR Pro Bono Breakdown
+  Description: Pro bono hour management system for ACCR community partner
+  Filename: edit.html.erb
+  Description: Page used to edit pro bono hours
+  Last modified on: 12/4/22
+  Code written by Team 21
+%>
+
+<h2>Pro-Bono Edit</h2>
+<br>
+<p> Please fill out the required information in the form below. </p>
+
+<div>
+    Note: Fields marked with <span style="color: red;">*</span> are required.
+</div>
+<br>
+
+<div style="text-align: center;">
+    <div style="display: inline-block; text-align: left;">
+        <%= render 'form', donation: @donation %>
+    </div>
+</div>

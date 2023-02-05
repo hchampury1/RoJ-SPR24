@@ -1,0 +1,17 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  mail_entry_id: 1
+  user_email: MyString
+  username: MyString
+  notes: MyString
+  reminder_time: 2022-04-09 11:02:57
+  priority: MyString
+
+two:
+  mail_entry_id: 1
+  user_email: MyString
+  username: MyString
+  notes: MyString
+  reminder_time: 2022-04-09 11:02:57
+  priority: MyString

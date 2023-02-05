@@ -1,0 +1,81 @@
+<%# 
+  Project name: ACCR Pro Bono Breakdown
+  Description: Pro bono hour management system for ACCR community partner
+  Filename: donations.html.erb
+  Description: Page used for viewing and searching / filtering through all pro bono hours
+  Last modified on: 12/4/22
+  Code written by Team 21
+%>
+
+<h2>Pro-Bono Hours</h2>
+<br>
+
+<div class="container">
+
+  <div class="row">
+    <div class="col text-left">
+
+      <%# Allow the user to search by description (or :desc_summary) in the database %>
+      <section class="search-form">
+
+      <%# Iterate through the donations and search for user's entry by indicated text field tag  %>
+        <%= form_tag(donations_path, method: :get) do %>
+          <div class="input-group input-group-lg">
+            <%= label_tag(:search, params[:search], class: "sr-only") %>
+            <%= text_field_tag(:search, params[:search], placeholder: "Type here to search", class: "form-control input-lg") %>
+            <span class="input-group-btn">
+              <%= submit_tag("Search", name: nil, class: "btn btn-primary btn-lg") %>
+            </span>
+          </div>
+        <%end%>
+      </section>
+      <br>
+    </div>
+  </div>
+
+  <br>
+
+<!-- Displays the Pro Bono Hours in a table -->
+  <table class="table table-hover table-striped">
+    <thead>
+      <tr>
+        <th scope="col">Staff Name</th>
+        <th scope="col">Service Type</th>
+        <th scope="col">Case Name</th>
+        <th scope="col">Date</th>
+        <th scope="col">Hours</th>
+        <th scope="col">Fees</th>
+        <!-- <th scope="col">Description</th> -->
+        <th scope="col">Actions</th>
+      </tr>
+    </thead>
+  <% @donations.each do |donation| %>
+    <tr>
+      <td><%= donation.lawyername %></td>
+      <td><%= donation.caseaddress %></td>
+      <td><%= donation.name %></td>
+      <td><%= donation.date&.strftime("%m/%d/%Y") %></td>
+      <td><%= donation.hours %></td>
+      <td><%= number_to_currency(donation.fees) %></td>
+      <td>
+        <%= link_to 'View |', donation%>
+        <%= link_to 'Edit | ', edit_donation_path(donation) %>
+        <%= link_to 'Delete', donation, method: :delete, data: {confirm: "Are you sure? \nThis action will erase the selected pro-bono log."} %>
+      </td>
+      <!-- <td><%= donation.description %></td> -->
+    </tr>
+
+    <!-- using separate classes 
+      donation.staff.lawyername
+      donation.case.caseaddress
+      donation.case.name
+      donation.date
+      donation.hours
+    -->
+  <% end %>
+  </table>
+
+  <!-- Link that exports the pro bono hours into a csv file -->
+  <%= link_to "Export as CSV", donations_path(format: 'csv') %> 
+
+</div>

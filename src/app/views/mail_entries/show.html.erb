@@ -1,0 +1,122 @@
+<%# 
+  Project name: ACCR Mail Manager
+  Description: Mail database and management system for ACCR community partner
+  Filename: show.html.erb
+  Description: View used for generating the single mail entry pages
+  Last modified on: 4/13/22
+  Code written by Team 13 and Team 14
+%>
+
+<br>
+<br>
+
+<div class="row">
+<div class="col-sm">
+
+<p>
+  <strong>Label:</strong>
+  <%= @mail_entry.label %>
+</p>
+
+<p>
+  <strong>Date:</strong>
+  <%# %m gives format like 02, %d gives format like 04, and %Y gives format like 2000 %>
+  <%= @mail_entry.date.strftime("%m/%d/%Y") %>
+</p>
+
+<p>
+  <strong>Sender name:</strong>
+  <%= @mail_entry.sender_name %>
+</p>
+
+<p>
+  <strong>Inmate:</strong>
+  <%= @mail_entry.inmate_id %>
+</p>
+
+<p>
+  <strong>Relevant Staff:</strong>
+  <%= @mail_entry.relevant_staff %>
+</p>
+
+<p>
+  <strong>Status:</strong>
+  <%= format_case_status(@mail_entry.case_status) %>
+</p>
+
+<p>
+  <strong>Current age:</strong>
+  <%= @mail_entry.current_age %>
+</p>
+
+<p>
+  <strong>Crime age:</strong>
+  <%= @mail_entry.crime_age %>
+</p>
+
+</div>
+<div class="col-sm">
+
+<p>
+  <strong>Victim race:</strong>
+  <%= @mail_entry.victim_race %>
+</p>
+
+<p>
+  <strong>Offender race:</strong>
+  <%= @mail_entry.offender_race %>
+</p>
+
+<p>
+  <strong>Inquiry Type:</strong>
+  <%= @mail_entry.inquiryType %>
+</p>
+
+<p>
+  <strong>Home Institution:</strong>
+  <%= @mail_entry.home_institution %>
+</p>
+
+<div>
+  <strong>Tags:</strong>
+  <ul>
+  <% @tags.each do |tag| %>
+    <div class='box-and-label'>
+      <% if @assoc_tags && @assoc_tags.include?(tag.id) %>
+        <li><em><%= tag.name %></em></li>
+      <% end %>
+    </div>
+  <% end %>
+  </ul>
+</div>
+
+</div>
+</div>
+
+<strong>Attached File:</strong>
+<span>
+  <% if @mail_entry.document.attached? %>
+    <%= link_to rails_blob_path(@mail_entry.document, disposition: "attachment") do %>
+      <%="Download file."%>
+    <% end %>
+  <% end %>
+</span>
+<br><br>
+
+  <% if @mail_entry.document.attached? && @mail_entry.document.representable? %>
+    <div class="file-preview">
+      <%=image_tag @mail_entry.document.representation(resize_to_limit: [1000, 1000]) %>
+    </div>
+  <% elsif @mail_entry.document.attached? && !@mail_entry.document.representable?%>
+      <%="File Not Representable!"%>
+  <% else %>
+    <%= "No file attached."%>
+  <% end %>
+
+  <br>
+  <br>
+  <%= link_to 'Edit', edit_mail_entry_path(@mail_entry) %> |
+  <%= link_to 'Back', mail_entries_path, method: :get %>
+</div>
+<br>
+<br>

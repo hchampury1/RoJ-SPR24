@@ -1,0 +1,33 @@
+<%# Project name: ACCRs Trail of Mail %>
+<%# Description: Reminder system that reminds ACCR about mail recieved by sending an email to them %>
+<%# Filename: new_reminder_email.html.erb %>
+<%# Description: This HTML contains the message(reminder text) that is sent to an email address %>
+<%# Last modified on: 4/27/22 %>
+<%# Code by Team 24 %>
+
+<!DOCTYPE html>
+<html>
+    <head> 
+        <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+    </head>
+    <body>
+        <h2>Hi <%= @reminder.username%></h2>
+        <h3>You asked to be reminded about: <%= @reminder.mail_entry_id %></h3>
+        <p>
+        Details
+        <br>
+        </p>
+        <p>Notes: <%= @reminder.notes %></p>
+        <% if @reminder.priority == "1"%>
+            <p>You set this as HIGH priroity</p>
+        <%end%>
+        <% if @reminder.priority == "2"%>
+            <p>You set this as MEDIUM priroity</p>
+        <%end%>
+        <% if @reminder.priority == "3"%>
+            <p>You set this as LOW priroity</p>
+        <%end%>
+        <br><br><br>
+        <p>Do you not remember creating this reminder? This reminder was created on <%= @reminder.created_at%></p>
+    </body>
+</html>

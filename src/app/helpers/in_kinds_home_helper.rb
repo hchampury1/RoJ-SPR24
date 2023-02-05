@@ -1,0 +1,2 @@
+module InKindsHomeHelper
+end

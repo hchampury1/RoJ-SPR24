@@ -1,0 +1,11 @@
+<!--# Project name: Event Calendar
+# Description: Provides a calendar view to help defense attorneys schedule their webinars.
+# Filename: new.html.erb
+# Description: creates a new event
+# Last modified on: 10/25/2022-->
+
+<h1>New Event Detail</h1>
+
+<%= render 'form', event_detail: @event_detail %>
+
+<%= link_to 'Back', event_details_path %>

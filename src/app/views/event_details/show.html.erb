@@ -1,0 +1,48 @@
+<!--# Project name: Event Calendar
+# Description: Provides a calendar view to help defense attorneys schedule their webinars.
+# Filename: show.html.erb
+# Description:  displays deatils about an event
+# Last modified on: 11/14/2022-->
+<p id="notice"><%= notice %></p>
+
+<!--render banner image using active record-->
+<% if @event_detail.banner.attached? %>
+  <img style="width:35%" src="<%=(url_for(@event_detail.banner))%>">
+<% end %>
+
+<p>
+  <strong>Title:</strong>
+  <%= @event_detail.title %>
+</p>
+
+<p>
+  <strong>Event Date & Time:</strong>
+  <%= @event_detail.start_time.strftime("%b %d %I:%M %P") %>
+</p>
+
+<p>
+  <strong>Event Date & Time:</strong>
+  <%= @event_detail.end_time.strftime("%b %d %I:%M %P") %>
+</p>
+
+<p>
+  <strong>Speakers:</strong>
+  <%= @event_detail.speakers %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @event_detail.description %>
+</p>
+
+<p>
+  <strong>Event Link:</strong>
+  <%= link_to 'Click Here', "https://#{@event_detail.event_link}", :target => '_blank'%>
+</p>
+
+<%= link_to 'Training Registration',  registrants_new_path, class: "btn btn-primary btn-sm", method: :get %>
+
+<% if can?(:access, :rails_admin) %>
+  <%= link_to 'Edit', edit_event_detail_path(@event_detail) %> |
+<% end %>
+<%= link_to 'Back', event_details_path %>

@@ -1,0 +1,76 @@
+<div class="card">
+  <div class="card-header">
+    <h4> Registration for <%= @webinar_name %> </h4> 
+  </div>
+  <div class="card-body">
+    <%= form_with(model: registrant, local: true) do |form| %>
+      <% if registrant.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(registrant.errors.count, "error") %> prohibited this registrant from being saved:</h2>
+
+          <ul>
+            <% registrant.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+
+      <div class="field">
+        <%= form.label "First Name:" %></br>
+        <%= form.text_field :first_name %>
+      </div>
+
+      <div class="field">
+        <%= form.label "Last Name:" %></br>
+        <%= form.text_field :last_name %>
+      </div>
+
+      <div class="field">
+        <%= form.label "Email:" %></br>
+        <%= form.text_field :email %>
+      </div>
+
+      <div class="field">
+        <%= form.text_field :webinar, value:@webinar_name, type: :hidden%>
+      </div>
+
+      <div class="field">
+        <%= form.label "County:" %></br>
+        <%= form.text_field :county %>
+      </div>
+
+      <div class="select">
+        <%= form.label "Which of the following describes your work?" %> </br>
+        <%= form.select :job, [
+          ["Public Defense - Full Time", "Public Defense - Full Time"],
+          ["Public Defense - Part Time", "Public Defense - Part Time"],
+          ["Conflict/Contract Counsel", "Conflict/Contract Counsel"],
+          ["Private Attorney", "Private Attorney"],
+          ["Mitigation Specialist", "Mitigation Specialist"],
+          ["Criminal Defense Investigator", "Criminal Defense Investigator"],
+          ["Other", "Other"]
+        ]%>
+      </div> 
+
+      <div class="field">
+        <%= form.label "If you are not already a member of the ACCR/PDAP Capital Case listserv, would you like to be added to it?" %><br />
+        <%= form.label :listserv, "Yes", value: "true"  %>
+        <%= form.radio_button :listserv, true %>
+        <%= form.label :listserv, "No", value: "false" %>
+        <%= form.radio_button :listserv, false, checked: true %>
+      </div>
+
+      <div class="field">
+        <%= form.label "We will have monthly CLE trainings from March until November, what other topics you would like to see covered?" %>
+        </br>
+        <%= form.text_area :topics %>
+      </div>
+
+      <div class="actions">
+
+        <%= form.submit 'Submit', class:'btn btn-primary' %>
+      </div>
+    <% end %>
+  </div>
+</div>

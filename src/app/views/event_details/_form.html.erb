@@ -1,0 +1,62 @@
+<!--# Project name: Event Calendar
+# Description: Provides a calendar view to help defense attorneys schedule their webinars.
+# Filename: _form.html.erb
+# Description:  all input necessary to create or edit an event, this form is rendered in a few places
+# Last modified on: 11/14/2022-->
+
+<%= form_with(model: event_detail, local: true) do |form| %>
+  <% if event_detail.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(event_detail.errors.count, "error") %> prohibited this event_detail from being saved:</h2>
+
+      <ul>
+        <% event_detail.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  
+  <%= form.label "Event Banner" %>
+  <%= form.file_field :banner, :accept => 'image/png, image/jpeg' %>
+  
+  <div class="field">
+    <%= form.label :title %>
+    <%= form.text_field :title %>
+  </div>
+
+  <div class="field">
+    <%= form.label :start_time %>
+    <%= form.datetime_select :start_time %>
+  </div>
+
+  <div class="field">
+    <%= form.label :end_time %>
+    <%= form.datetime_select :end_time %>
+  </div>
+
+  <div class="field">
+    <%= form.label :speakers %>
+    <%= form.text_area :speakers %>
+  </div>
+
+  <div class="field">
+    <%= form.label :description %>
+    <%= form.text_area :description %>
+  </div>
+
+
+  <div class="field">
+    <%= form.label :event_link %>
+    <%= form.text_field :event_link %>
+  </div>
+
+  <div class="field">
+    <%= form.label :created_by %>
+    <%= form.text_field :created_by %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

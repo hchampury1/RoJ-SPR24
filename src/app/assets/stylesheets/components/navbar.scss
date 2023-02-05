@@ -1,0 +1,60 @@
+.navbar.navbar-contrast {
+  // Navbar to make links readable even if navbar background is neither too light or too dark.
+  // Combine with the .navbar-dark or .navbar-light themes.
+
+  &.navbar-light .navbar-nav .nav-link,
+  &.navbar-dark .navbar-nav .nav-link {
+    margin-top: -1 * $navbar-padding-y;
+    margin-bottom: -1 * $navbar-padding-y;
+    padding-top: 2 * $navbar-padding-y;
+    padding-bottom: 2 * $navbar-padding-y;
+  }
+
+  &.navbar-light {
+    .navbar-nav {
+      .nav-link {
+        color: $black;
+        background: rgba(0, 0, 0, 0);
+  
+        &:hover,
+        &:focus {
+          background: rgba($white, .25)
+        }
+  
+        &.disabled {
+          color: $navbar-light-color;
+        }
+      }
+  
+      .show > .nav-link,
+      .nav-link.active {
+        color: $navbar-light-active-color;
+        background: rgba($white, .55);
+      }
+    }
+  }
+
+  &.navbar-dark {
+    .navbar-nav {
+      .nav-link {
+        color: $white;
+        background: rgba(0, 0, 0, 0);
+  
+        &:hover,
+        &:focus {
+          background: rgba($black, .25);
+        }
+  
+        &.disabled {
+          color: $navbar-dark-color;
+        }
+      }
+  
+      .show > .nav-link,
+      .nav-link.active {
+        color: $navbar-dark-active-color;
+        background: rgba($black, .55);
+      }
+    }
+  }
+}

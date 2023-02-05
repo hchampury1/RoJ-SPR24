@@ -1,0 +1,16 @@
+// Place all the styles related to the statistics controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: https://sass-lang.com/
+
+// This is used to make sure the cards on the index page
+// fill the parent even when there isn't enough content 
+/* 
+# Project name: AMSTR (ACCR Management System Tracker)
+# Description: Pro-Bono Tracker for ACCR to oversee work done on several cases
+# Filename: statistics.scss
+# Description: Handles styling for Statistics class
+# Last modified on: 4/13/22
+*/
+.stretch-card {
+  height: 100% !important;
+}

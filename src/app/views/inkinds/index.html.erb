@@ -1,0 +1,78 @@
+<style>
+body {
+    font-family: Helvetica;
+}
+
+h1 {
+  color: rgb(34,0,155);
+  text-align: left;
+  font-weight: bold;
+}
+
+p {
+  font-family: verdana;
+  font-size: 20px;
+}
+
+.btn-indigo {
+  color: rgb(255, 255, 255);
+  background-color: rgb(34,0,155);
+  border-color: rgb(34,0,155);
+  text-align: left;
+}
+
+.btn-lightBlue {
+  color: rgb(255, 255, 255);
+  background-color: rgb(48, 140, 190);
+  border-color: rgb(48, 140, 190);
+  text-align: center;
+}
+
+.btn-darkBlue {
+  color: rgb(255, 255, 255);
+  background-color: rgb(48, 96, 152);
+  border-color: rgb(48, 96, 152);
+  text-align: right;
+}
+
+</style>
+
+<h1> In-Kind Donation List</h1>
+
+<table class="table table-striped table-bordered table-hover">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Date</th>
+      <th>Value</th>
+      <th>Description</th>
+      <th>User</th>
+      <th>Type</th>
+      <th>Donor</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @inkinds.each do |inkind|%>
+      <tr>
+        <td><%= inkind.name %></td>
+        <td><%= inkind.date %></td>
+        <td><%= inkind.value %></td>
+        <td><%= inkind.description %></td>
+        <td><%= inkind.user %></td>
+        <td><%= inkind.genre %></td>
+        <td><%= inkind.donor_name %></td>
+        <td><%= link_to 'Show', inkind %></td>
+        <td><%= link_to 'Edit', edit_inkind_path(inkind) %></td>
+        <td><%= link_to 'Remove', inkind, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to 'New Donation', new_inkind_path, class: "btn btn-indigo text-center" %>
+
+<%= link_to 'View/Edit Donors', donors_path, class: "btn btn-lightBlue text-center" %>
+
+<%= link_to "Download CSV Report" , inkinds_path(format: "csv"), class: "btn btn-darkBlue text-center" %>

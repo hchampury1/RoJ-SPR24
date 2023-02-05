@@ -1,0 +1,27 @@
+<!-- Project name: Mapping Justice -->
+<!-- Description: For our ACCR Collaborative Project we have created an interactive map of PA. The map is color coded by cases + death sentences and population. 
+The user can hover over a county to view its statistics. Additionally, several counties can be clicked to generate charts-->
+<!-- Filename: index.html.erb -->
+<!-- Description: The page generates the view for our home page. It includes buttons that link to our other functionalities -->
+<!-- Last modified on: 4/9/2022 -->
+
+<!-- Headers and directions -->
+<br>
+<h1 class="text-center"> Rails of Justice: Mapping Justice </h1>
+<hr>
+<p class="text-center"> Click one of the links below to get started.  </p>
+<!-- Links to different functionalities -->
+<figure class="text-center">
+    <%= link_to 'Map', map_index_path, class: "btn btn-outline-primary"%>
+    <% if can?(:access, :rails_admin) %>
+     <%= link_to 'Add to Database', upload_index_path, class: "btn btn-outline-primary"%>
+    <% else %>
+    <% end %>
+    <%= link_to 'About', about_index_path, class: "btn btn-outline-primary"%>
+</figure>
+
+<!-- Div for footer -->
+<div id="footer">
+    <hr>
+    <p>© 2022 Copyright: Mapping Justice</p>
+</div>

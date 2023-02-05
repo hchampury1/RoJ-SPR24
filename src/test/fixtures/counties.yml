@@ -1,0 +1,25 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  num_cur_cases: 1
+  num_cur_cases_b: 1
+  num_cur_cases_w: 1
+  num_cur_cases_o: 1
+  population: 1
+  num_dr: 1
+  num_dr_b: 1
+  num_dr_w: 1
+  num_dr_o: 1
+
+two:
+  name: MyString
+  num_cur_cases: 1
+  num_cur_cases_b: 1
+  num_cur_cases_w: 1
+  num_cur_cases_o: 1
+  population: 1
+  num_dr: 1
+  num_dr_b: 1
+  num_dr_w: 1
+  num_dr_o: 1

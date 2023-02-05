@@ -1,0 +1,207 @@
+# frozen_string_literal: true
+
+require 'csv'
+
+# This file should contain all the record creation needed to seed the database with its default values.
+# The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
+#
+# Examples:
+#
+#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
+#   Character.create(name: 'Luke', movie: movies.first)
+
+# Create the global configuration
+# create! makes the object and automatically saves it to the database
+# the ! means that if something goes wrong and cannot save, throw an exception
+
+AppConfig.create!(name: 'ACCR', logo_url: 'hhhhhhh')
+
+if Rails.env.development?
+
+  # We're in a development mode, so making fake, insecure data is fine
+  # Create two user profiles, admin and unprivledged user
+  # Right now, there is no difference between the accounts
+  # If your project needs it, add a boolean field to user for administrator
+  admin = User.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password', first_name: 'Addy', last_name: 'Minesoda', role: 1)
+  user = User.create!(email: 'user@example.com', password: 'password', password_confirmation: 'password', first_name: 'Jane', last_name: 'Doe', role: 0)
+
+  # For development purposes, we have created 5 possible projects to choose from
+  project1 = Project.create!(name: 'Monthly CLE Webinar')
+  project2 = Project.create!(name: 'John Doe Case')
+  project3 = Project.create!(name: 'Mary Sue Case')
+  project4 = Project.create!(name: 'Khalif Akin (Direct Representation)')
+  project5 = Project.create!(name: 'Bring Your Own Case Training')
+
+  donor1 = Donor.create!(name: 'Test')
+
+
+  
+  worklogs = [
+    {user_id: admin.id, project_id: project1.id, desc_summary: 'Send Confirmation Emails', hours: 0.5, fee: 337.50, date: '2013-02-02 01:00:00 UTC '},
+    {user_id: admin.id, project_id: project1.id, desc_summary: 'Send Confirmation Emails', hours: 1.5, fee: 337.50, date: '2013-02-02 01:00:00 UTC '},
+    {user_id: admin.id, project_id: project1.id, desc_summary: 'Send Confirmation Emails', hours: 2, fee: 337.50, date: '2013-02-02 01:00:00 UTC '},
+    {user_id: admin.id, project_id: project1.id, desc_summary: 'Send Confirmation Emails', hours: 5.5, fee: 337.50, date: '2013-02-02 01:00:00 UTC '},
+    {user_id: admin.id, project_id: project1.id, desc_summary: 'Send Confirmation Emails', hours: 6, fee: 337.50, date: '2013-02-02 01:00:00 UTC '},
+    {user_id: admin.id, project_id: project1.id, desc_summary: 'Send Confirmation Emails', hours: 8, fee: 337.50, date: '2013-02-02 01:00:00 UTC '},
+    {user_id: admin.id, project_id: project1.id, desc_summary: 'Send Confirmation Emails', hours: 0.5, fee: 337.50, date: '2013-02-02 01:00:00 UTC '},
+    {user_id: user.id, project_id: project1.id, desc_summary: 'Send Confirmation Emails', hours: 1.5, fee: 337.50, date: '2013-02-02 01:00:00 UTC '},
+    {user_id: user.id, project_id: project1.id, desc_summary: 'Send Confirmation Emails', hours: 2, fee: 337.50, date: '2013-02-02 01:00:00 UTC '},
+    {user_id: user.id, project_id: project1.id, desc_summary: 'Send Confirmation Emails', hours: 5.5, fee: 337.50, date: '2013-02-02 01:00:00 UTC '},
+    {user_id: user.id, project_id: project1.id, desc_summary: 'Send Confirmation Emails', hours: 6, fee: 337.50, date: '2013-02-02 01:00:00 UTC '},
+    {user_id: user.id, project_id: project1.id, desc_summary: 'Send Confirmation Emails', hours: 8, fee: 337.50, date: '2013-02-02 01:00:00 UTC '},
+    {user_id: user.id, project_id: project1.id, desc_summary: 'Send Confirmation Emails', hours: 0.5, fee: 337.50, date: '2013-02-02 01:00:00 UTC '},
+    {user_id: user.id, project_id: project1.id, desc_summary: 'Send Confirmation Emails', hours: 1.5, fee: 337.50, date: '2013-02-02 01:00:00 UTC '},
+    {user_id: user.id, project_id: project1.id, desc_summary: 'Send Confirmation Emails', hours: 2, fee: 337.50, date: '2013-02-02 01:00:00 UTC '},
+    {user_id: admin.id, project_id: project1.id, desc_summary: 'Send Confirmation Emails', hours: 5.5, fee: 337.50, date: '2013-02-02 01:00:00 UTC '},
+    {user_id: admin.id, project_id: project1.id, desc_summary: 'Send Confirmation Emails', hours: 6, fee: 337.50, date: '2013-02-02 01:00:00 UTC '},
+    {user_id: admin.id, project_id: project1.id, desc_summary: 'Send Confirmation Emails', hours: 8, fee: 337.50, date: '2013-02-02 01:00:00 UTC '},
+    {user_id: admin.id, project_id: project1.id, desc_summary: 'Send Confirmation Emails', hours: 0.5, fee: 337.50, date: '2013-02-02 01:00:00 UTC '},
+    {user_id: admin.id, project_id: project1.id, desc_summary: 'Send Confirmation Emails', hours: 1.5, fee: 337.50, date: '2013-02-02 01:00:00 UTC '},
+    {user_id: admin.id, project_id: project1.id, desc_summary: 'Send Confirmation Emails', hours: 2, fee: 337.50, date: '2013-02-02 01:00:00 UTC '},
+    {user_id: admin.id, project_id: project1.id, desc_summary: 'Send Confirmation Emails', hours: 5.5, fee: 337.50, date: '2013-02-02 01:00:00 UTC '},
+    {user_id: admin.id, project_id: project1.id, desc_summary: 'Send Confirmation Emails', hours: 6, fee: 337.50, date: '2013-02-02 01:00:00 UTC '},
+    {user_id: admin.id, project_id: project2.id, desc_summary: 'Send Confirmation Emails', hours: 0.5, fee: 337.50, date: '2013-02-02 01:00:00 UTC '},
+    {user_id: admin.id, project_id: project2.id, desc_summary: 'Send Confirmation Emails', hours: 1.5, fee: 337.50, date: '2013-02-02 01:00:00 UTC '},
+    {user_id: admin.id, project_id: project2.id, desc_summary: 'Send Confirmation Emails', hours: 2, fee: 337.50, date: '2013-02-02 01:00:00 UTC '},
+    {user_id: admin.id, project_id: project2.id, desc_summary: 'Send Confirmation Emails', hours: 5.5, fee: 337.50, date: '2013-02-02 01:00:00 UTC '},
+    {user_id: admin.id, project_id: project2.id, desc_summary: 'Send Confirmation Emails', hours: 6, fee: 337.50, date: '2013-02-02 01:00:00 UTC '},
+    {user_id: admin.id, project_id: project2.id, desc_summary: 'Send Confirmation Emails', hours: 8, fee: 337.50, date: '2013-02-02 01:00:00 UTC '},
+    {user_id: admin.id, project_id: project2.id, desc_summary: 'Send Confirmation Emails', hours: 0.5, fee: 337.50, date: '2013-02-02 01:00:00 UTC '},
+    {user_id: admin.id, project_id: project2.id, desc_summary: 'Send Confirmation Emails', hours: 1.5, fee: 337.50, date: '2013-02-02 01:00:00 UTC '},
+    {user_id: admin.id, project_id: project2.id, desc_summary: 'Send Confirmation Emails', hours: 2, fee: 337.50, date: '2013-02-02 01:00:00 UTC '},
+    {user_id: admin.id, project_id: project2.id, desc_summary: 'Send Confirmation Emails', hours: 5.5, fee: 337.50, date: '2013-02-02 01:00:00 UTC '},
+    {user_id: admin.id, project_id: project2.id, desc_summary: 'Send Confirmation Emails', hours: 6, fee: 337.50, date: '2013-02-02 01:00:00 UTC '},
+    {user_id: admin.id, project_id: project2.id, desc_summary: 'Send Confirmation Emails', hours: 8, fee: 337.50, date: '2013-02-02 01:00:00 UTC '},
+    {user_id: admin.id, project_id: project2.id, desc_summary: 'Send Confirmation Emails', hours: 0.5, fee: 337.50, date: '2013-02-02 01:00:00 UTC '},
+    {user_id: admin.id, project_id: project2.id, desc_summary: 'Send Confirmation Emails', hours: 1.5, fee: 337.50, date: '2013-02-02 01:00:00 UTC '},
+    {user_id: admin.id, project_id: project2.id, desc_summary: 'Send Confirmation Emails', hours: 2, fee: 337.50, date: '2013-02-02 01:00:00 UTC '},
+    {user_id: admin.id, project_id: project2.id, desc_summary: 'Send Confirmation Emails', hours: 5.5, fee: 337.50, date: '2013-02-02 01:00:00 UTC '},
+    {user_id: admin.id, project_id: project2.id, desc_summary: 'Send Confirmation Emails', hours: 6, fee: 337.50, date: '2013-02-02 01:00:00 UTC '},
+    {user_id: admin.id, project_id: project2.id, desc_summary: 'Send Confirmation Emails', hours: 8, fee: 337.50, date: '2013-02-02 01:00:00 UTC '},
+    {user_id: admin.id, project_id: project2.id, desc_summary: 'Send Confirmation Emails', hours: 0.5, fee: 337.50, date: '2013-02-02 01:00:00 UTC '},
+    {user_id: admin.id, project_id: project2.id, desc_summary: 'Send Confirmation Emails', hours: 1.5, fee: 337.50, date: '2013-02-02 01:00:00 UTC '},
+    {user_id: admin.id, project_id: project2.id, desc_summary: 'Send Confirmation Emails', hours: 2, fee: 337.50, date: '2013-02-02 01:00:00 UTC '},
+    {user_id: admin.id, project_id: project2.id, desc_summary: 'Send Confirmation Emails', hours: 5.5, fee: 337.50, date: '2013-02-02 01:00:00 UTC '},
+    {user_id: admin.id, project_id: project2.id, desc_summary: 'Send Confirmation Emails', hours: 6, fee: 337.50, date: '2013-02-02 01:00:00 UTC '},
+    {user_id: admin.id, project_id: project2.id, desc_summary: 'Send Confirmation Emails', hours: 8, fee: 337.50, date: '2013-02-02 01:00:00 UTC '},
+    {user_id: admin.id, project_id: project2.id, desc_summary: 'Send Confirmation Emails', hours: 0.5, fee: 337.50, date: '2013-02-02 01:00:00 UTC '},
+    {user_id: admin.id, project_id: project2.id, desc_summary: 'Send Confirmation Emails', hours: 1.5, fee: 337.50, date: '2013-02-02 01:00:00 UTC '},
+    {user_id: admin.id, project_id: project2.id, desc_summary: 'Send Confirmation Emails', hours: 2, fee: 337.50, date: '2013-02-02 01:00:00 UTC '},
+    {user_id: admin.id, project_id: project2.id, desc_summary: 'Send Confirmation Emails', hours: 5.5, fee: 337.50, date: '2013-02-02 01:00:00 UTC '},
+    {user_id: admin.id, project_id: project2.id, desc_summary: 'Send Confirmation Emails', hours: 6, fee: 337.50, date: '2013-02-02 01:00:00 UTC '},
+    {user_id: admin.id, project_id: project2.id, desc_summary: 'Send Confirmation Emails', hours: 8, fee: 337.50, date: '2013-02-02 01:00:00 UTC '},
+    {user_id: admin.id, project_id: project2.id, desc_summary: 'Send Confirmation Emails', hours: 0.5, fee: 337.50, date: '2013-02-02 01:00:00 UTC '},
+    {user_id: admin.id, project_id: project2.id, desc_summary: 'Send Confirmation Emails', hours: 1.5, fee: 337.50, date: '2013-02-02 01:00:00 UTC '},
+    {user_id: admin.id, project_id: project2.id, desc_summary: 'Send Confirmation Emails', hours: 2, fee: 337.50, date: '2013-02-02 01:00:00 UTC '},
+    {user_id: admin.id, project_id: project2.id, desc_summary: 'Send Confirmation Emails', hours: 5.5, fee: 337.50, date: '2013-02-02 01:00:00 UTC '},
+    {user_id: admin.id, project_id: project2.id, desc_summary: 'Send Confirmation Emails', hours: 6, fee: 337.50, date: '2013-02-02 01:00:00 UTC '},
+    {user_id: admin.id, project_id: project2.id, desc_summary: 'Send Confirmation Emails', hours: 8, fee: 337.50, date: '2013-02-02 01:00:00 UTC '},
+    {user_id: admin.id, project_id: project2.id, desc_summary: 'Send Confirmation Emails', hours: 0.5, fee: 337.50, date: '2013-02-02 01:00:00 UTC '},
+    {user_id: admin.id, project_id: project2.id, desc_summary: 'Send Confirmation Emails', hours: 1.5, fee: 337.50, date: '2013-02-02 01:00:00 UTC '},
+    {user_id: admin.id, project_id: project2.id, desc_summary: 'Send Confirmation Emails', hours: 2, fee: 337.50, date: '2013-02-02 01:00:00 UTC '},
+    {user_id: admin.id, project_id: project2.id, desc_summary: 'Send Confirmation Emails', hours: 5.5, fee: 337.50, date: '2013-02-02 01:00:00 UTC '},
+    {user_id: admin.id, project_id: project2.id, desc_summary: 'Send Confirmation Emails', hours: 6, fee: 337.50, date: '2013-02-02 01:00:00 UTC '},
+    {user_id: admin.id, project_id: project2.id, desc_summary: 'Send Confirmation Emails', hours: 8, fee: 337.50, date: '2013-02-02 01:00:00 UTC '},
+    {user_id: admin.id, project_id: project2.id, desc_summary: 'Send Confirmation Emails', hours: 0.5, fee: 337.50, date: '2013-02-02 01:00:00 UTC '},
+    {user_id: admin.id, project_id: project2.id, desc_summary: 'Send Confirmation Emails', hours: 1.5, fee: 337.50, date: '2013-02-02 01:00:00 UTC '},
+    {user_id: admin.id, project_id: project2.id, desc_summary: 'Send Confirmation Emails', hours: 2, fee: 337.50, date: '2013-02-02 01:00:00 UTC '},
+    {user_id: admin.id, project_id: project2.id, desc_summary: 'Send Confirmation Emails', hours: 5.5, fee: 337.50, date: '2013-02-02 01:00:00 UTC '},
+    {user_id: admin.id, project_id: project2.id, desc_summary: 'Send Confirmation Emails', hours: 6, fee: 337.50, date: '2013-02-02 01:00:00 UTC '},
+    {user_id: admin.id, project_id: project2.id, desc_summary: 'Send Confirmation Emails', hours: 8, fee: 337.50, date: '2013-02-02 01:00:00 UTC '},
+    {user_id: admin.id, project_id: project2.id, desc_summary: 'Send Confirmation Emails', hours: 0.5, fee: 337.50, date: '2013-02-02 01:00:00 UTC '},
+    {user_id: admin.id, project_id: project2.id, desc_summary: 'Send Confirmation Emails', hours: 1.5, fee: 337.50, date: '2013-02-02 01:00:00 UTC '},
+    {user_id: admin.id, project_id: project2.id, desc_summary: 'Send Confirmation Emails', hours: 2, fee: 337.50, date: '2013-02-02 01:00:00 UTC '},
+    {user_id: admin.id, project_id: project2.id, desc_summary: 'Send Confirmation Emails', hours: 5.5, fee: 337.50, date: '2013-02-02 01:00:00 UTC '},
+    {user_id: admin.id, project_id: project2.id, desc_summary: 'Send Confirmation Emails', hours: 6, fee: 337.50, date: '2013-02-02 01:00:00 UTC '},
+    {user_id: admin.id, project_id: project2.id, desc_summary: 'Send Confirmation Emails', hours: 8, fee: 337.50, date: '2013-02-02 01:00:00 UTC '},
+    {user_id: admin.id, project_id: project2.id, desc_summary: 'Send Confirmation Emails', hours: 0.5, fee: 337.50, date: '2013-02-02 01:00:00 UTC '},
+    {user_id: admin.id, project_id: project2.id, desc_summary: 'Send Confirmation Emails', hours: 1.5, fee: 337.50, date: '2013-02-02 01:00:00 UTC '},
+    {user_id: admin.id, project_id: project2.id, desc_summary: 'Send Confirmation Emails', hours: 2, fee: 337.50, date: '2013-02-02 01:00:00 UTC '},
+    {user_id: admin.id, project_id: project2.id, desc_summary: 'Send Confirmation Emails', hours: 5.5, fee: 337.50, date: '2013-02-02 01:00:00 UTC '},
+    {user_id: admin.id, project_id: project2.id, desc_summary: 'Send Confirmation Emails', hours: 6, fee: 337.50, date: '2013-02-02 01:00:00 UTC '},
+    {user_id: admin.id, project_id: project1.id, desc_summary: 'Send Confirmation Emails', hours: 8, fee: 337.50, date: '2013-02-02 01:00:00 UTC '},
+    {user_id: admin.id, project_id: project1.id, desc_summary: 'Send Confirmation Emails', hours: 0.5, fee: 337.50, date: '2013-02-02 01:00:00 UTC '},
+    {user_id: admin.id, project_id: project1.id, desc_summary: 'Send Confirmation Emails', hours: 1.5, fee: 337.50, date: '2013-02-02 01:00:00 UTC '},
+    {user_id: admin.id, project_id: project1.id, desc_summary: 'Send Confirmation Emails', hours: 2, fee: 337.50, date: '2013-02-02 01:00:00 UTC '},
+    {user_id: admin.id, project_id: project1.id, desc_summary: 'Send Confirmation Emails', hours: 5.5, fee: 337.50, date: '2013-02-02 01:00:00 UTC '},
+    {user_id: admin.id, project_id: project1.id, desc_summary: 'Send Confirmation Emails', hours: 6, fee: 337.50, date: '2013-02-02 01:00:00 UTC '},
+    {user_id: admin.id, project_id: project1.id, desc_summary: 'Send Confirmation Emails', hours: 8, fee: 337.50, date: '2013-02-02 01:00:00 UTC '},
+    {user_id: admin.id, project_id: project3.id, desc_summary: 'Send Confirmation Emails', hours: 0.5, fee: 337.50, date: '2013-02-02 01:00:00 UTC '},
+    {user_id: admin.id, project_id: project3.id, desc_summary: 'Send Confirmation Emails', hours: 1.5, fee: 337.50, date: '2013-02-02 01:00:00 UTC '},
+    {user_id: admin.id, project_id: project3.id, desc_summary: 'Send Confirmation Emails', hours: 2, fee: 337.50, date: '2013-02-02 01:00:00 UTC '},
+    {user_id: admin.id, project_id: project3.id, desc_summary: 'Send Confirmation Emails', hours: 5.5, fee: 337.50, date: '2013-02-02 01:00:00 UTC '},
+    {user_id: admin.id, project_id: project3.id, desc_summary: 'Send Confirmation Emails', hours: 6, fee: 337.50, date: '2013-02-02 01:00:00 UTC '},
+    {user_id: admin.id, project_id: project3.id, desc_summary: 'Send Confirmation Emails', hours: 8, fee: 337.50, date: '2013-02-02 01:00:00 UTC '},
+    {user_id: admin.id, project_id: project4.id, desc_summary: 'Helped Fill Form', hours: 6, fee: 337.50, date: '2013-02-02 01:00:00 UTC '},
+    {user_id: admin.id, project_id: project4.id, desc_summary: 'Met with Client', hours: 8.5, fee: 337.77, date: '2013-02-02 01:00:00 UTC '},
+    {user_id: admin.id, project_id: project5.id, desc_summary: 'Helped Fill Form', hours: 1, fee: 337.50, date: '2013-02-02 01:00:00 UTC '},
+    {user_id: admin.id, project_id: project5.id, desc_summary: 'Met with Client', hours: 2.5, fee: 41.22, date: '2013-02-02 01:00:00 UTC '},
+    {user_id: admin.id, project_id: project5.id, desc_summary: 'Met with Client', hours: 2.5, fee: 41.22, date: '2022-04-02 01:00:00 UTC '},
+    {user_id: admin.id, project_id: project5.id, desc_summary: 'Met with Client', hours: 2.5, fee: 41.22, date: '2022-03-02 01:00:00 UTC '},
+    {user_id: admin.id, project_id: project5.id, desc_summary: 'Met with Client', hours: 2.5, fee: 41.22, date: '2022-05-02 01:00:00 UTC '},
+    {user_id: admin.id, project_id: project5.id, desc_summary: 'Met with Client', hours: 2.5, fee: 41.22, date: '2022-04-03 01:00:00 UTC '},
+    {user_id: admin.id, project_id: project1.id, desc_summary: 'Send Confirmation Emails', hours: 0.5, fee: 337.50, date: '2013-02-02 01:00:00 UTC '},
+    {user_id: admin.id, project_id: project1.id, desc_summary: 'Send Confirmation Emails', hours: 1.5, fee: 337.50, date: '2013-02-02 01:00:00 UTC '},
+    {user_id: admin.id, project_id: project1.id, desc_summary: 'Send Confirmation Emails', hours: 2, fee: 337.50, date: '2013-02-02 01:00:00 UTC '},
+    {user_id: user.id, project_id: project1.id, desc_summary: 'Send Confirmation Emails', hours: 5.5, fee: 337.50, date: '2013-02-02 01:00:00 UTC '},
+    {user_id: user.id, project_id: project1.id, desc_summary: 'Send Confirmation Emails', hours: 6, fee: 337.50, date: '2013-02-02 01:00:00 UTC '},
+    {user_id: user.id, project_id: project1.id, desc_summary: 'Send Confirmation Emails', hours: 8, fee: 337.50, date: '2013-02-02 01:00:00 UTC '},
+    {user_id: user.id, project_id: project1.id, desc_summary: 'Send Confirmation Emails', hours: 0.5, fee: 337.50, date: '2013-02-02 01:00:00 UTC '},
+    {user_id: user.id, project_id: project1.id, desc_summary: 'Send Confirmation Emails', hours: 1.5, fee: 337.50, date: '2013-02-02 01:00:00 UTC '},
+    {user_id: user.id, project_id: project1.id, desc_summary: 'Send Confirmation Emails', hours: 2, fee: 337.50, date: '2013-02-02 01:00:00 UTC '},
+    {user_id: admin.id, project_id: project1.id, desc_summary: 'Send Confirmation Emails', hours: 5.5, fee: 337.50, date: '2013-02-02 01:00:00 UTC '},
+    {user_id: admin.id, project_id: project1.id, desc_summary: 'Send Confirmation Emails', hours: 6, fee: 337.50, date: '2013-02-02 01:00:00 UTC '},
+    {user_id: admin.id, project_id: project1.id, desc_summary: 'Send Confirmation Emails', hours: 8, fee: 337.50, date: '2013-02-02 01:00:00 UTC '},
+    {user_id: admin.id, project_id: project1.id, desc_summary: 'Send Confirmation Emails', hours: 0.5, fee: 337.50, date: '2013-02-02 01:00:00 UTC '},
+    {user_id: admin.id, project_id: project1.id, desc_summary: 'Send Confirmation Emails', hours: 1.5, fee: 337.50, date: '2013-02-02 01:00:00 UTC '},
+    {user_id: admin.id, project_id: project1.id, desc_summary: 'Send Confirmation Emails', hours: 2, fee: 337.50, date: '2013-02-02 01:00:00 UTC '},
+    {user_id: admin.id, project_id: project1.id, desc_summary: 'Send Confirmation Emails', hours: 5.5, fee: 337.50, date: '2013-02-02 01:00:00 UTC '},
+    {user_id: admin.id, project_id: project1.id, desc_summary: 'Send Confirmation Emails', hours: 6, fee: 337.50, date: '2013-02-02 01:00:00 UTC '},
+    {user_id: admin.id, project_id: project1.id, desc_summary: 'Send Confirmation Emails', hours: 8, fee: 337.50, date: '2013-02-02 01:00:00 UTC '},
+    {user_id: admin.id, project_id: project1.id, desc_summary: 'Send Confirmation Emails', hours: 0.5, fee: 337.50, date: '2013-02-02 01:00:00 UTC '},
+    {user_id: admin.id, project_id: project1.id, desc_summary: 'Send Confirmation Emails', hours: 1.5, fee: 337.50, date: '2013-02-02 01:00:00 UTC '},
+    {user_id: admin.id, project_id: project1.id, desc_summary: 'Send Confirmation Emails', hours: 2, fee: 337.50, date: '2013-02-02 01:00:00 UTC '},
+    {user_id: admin.id, project_id: project1.id, desc_summary: 'Send Confirmation Emails', hours: 5.5, fee: 337.50, date: '2013-02-02 01:00:00 UTC '},
+    {user_id: admin.id, project_id: project1.id, desc_summary: 'Send Confirmation Emails', hours: 6, fee: 337.50, date: '2013-02-02 01:00:00 UTC '},
+    {user_id: admin.id, project_id: project1.id, desc_summary: 'Send Confirmation Emails', hours: 8, fee: 337.50, date: '2013-02-02 01:00:00 UTC '},
+    {user_id: admin.id, project_id: project1.id, desc_summary: 'Send Confirmation Emails', hours: 0.5, fee: 337.50, date: '2013-02-02 01:00:00 UTC '},
+    {user_id: admin.id, project_id: project1.id, desc_summary: 'Send Confirmation Emails', hours: 1.5, fee: 337.50, date: '2013-02-02 01:00:00 UTC '},
+    {user_id: admin.id, project_id: project1.id, desc_summary: 'Send Confirmation Emails', hours: 2, fee: 337.50, date: '2013-02-02 01:00:00 UTC '},
+    {user_id: admin.id, project_id: project1.id, desc_summary: 'Send Confirmation Emails', hours: 5.5, fee: 337.50, date: '2013-02-02 01:00:00 UTC '},
+    {user_id: admin.id, project_id: project1.id, desc_summary: 'Send Confirmation Emails', hours: 6, fee: 337.50, date: '2013-02-02 01:00:00 UTC '},
+    {user_id: admin.id, project_id: project1.id, desc_summary: 'Send Confirmation Emails', hours: 8, fee: 337.50, date: '2013-02-02 01:00:00 UTC '},
+    {user_id: admin.id, project_id: project1.id, desc_summary: 'Send Confirmation Emails', hours: 0.5, fee: 337.50, date: '2013-02-02 01:00:00 UTC '},
+    {user_id: admin.id, project_id: project1.id, desc_summary: 'Send Confirmation Emails', hours: 1.5, fee: 337.50, date: '2013-02-02 01:00:00 UTC '},
+    {user_id: admin.id, project_id: project1.id, desc_summary: 'Send Confirmation Emails', hours: 2, fee: 337.50, date: '2013-02-02 01:00:00 UTC '},
+    {user_id: admin.id, project_id: project1.id, desc_summary: 'Send Confirmation Emails', hours: 5.5, fee: 337.50, date: '2013-02-02 01:00:00 UTC '},
+    {user_id: admin.id, project_id: project1.id, desc_summary: 'Send Confirmation Emails', hours: 6, fee: 337.50, date: '2013-02-02 01:00:00 UTC '},
+    {user_id: admin.id, project_id: project1.id, desc_summary: 'Send Confirmation Emails', hours: 8, fee: 337.50, date: '2013-02-02 01:00:00 UTC '}
+  ]
+
+  worklogs.each {|attributes| Worklog.create!(attributes)}
+
+  csv_text = File.read(Rails.root.join('lib', 'seeds', 'accr_data.csv'))
+  csv = CSV.parse(csv_text, :headers => true, :encoding => 'ISO-8859-1')
+  csv.each do |row|
+    t = County.new
+    t.name = row['name']
+    t.num_cur_cases = row['num_cur_cases']
+    t.num_cur_cases_b = row['num_cur_cases_b']
+    t.num_cur_cases_w = row['num_cur_cases_w']
+    t.num_cur_cases_o = row['num_cur_cases_o']
+    t.population = row['population']
+    t.num_dr = row['num_dr']
+    t.num_dr_b = row['num_dr_b']
+    t.num_dr_w = row['num_dr_w']
+    t.num_dr_o = row['num_dr_o']
+    t.save!
+  end
+  #when the database is seeded, copy the seed file to the app/assets/data/
+  FileUtils.copy_file(FileUtils.pwd + "/lib/seeds/accr_data.csv", FileUtils.pwd + "/app/assets/data/map_data.csv")
+  
+
+elsif Rails.env.production?
+
+  # We're in a production application! Stay secure! No accounts with password!
+
+end

@@ -1,0 +1,36 @@
+<h3>Registrants for the <%= @webinars.webinar_name %> Webinar</h3>
+
+
+<table class="table table-bordered table-hover">
+  <thead class="thead-dark">
+    <tr>
+      <th>First Name</th>
+      <th>Last Name</th>
+      <th>Email</th>
+      <th>County</th>
+      <th>Job</th>
+      <th>Listserv</th>
+      <th>Topics</th>
+      <th colspan="100%"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @webinars.registrants.each do | registrant | %>
+      <tr>
+        <td><%= registrant.first_name %></td>
+        <td><%= registrant.last_name %></td>
+        <td><%= registrant.email %></td>
+        <td><%= registrant.county %></td>
+        <td><%= registrant.job %></td>
+        <td><%= registrant.listserv %></td>
+        <td><%= registrant.topics %></td>
+
+
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to 'Back to Webinars', "/webinars", class:'btn btn-primary' %>
+

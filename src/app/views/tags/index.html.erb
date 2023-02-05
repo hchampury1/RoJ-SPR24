@@ -1,0 +1,80 @@
+<%# 
+  Project name: ACCR Mail Manager
+  Description: Mail database and management system for ACCR community partner
+  Filename: index.html.erb
+  Description: View used for both adding and deleting multiple tags at once
+  Last modified on: 3/30/22
+  Code written by Team 13
+%>
+
+<br>
+<h1>Add or Delete Tags</h1>
+<h2>Instructions:</h2>
+<p>Use the left pane to delete tags from the database. Note that a deleted tag will be removed from all mail items that use this tag. Use the right pan to add a new tag. This tag can be used when adding mail to the database.</p>
+
+<main class='manage_tags'>
+  
+  <%# Section for deleting tags %>
+  <section class='delete_tags'>
+
+    <h3>Select the tags to be deleted.</h3>
+    <hr>
+
+    <%# Form for deleting tags. %>
+    <%= form_tag delete_selected_path, class:'delete_tags' do %>
+      
+      <%# Print the tags if there exists at least one. %>
+      <% if @tags.size >= 1 %>
+
+        <div class="form-items">
+          <% @tags.each do |tag| %>
+            
+            <div class='box-and-label'>
+              <h4 class='tag-name'><%= tag.name %></h4>
+              <%= check_box_tag "delete[]", tag.id %>
+            </div>
+
+          <% end %>
+        </div>
+
+        <%# Executes method to destroy all checked tags. %>
+        <div class="center">
+          <%= submit_tag "Delete Selected", class:"btn btn-danger btn-large" %>
+        </div>
+
+      <%# Print a message for no tags. %>
+      <% else %>
+        <br>
+        <h4 class="no-tags">You don't have any tags. Try adding some using the form to the right.</h4>
+        <br>
+      <% end %>
+
+    <% end %>
+
+  </section>
+
+  <%# Section for adding tags %>
+  <section class='add_tags'>
+
+    <%# Form for adding tags %>
+    <h3>Enter the tags to be added.</h3>
+    <hr>
+    <%= form_tag create_entered_path, class:'add_tags', method: :post do %>
+
+      <h4>Comma-Separated Tags:</h4>
+      <%= text_area_tag "tags_string", "", class:'add_tags_area', placeholder:'Your Tag, Another, More Tags' %>
+
+      <div class="center">
+        <%= submit_tag "Add Entered", class:"btn btn-primary btn-large" %>
+      </div>
+
+    <% end %>
+
+      <br>
+      <br>
+    </form>
+
+  </section>
+</main>
+
+<footer></footer>

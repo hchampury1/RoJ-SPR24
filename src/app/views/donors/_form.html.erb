@@ -1,0 +1,36 @@
+<%= form_with(model: donor, local: true) do |form| %>
+  <% if donor.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(donor.errors.count, "error") %> prohibited this donor from being saved:</h2>
+
+      <ul>
+        <% donor.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="field">
+    <%= form.label :donor_name %>
+    <%= form.text_field :donor_name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :email %>
+    <%= form.text_field :email %>
+  </div>
+
+  <div class="field">
+    <%= form.label :Phone_Number %>
+    <%= form.number_field :phoneNumber %>
+  </div>
+
+  <div class="field">
+    <%= form.label :location %>
+    <%= form.text_field :location %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

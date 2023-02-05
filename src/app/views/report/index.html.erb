@@ -1,0 +1,69 @@
+<!-- 
+# Project name: AMSTR
+# Description: ACCR Management System Tracker
+# Filename/path: views/report/index.html.rb
+# Description: View report page to display worklogs table and download csv link
+ Last modified on: 4/13/22 
+ -->
+
+<!--View Report Application Page-->
+<div class="container">
+  <div class="row">
+    <div class="col text-center">
+
+    <!--Page title-->
+    <h1>View Summary Report</h1>
+      <br>
+
+      <!--Create table to display all worklog entries to admin user-->
+      <table class="table table-hover table-striped">
+        <thead>
+          <tr>
+
+            <!--Table column headings-->
+            <th scope="col">Entry</th>
+            <th scope="col">Date</th>
+            <th scope="col">Employee Name</th>
+            <th scope="col">Project Name</th>
+            <th scope="col">Description</th>
+            <th scope="col">Hours</th>
+            <th scope="col">Fee</th>
+            <th scope="col">Entered By</th>
+            <th scope="col" colspan="3"></th>
+          </tr>
+        </thead>
+
+        <tbody>
+
+          <!--Pull all worklog data and cycle through to 
+          present each worklog attribute in respective table column-->
+          <% @worklogs.each do |worklog| %>
+            <tr>
+              <%
+                user = User.find_by(id: worklog.user_id)
+                project = Project.find_by(id: worklog.project_id)
+                entered_by = User.find_by(id: worklog.entered_by_id)
+              %>
+              <td><%= worklog.id %></td>
+              <td><%= worklog.date %></td>
+              <td><%= "#{user.first_name} #{user.last_name}" %></td>
+              <td><%= project.name %></td>
+              <td><%= worklog.desc_summary %></td>
+              <td><%= worklog.hours %></td>
+              <td><%= worklog.fee %></td>
+              
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+
+    <br>
+      <!--Display all table data in separate pages for better readability -->  
+      <%= paginate @worklogs %>
+    <br>
+
+      <!--Download report button feature to download worklogs as a csv file -->
+      <%= link_to "Download Report" , worklogs_path(format: "csv"), class: "btn btn-primary text-center" %>
+    </div>
+  </div>
+</div>

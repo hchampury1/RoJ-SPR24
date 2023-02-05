@@ -1,0 +1,47 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>First name:</strong>
+  <%= @registrant.first_name %>
+</p>
+
+<p>
+  <strong>Last name:</strong>
+  <%= @registrant.last_name %>
+
+</p>
+
+<p>
+  <strong>Email:</strong>
+  <%= @registrant.email %>
+</p>
+
+<p>
+
+  <strong>Webinar:</strong>
+  <%= @registrant.webinar %>
+</p>
+
+<p>
+  <strong>County:</strong>
+  <%= @registrant.county %>
+</p>
+
+<p>
+  <strong>Job:</strong>
+  <%= @registrant.job %>
+</p>
+
+<p>
+  <strong>Listserv:</strong>
+  <%= @registrant.listserv %>
+</p>
+
+<p>
+  <strong>Topics:</strong>
+  <%= @registrant.topics %>
+</p>
+
+
+<%# <%= link_to 'Edit', edit_registrant_path(@registrant) temporary fix %>
+<%= link_to 'Back', webinars_path %>
