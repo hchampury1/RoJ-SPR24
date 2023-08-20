@@ -34,6 +34,8 @@ Now that you've cloned your repository, navigate to the `<repo_name>/src/` folde
     
     yarn install
 
+If bundle install says `rbenv: version x.x.x is not installed....` then run `rbenv install x.x.x` where x.x.x is the version you need
+
 If you encounter errors, make sure the PostgreSQL server has been started, or try to restart it.
 
 * For CentOS:
