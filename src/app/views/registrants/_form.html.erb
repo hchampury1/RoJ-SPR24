@@ -2,11 +2,6 @@
 <!-- Team 12 -->
 <!-- Modified on 4/27/23 -->
 
-
-
-
-
-
 <script>
   $(document).ready(function() {
     // Reference necessary HTML elements
@@ -34,16 +29,13 @@
         submitButton.hide();
       } else {
         paypalButton.hide();
+
         submitButton.show();
       }
     });
   });
-  console.log($('#paypal-button-container').length); 
-console.log($('#submit-btn').length); 
+
 </script>
-
-
-
 
 <style>
   .field {
@@ -84,6 +76,8 @@ console.log($('#submit-btn').length);
 <!-- a label and a text field for the user's first name -->
 <!-- Ensure that the following sections for user's first name or other fields are included here if they exist -->
 
+     
+    <!-- a label and a text field for the user's first name -->
       <div class="field">
       <%= form.label "First Name:" %></br>
       <%= form.text_field :first_name %>
@@ -112,6 +106,7 @@ console.log($('#submit-btn').length);
    
 
 
+
    <!-- generates a dropdown list for the user to select a state. -->
    <h class="my-5">
    <div class="field">
@@ -123,11 +118,13 @@ console.log($('#submit-btn').length);
 </h>
 
 
+
       <!-- generates a label element with the text "County"-->
       <div class="field">
         <%= form.label "County:" %></br>
         <%= form.text_field :county %>
       </div>
+
 
 <!-- generates a label element with the text for occupation"-->
 <div class="field" id="job-select-wrapper" style="margin-bottom: 20px;">
@@ -151,13 +148,12 @@ console.log($('#submit-btn').length);
       <div class="field" id="listserv-wrapper">
       <div class="field">
        <%= form.label :question, "If you are not already a member of the ACCR/PDAPs Capital Case listserv, would you like to be added to it?" %> </br>
+
         <%= form.label :listserv, "Yes", value: "true"  %>
         <%= form.radio_button :listserv, true %>
         <%= form.label :listserv, "No", value: "false" %>
         <%= form.radio_button :listserv, false, checked: true %>
       </div>
-
-
 
 
       <div class="field">
@@ -166,12 +162,10 @@ console.log($('#submit-btn').length);
         <%= form.text_area :topics %>
       </div>
 
-
   <div class="field">
   <!--%= form.label "Paid:" %></br!-->
   <%= form.hidden_field :paid, id: "paid", value: false %>
 </div>
-
 
 <div class="field">
   <!--%= form.label "Amount:" %></br!-->
@@ -179,9 +173,9 @@ console.log($('#submit-btn').length);
 </div>
 
 
+
  <!--label for="paid">Paid:</label>
 <input type="text" id="paid" name="paid" readonly>
-
 
 <label for="amount">Amount:</label>
 <input type="text" id="amount" name="amount" readonly!-->

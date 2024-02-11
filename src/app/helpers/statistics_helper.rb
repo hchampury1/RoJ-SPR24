@@ -5,7 +5,7 @@
 # Last modified on: 4/21/23
 
 module StatisticsHelper
-  
+
   # Returns all of the tuples in worklog
   # Used primarily for admin view
   def get_total_tuples
@@ -21,8 +21,8 @@ module StatisticsHelper
     return total_entries
   end
 
-  # Returns the total value of work done 
-  # by all users. 
+  # Returns the total value of work done
+  # by all users.
   def calculate_all_fees
     accr_fees = get_all_curr_month_val()
     total_fees = accr_fees.sum(:fees)
@@ -48,7 +48,7 @@ module StatisticsHelper
 
     curr_month_end_day = Time.days_in_month(curr_month.to_i)
 
-    curr_month_start_date = curr_year.to_s + '-' + curr_month.to_s + '-01' 
+    curr_month_start_date = curr_year.to_s + '-' + curr_month.to_s + '-01'
     curr_month_end_date = curr_year.to_s  + '-' + curr_month.to_s + '-' + curr_month_end_day.to_s
 
     curr_month_tuples = Donation.where('date BETWEEN ? AND ?', curr_month_start_date, curr_month_end_date)
@@ -78,7 +78,8 @@ module StatisticsHelper
     #Changed on 3/5/23 -> needed to typecast year into an integer
     prev_month_end_day = Time.days_in_month(prev_month.to_i, prev_year.to_i) 
 
-    prev_month_start_date = prev_year.to_s + '-' + prev_month.to_s + '-01' 
+
+    prev_month_start_date = prev_year.to_s + '-' + prev_month.to_s + '-01'
     prev_month_end_date = prev_year.to_s  + '-' + prev_month.to_s + '-' + prev_month_end_day.to_s
     prev_month_tuples = Donation.where('date BETWEEN ? AND ?', prev_month_start_date, prev_month_end_date)
   end
@@ -107,7 +108,7 @@ module StatisticsHelper
     return final_tuples
   end
 
-  # Calculates the change in % for fees 
+  # Calculates the change in % for fees
   # from last month to this month using
   # every tuple.
   def calculate_month_change_fees_all
@@ -154,7 +155,7 @@ module StatisticsHelper
     return (((curr_val.to_f - prev_val) / ((curr_val.to_f + prev_val)/2)) * 100).round(2).abs
   end
 
-  # Calculates the change in percentage for the fees 
+  # Calculates the change in percentage for the fees
   # using this month and last month.
   # Used by non-admins
   def calculate_month_change_fees
@@ -172,8 +173,8 @@ module StatisticsHelper
     return percent_diff
   end
 
-  # Calculates the change in percentage for 
-  # the number of  entries using this month and 
+  # Calculates the change in percentage for
+  # the number of  entries using this month and
   # last month. Used by non-admins
   def calculate_month_change_entries
     # We retrieve the USER tuples for this month and last month
@@ -192,9 +193,9 @@ module StatisticsHelper
 
   end
 
-  # Calculates the change in percentage for 
-  # the number of projects contributed to 
-  # using this month and last month. 
+  # Calculates the change in percentage for
+  # the number of projects contributed to
+  # using this month and last month.
   # Used by non-admins
   def calculate_month_change_projects
     # We retrieve the USER tuples for this month and last month
@@ -213,7 +214,7 @@ module StatisticsHelper
 
   end
 
-  # Calculates the total fees 
+  # Calculates the total fees
   # for a user this month
   def calculate_user_total_fees
     user_fees_tuples = get_curr_month_user_val()
@@ -221,7 +222,7 @@ module StatisticsHelper
     return user_fees
   end
 
-  # Calculates the number of entries 
+  # Calculates the number of entries
   # for a user this month
   def calculate_user_num_entries
     num_entries = get_curr_month_user_val()
@@ -230,7 +231,7 @@ module StatisticsHelper
   end
 
   # Calculates the number of projects
-  # contributed to for a user this month 
+  # contributed to for a user this month
   def calculate_projects_contributed
     user_tuples = get_curr_month_user_val()
     numProjects = user_tuples.distinct.count(:project_id)
@@ -257,9 +258,9 @@ module StatisticsHelper
     return cat_fees
   end
 
-  # Returns the percentage a category makes up of the total 
-  # in Donations
-  #Modified 4/21/23
+  # Returns the percentage a category makes up of the total
+  # in CategoryView
+
   def get_cat_percentage(cat)
     cat_fees = get_cat_fees(cat)
     total_fees = Donation.all.sum(:fees)
@@ -275,7 +276,7 @@ module StatisticsHelper
     if !cat_hours_id.nil?
       cat_hours = Donation.where(project_id: cat_hours_id.id, user_id: current_user.id).sum(:hours)
     end
-    
+
     return cat_hours
   end
 
@@ -291,10 +292,27 @@ module StatisticsHelper
     return Donation.where(caseaddress: "Direct Representation").sum(:hours).to_i
   end
 
+  # Returns number of hours for categories in "Consultation" section
+  def calculate_consultation
+    # Since there are 3 categories, the remaining hours not in
+    # training or representation hours must be hours for consultation
+    # there is also not an easy way to identify which categories are
+    # considered "consultation", so this approach helps
+    # us to calculate this since it's unclear
+    training_hours = calculate_training()
+    representation_hours = calculate_representation()
+    all_hours = Donation.where(user_id: current_user.id).sum(:hours)
+    user_hours = all_hours - training_hours - representation_hours
+
+    if user_hours == all_hours
+      user_hours = 0
+    end
+
   # Returns number of hours for categories in "Court" section
   def calculate_court
     return Donation.where(caseaddress: "Court").sum(:hours).to_i
   end
+
 
   # Returns number of hours for categories in "Other" section
   def calculate_other

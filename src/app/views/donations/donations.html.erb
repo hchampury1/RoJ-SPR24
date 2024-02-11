@@ -1,4 +1,4 @@
-<%# 
+<%#
   Project name: ACCR Pro Bono Breakdown
   Description: Pro bono hour management system for ACCR community partner
   Filename: donations.html.erb
@@ -108,6 +108,7 @@
   <table class="table table-hover table-striped">
     <thead>
       <tr>
+
         <%# Modified 3/25/23, Calls the sortable function when a pro-bono case attribute is clicked %>
         <th scope="col"><%= sortable "lawyername", "Staff Name"%></th>
         <th scope="col"><%= sortable "caseaddress", "Service Type"%></th>
@@ -115,6 +116,7 @@
         <th scope="col"><%= sortable "date", "Date"%></th>
         <th scope="col"><%= sortable "hours", "Total Hours"%></th>
         <th scope="col"><%= sortable "fees", "Hourly Fee"%></th>
+
         <!-- <th scope="col">Description</th> -->
         <th scope="col">Actions</th>
       </tr>
@@ -135,7 +137,7 @@
       <!-- <td><%= donation.description %></td> -->
     </tr>
 
-    <!-- using separate classes 
+    <!-- using separate classes
       donation.staff.lawyername
       donation.case.caseaddress
       donation.case.name
@@ -146,6 +148,6 @@
   </table>
 
   <!-- Link that exports the pro bono hours into a csv file -->
-  <%= link_to "Export as CSV", donations_path(format: 'csv') %> 
+  <%= link_to "Export as CSV", donations_path(format: 'csv') %>
 
 </div>

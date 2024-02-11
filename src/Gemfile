@@ -93,10 +93,12 @@ gem 'csv'
 gem "simple_calendar", "~> 2.4"
 
 
+
 #Added by Team 12 on 4/27/23
 gem "money-rails"
 gem "haml"
 gem 'rename', '~> 1.0', '>= 1.0.8'
 
 gem 'prawn'
+
 

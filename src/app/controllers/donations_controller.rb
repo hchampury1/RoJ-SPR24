@@ -1,13 +1,14 @@
 # Project name: ACCR Pro Bono Breakdown
 # Description: This project will keep track of the pro-bono hours that the ACCR staff volunteers.
-# Filename: donations_controller.rb 
-# Description: Controller that handles the creation, showing, editing, deleting, searching, sorting, and filtering of all the pro-bono donations
-# Last modified on: 4/23/23 by Team 24 (Spring 2023)
 
-class DonationsController < ApplicationController  
+
+class DonationsController < ApplicationController
   before_action :set_donation, only: %i[show edit destroy]
+
+  require 'csv'
+
   helper_method :sort_column, :sort_direction
-  
+
   #GET /donations/ or /donations.json
   def index
     # Modified 4/26/23 Need a way to defualt sort by most recently added entry
@@ -69,9 +70,7 @@ class DonationsController < ApplicationController
       format.json { head :no_content }
     end
   end
-  
-  # Searches for a certain string based on all pro-bono hour donations
-  # This function will also be called based on whether filtering attributes were specified
+
   def donations
     params.permit(:search, :lawyer_name, :service_type, :date_range, :fee_range, :hour_range)
 
@@ -107,47 +106,74 @@ class DonationsController < ApplicationController
       end
     end
 
-    # Filter service type column based on listed params
-    if !(_serviceParam.blank?)
-      @donations = @donations.where("caseaddress LIKE ? ", _serviceParam)
-    end
-
-    # Updated 4/26/2023 to include the logic for date ranges and check if start date is greater than end date
-    # Filter date column based on listed params
-    if !(_startDateParam.blank?) && !(_endDateParam.blank?)
-      if (_startDateParam <= _endDateParam)
-        @donations = @donations.where("date BETWEEN ? AND ? ", _startDateParam, _endDateParam)
-      end
-    elsif !(_startDateParam.blank?) && (_endDateParam.blank?)
-      @donations = @donations.where("date >= ? ", _startDateParam)
-    elsif (_startDateParam.blank?) && !(_endDateParam.blank?)
-      @donations = @donations.where("date <= ? ", _endDateParam)
-    end
-
-    # Filter fee range column based on listed params
-    if !(_feeParam.blank?)
-      # Edited 4/26/2023 to use .include?
-      if(_feeParam.include?("More than"))
-        @donations = @donations.where("fees > 500")
-      else
-        # Used to extract just the fees for comparison (Remove dashed line)
-        fee_split = _feeParam.split('-')
-        @donations = @donations.where("fees >= ? AND fees <= ?", fee_split[0], fee_split[1]) 
-      end
-    end
-
-    # Filter hour range column based on listed params
-    if !(_hoursParam.blank?)
-      # Edited 4/26/2023 to use .include?
-      if(_hoursParam.include?("More than"))
-        @donations = @donations.where("hours > 75")
-      else
-        # Used to extract just the hours for comparison (Remove dashed line)
-        hour_split = _hoursParam.split('-')
-        @donations = @donations.where("hours >= ? AND hours <= ?", hour_split[0].to_f, hour_split[1].to_f)
-      end
-    end
+# Parses a user-selected .csv file and creates Pro Bono donation entries
+# Method for importing .csv file came from Yaroslav Shmarov: https://www.youtube.com/watch?v=EJ8FZMLsVVQ
+# https://github.com/corsego/88-csv-import/commit/6a6a43687ca5c967e32f3f1772d70f4d480a51ea
+def import
+  file = params[:file]
+  if file.nil?
+    return redirect_to new_donation_path, notice: 'Upload a file before hitting submit please'
+  else
+    return redirect_to donations_path, notice: 'Only CSV please' unless file.content_type == "text/csv"
   end
+
+  file = File.open(file)
+
+  csv = CSV.parse(file, headers: true, col_sep: ",")
+  csv.each do |row|
+    donation_hash = Hash.new
+    donation_hash[:lawyername] = row["Staff Name"]
+    donation_hash[:caseaddress] = row["Service Type"]
+    donation_hash[:name] = row["Case Name"]
+    donation_hash[:date] = row["Date"]
+    donation_hash[:hours] = row["Hours"]
+    donation_hash[:fees] = row["Fees"]
+    donation_hash[:description] = row["Description"]
+    Donation.create(donation_hash)
+  end
+
+  respond_to do |format|
+    format.html { redirect_to donations_path, notice: 'Donations imported!' }
+  end
+end
+
+# Filter service type column based on listed params
+if !(_serviceParam.blank?)
+  @donations = @donations.where("caseaddress LIKE ? ", _serviceParam)
+end
+
+# Filter date column based on listed params
+if !(_startDateParam.blank?) && !(_endDateParam.blank?)
+  if (_startDateParam <= _endDateParam)
+    @donations = @donations.where("date BETWEEN ? AND ? ", _startDateParam, _endDateParam)
+  end
+elsif !(_startDateParam.blank?) && (_endDateParam.blank?)
+  @donations = @donations.where("date >= ? ", _startDateParam)
+elsif (_startDateParam.blank?) && !(_endDateParam.blank?)
+  @donations = @donations.where("date <= ? ", _endDateParam)
+end
+
+# Filter fee range column based on listed params
+if !(_feeParam.blank?)
+  if(_feeParam.include?("More than"))
+    @donations = @donations.where("fees > 500")
+  else
+    fee_split = _feeParam.split('-')
+    @donations = @donations.where("fees >= ? AND fees <= ?", fee_split[0], fee_split[1]) 
+  end
+end
+
+# Filter hour range column based on listed params
+if !(_hoursParam.blank?)
+  if(_hoursParam.include?("More than"))
+    @donations = @donations.where("hours > 75")
+  else
+    hour_split = _hoursParam.split('-')
+    @donations = @donations.where("hours >= ? AND hours <= ?", hour_split[0].to_f, hour_split[1].to_f)
+  end
+end
+end
+
   private
 
   # Use callbacks to share common setup or constraints between actions.

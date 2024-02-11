@@ -1,9 +1,10 @@
-=begin
-    Project Name: InKind Donations
-    FileName:/home/student5/RoJ-Spr23/src/app/controllers/inkinds_controller.rb
-    Description:  Inkind controller, that is now connected to donors and creates PDF
-    Last Modified: April 26, 2023
-=end
+
+  # Project name: ACCR In Kinds Donations
+  # Description: In Kind Donation Manager
+  # Filename: index.html.erb
+  # Description: Controller used to manage in kind searches, creatings, uploads, deletes, etc
+  # Last modified on: 3/29/23
+  # Code written by Team 14
 
 
 class InkindsController < ApplicationController
@@ -12,7 +13,15 @@ class InkindsController < ApplicationController
 
   # GET /inkind or /inkind.json
   def index
-    @inkinds = Inkind.all
+    params.permit(:search)
+
+    _searchParam = params[:search]
+    if (_searchParam != nil)
+      @inkinds = Inkind.search(_searchParam)
+    else
+      @inkinds = Inkind.all()
+    end
+    # @inkinds = Inkind.all
 
     respond_to do |format|
       format.html
@@ -40,12 +49,14 @@ class InkindsController < ApplicationController
 
   # POST /inkind or /inkind.json
   def create
+    
     donor = Donor.find_by(donor_name: inkind_params[:donor_name])
     inkind_params_with_donor_id = inkind_params.merge(donor_id: donor.id) if donor.present?
     @inkind = Inkind.new(inkind_params_with_donor_id)
 
     respond_to do |format|
       if @inkind.save
+
         format.html { redirect_to inkind_url(@inkind), notice: "Donation was successfully created." }
         format.json { render :show, status: :created, location: @inkind }
       else
@@ -53,6 +64,7 @@ class InkindsController < ApplicationController
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @inkind.errors, status: :unprocessable_entity }
       end
+
     end
   end
 
@@ -78,6 +90,11 @@ class InkindsController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+
+  #Searches for a certain string based on all pro-bono hour donations
+  def inkinds
+
 
   
   #Downloads a pdf of a particular in kind donation
@@ -181,6 +198,7 @@ class InkindsController < ApplicationController
 
     pdf.draw_text total_value, at: [396, 170]  
     send_data pdf.render, filename: "hello.pdf", type: "application/pdf", disposition: "inline"
+
   end
 
   private

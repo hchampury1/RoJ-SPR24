@@ -11,10 +11,12 @@ class CallsController < ApplicationController
   def index
     params.permit(:search)
 
-    _searchParam = params[:search]
+_searchParam = params[:search]
 _dateParam = params[:date]
-if (_searchParam != nil)
+
+if _searchParam.present?
   @calls = Call.search(_searchParam, _dateParam)
+end
 
     else
       @calls = Call.all()

@@ -35,29 +35,30 @@ class Call < ApplicationRecord
     scope :with_notes, ->(notes) {where("notes = ?", notes)}
     scope :with_call_status, ->(call_status) {where("call_status = ?", call_status)}
 
-   class << self
-    def search(value, date=nil, field=nil)
-        @calls = Call.all
-        @results = Call.none
-        
-        if value.present?
-            if field == "search" || field.nil?
-                @fields.each do |name| 
-                    @results = @results.or(@calls.send("with_#{name}", value))
-                end
-            else
-                @results = @calls.send("with_#{field}", value)
-            end
+class << self
+  def search(value, date=nil, field=nil)
+    @calls = Call.all
+    @results = Call.none
+    
+    if value.present?
+      if field == "search" || field.nil?
+        @fields.each do |name| 
+          @results = @results.or(@calls.send("with_#{name}", value))
         end
-
-        if date.present?
-            @results = @results.with_date(date.to_date)
-        end
-        
-        if value.blank? && date.blank?
-            return @calls
-        end
-
-        return @results
+      else
+        @results = @calls.send("with_#{field}", value)
+      end
     end
+
+    if date.present?
+      @results = @results.with_date(date.to_date)
+    end
+    
+    if value.blank? && date.blank?
+      return @calls
+    end
+
+    return @results
+  end
 end
+

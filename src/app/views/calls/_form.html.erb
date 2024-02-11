@@ -25,14 +25,17 @@
 
   <div class="field" class="form-contorl">
 
+
     <%= form.label :caller_type.to_s + " *:"%>  
 
     
+
 
     <%= form.select :caller_type, ['Incarcerated Individual', 'Attorney', 'Mitigation Specialist', 'Journalist', 'Other'], required: true%>
   </div>
 
   <div class="field" class="form-group">
+
 
     <%= form.label :name.to_s + " *:"%>
 
@@ -46,7 +49,9 @@
 
   <div class="field" class="form-group">
 
+
     <%= form.label :inmate_num, "Incarcerated Person ID:" %>
+
 
     <%= form.text_field :inmate_num %>
   </div>
@@ -63,7 +68,9 @@
 
   <div class="field" class="form-group">
 
+
     <%= form.label :point_of_contact.to_s + " *:"%>
+
 
     <%= form.select :point_of_contact, ['Marc', 'Kaylyn', 'Frances', 'Maura', 'Gregory', 'Other'], required: true%>
   </div>
@@ -72,12 +79,15 @@
 
     <%= form.label :date.to_s + " *:"%>
 
+
     <%= form.date_select :date, required: true %>
   </div>
 
   <div class="field" class="form-group">
 
+
     <%= form.label :call_status.to_s + " *:"%>
+
 
     <%= form.select :call_status, ['Call Back', 'Urgent','Follow Up Via Mail','Scheduled','Complete','Other'], required: true%>
   </div>

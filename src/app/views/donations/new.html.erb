@@ -1,23 +1,48 @@
-<%# 
+<%#
   Project name: ACCR Pro Bono Breakdown
   Description: Pro bono hour management system for ACCR community partner
   Filename: new.html.erb
   Description: Page used to insert pro bono hours
-  Last modified on: 12/4/22
-  Code written by Team 21
+  Last modified on: 4/22/23
+  Code written by Team 14
 %>
 
 <h2>Pro-Bono Entry</h2>
 <br>
+<h4>Single Entry</h4>
 <p> Please fill out the required information in the form below. </p>
 
-<div>
-    Note: Fields marked with <span style="color: red;">*</span> are required.
-</div>
-<br>
 
 <div style="text-align: center;">
     <div style="display: inline; text-align: left;">
         <%= render 'form', donation: @donation %>
     </div>
+</div>
+
+
+<hr style="height:2px;border-width:0;color:gray;background-color:gray">
+<br>
+<h4>Mass Entry</h4>
+<p> Please download and use the <%= link_to 'template_file.csv', '/template_file.csv'%> to fill in the necessary information.
+    Once all the information is added to the file, save or export the file as a comma-separated values(.csv) file. Then select and upload the file from the file explorer.</p>
+
+<div>
+    Note: Only CSV files will be accepted. When modifying the CSV file, it is necessary to format the date using the following format: YYYY-MM-DD.<br> It is also important to note that the Service Type and Project Type columns in the CSV file must match exactly the drop-down menus for the single entry form (Ex: Service Type column entries must Court, Training, Consulting, Direct Representation, Other).
+</div>
+<br>
+
+<!--Form for CSV file upload-->
+<div class="upload-csv-file">
+  <div style="text-align: center;">
+    <div style="display: inline-block; text-align: left;">
+      <%= form_with url: import_donations_path, method: :post, local: true do |form| %>
+        <%= form.file_field :file, accept: '.csv', class:'form-control form-control-lg' %>
+        <br>
+        <div class="d-grid gap-2 col-6 mx-auto">
+          <%= form.submit 'Upload CSV File', class:'btn btn-primary btn-lg' %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+  <%= link_to 'View Pro Bono Hours', donations_path %>
 </div>

@@ -1,4 +1,4 @@
-<%# 
+<%#
   Project name: ACCR Pro Bono Breakdown
   Description: Pro bono hour management system for ACCR community partner
   Filename: show.html.erb
@@ -15,7 +15,6 @@
         <td><strong>Lawyer Name:</strong>
           <%= @donation.lawyername %></td>
 
-        <%# Changed the label to be service type instead of Case name %>
         <td><strong>Service Type:</strong>
           <%= @donation.caseaddress %></td>
       </tr>
@@ -33,9 +32,16 @@
       </tr>
      
       <tr>
+
+        <td><strong>Description:</strong>
+            <%= @donation.description %></td>
+            <td>  <strong>Project:</strong>
+            <%= Project.find_by(id: @donation.name) %></td>
+
         <%# Fixed 3/27/23, by Team 24, function name() was not nested corrently %>
         <td class="location-tab" colspan="2" ><strong>Description: </strong>
           <%= @donation.description %></td>
+
       </tr>
     
     </body>

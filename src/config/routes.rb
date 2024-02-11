@@ -2,7 +2,7 @@
 # Description: Mail database and management system for ACCR community partner
 # Filename: routes.rb
 # Description: Configuration file for Rails page routes
-# Last modified on: 4/8/22
+# Last modified on: 3/26/23
 # Code written by Team 13, Team 14, and Team 24
 
 # Project name: AMSTR
@@ -30,6 +30,7 @@
 Rails.application.routes.draw do
 
 
+
   get 'calls_home/index'
   resources :calls
 
@@ -49,16 +50,18 @@ resources :requests
 get 'webinars/exportCSV'
 post 'webinars/exportCSV'
 
+
   get 'charges/new'
   get 'charges/create'
   post 'exportCSV', to: 'webinars#exportCSV', as: 'exportCSV'
 
-# delete from here if problem 
+# delete from here if problem
 
   resources :donors
   resources :donars
   get 'in_kinds_home/index'
   get 'inkinds/index'
+
   
   resources :inkinds  do
     collection do
@@ -66,12 +69,17 @@ post 'webinars/exportCSV'
     end
   end
 
-  # ...
+
 
   #pro-bono donations
+  get 'donations/donations'
   get '/donations.csv' => 'donations#index'
   match 'donations', to: 'donations#donations', via: 'get'
-  resources :donations
+  resources :donations do
+    collection do
+      post :import
+    end
+  end
 
   resources :event_details
   get 'calendar/calendar'
@@ -107,7 +115,7 @@ post 'webinars/exportCSV'
   # All pages associated with mail_entries and tags scaffold.
   resources :mail_entries
   resources :tags
-  
+
   # Devise authentification pages. This controlls the user login
   # and authentification system.
   devise_for :users, :controllers => {:registrations => "users/registrations"}
@@ -130,14 +138,16 @@ post 'webinars/exportCSV'
 
   get 'dashboard/dash'
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
-  
+
   get 'dashboard/dash'
   get 'dashboard/view_report'
   get 'home/index'
   get 'report/index'
   get 'dashboard/aboutus'
 
+
   
+
   # The root page, e.g. www.example.com/, is sent here
   # root 'controller#method_in_controller'
   post "/map/index" => "map#index"
@@ -184,11 +194,11 @@ post 'webinars/exportCSV'
   # The root page, e.g. www.example.com/, is sent here
   # root 'controller#method_in_controller'
   #root 'home#index'
-  
+
   # devise_scope :user do
   #   root 'devise/sessions#new'
   # end
-  
+
   # Examples:
   #
   # # Add app CRUD operations from a controller. Used with scaffolding.

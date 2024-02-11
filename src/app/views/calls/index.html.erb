@@ -4,7 +4,6 @@
  Filename: index.html.erb 
  Description: Displays the table containing various call entries.
 
--->
 
 <h1>Call Log</h1>
 <%= link_to 'New Call', new_call_path, class:"btn btn-success mb-3" %>
@@ -27,6 +26,7 @@
 <table class="table table-striped table-bordered">
   <thead>
 
+
   <%# Table headers  %>
 
     <tr>
@@ -40,6 +40,7 @@
       <th>Date</th>
       <th>Call Status </th>
 
+
       <th>Notes</th>
 
       <th colspan="3"></th>
@@ -49,7 +50,9 @@
   <tbody>
     <% @calls.each do |call| %>
 
+
     <%# Table columns of data %>
+
 
       <tr>
         <td><%= call.caller_type %></td>
@@ -62,7 +65,9 @@
         <td><%= call.date %></td>
         <td><%= call.call_status %></td>
 
+
         <td><%= call.notes %></td>
+
 
         <td><%= link_to 'View', call, class:"btn btn-info" %></td>
         <td><%= link_to 'Edit', edit_call_path(call), class:"btn btn-secondary" %></td>

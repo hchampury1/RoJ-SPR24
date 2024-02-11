@@ -10,16 +10,17 @@
       <th>First Name</th>
       <th>Last Name</th>
       <th>Email</th>
+       <th>State</th>
       <th>County</th>
-<th>State</th>
-<th>CLE ID</th>
-<th>Job</th>
-<th>Listserv</th>
-<th>Topics</th>
-<th>Paid</th>
-<th>Amount</th>
-<th>Deregistered?</th>
-<th colspan="100%"></th>
+      <th>State</th>
+      <th>CLE ID</th>
+      <th>Job</th>
+      <th>Listserv</th>
+      <th>Topics</th>
+      <th>Paid</th>
+      <th>Amount</th>
+      <th>Deregistered?</th>
+      <th colspan="100%"></th>
 
     </tr>
   </thead>
@@ -30,6 +31,7 @@
         <td><%= registrant.first_name %></td>
         <td><%= registrant.last_name %></td>
         <td><%= registrant.email %></td>
+        <td><%= registrant.state %></td>
         <td><%= registrant.county %></td>
 <td><%= registrant.state %></td>
 <td><%= registrant.cleID %></td>
@@ -40,6 +42,7 @@
 <td><%= number_to_currency(registrant.amount) %></td>
 <td><%= registrant.deregistered %></td>
 <td><%= link_to 'Delete', registrant, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-primary' %></td>
+
 
       </tr>
     <% end %>

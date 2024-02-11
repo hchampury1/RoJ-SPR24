@@ -1,11 +1,11 @@
   <%# Standard Rails scaffold form code. %>
 
-<%# 
+<%#
   Project name: ACCR Pro Bono Breakdown
   Description: Pro bono hour management system for ACCR community partner
   Filename: _form.html.erb
   Description: Page used as a form for inserting pro bono hours
-  Last modified on: 4/27/23 by Team 24
+
   Code written by Team 21
 %>
 
@@ -55,13 +55,13 @@
       </div>
       <br>
 
-      <!-- Following line of code does not work -->
-        <!-- <%= f.label :project_id, 'Project Type' %>
-        <%#= f.search_field :project, :name %>
-        <%= f.select(:project_id, Project.all.collect { |p| [p.name, p.id] }) %>
-        <br>
-      -->
-      
+
+      <%= f.label :project_id, 'Project Type' %>
+      <%# <%= f.search_field :project, :name %>
+      <%= f.select(:project_id, Project.all.collect { |p| [p.name, p.id] }) %>
+      <br>
+      <br>
+
       <div class="field row d-flex justify-content-center">
         <span style="display:inline;">
           <%= f.label :caseaddress, 'Service Name (Must be between 3-80 chars.)', :class => "required" %>
@@ -79,10 +79,12 @@
       </div>
       <br>
       <div class="field row d-flex justify-content-center">
+
         <span style="display:inline;">
           <%= f.label :fees, 'Hourly Fee', :class => "required" %>
           <span class="red_ast">*</span>
         </span>
+
         <%= f.text_field :fees %>
       </div>
       <br>
@@ -100,8 +102,10 @@
       </div>
       <br>
       <div class="text-center">
-        <%= f.submit "Submit" %>
+        <%= f.submit "Submit", class:'btn btn-primary btn-lg'%>
       </div>
       <br>
   </div>
+
+
 <% end %>

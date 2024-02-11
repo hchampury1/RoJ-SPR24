@@ -1,6 +1,5 @@
 # Welcome to _PayPal Payment Mechanism_ of the _Rails of Justice Project_
 
-## TeamPayPal (Team 12)
 
 
 
