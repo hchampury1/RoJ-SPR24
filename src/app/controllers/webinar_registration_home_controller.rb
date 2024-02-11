@@ -1,3 +1,6 @@
+# Team 12 
+# Modified on 4/27/23
+
 class WebinarRegistrationHomeController < ApplicationController
     def index
     

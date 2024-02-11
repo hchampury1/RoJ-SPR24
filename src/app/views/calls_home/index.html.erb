@@ -1,0 +1,26 @@
+<!--
+ Project name: Call Organizer
+ Description: This project will keep track of the various calls ACCR recieves.
+ Filename: index.html.erb 
+ Description: Displays the home page for the Call Organizer module.
+ Last modified on: 04/23/2023
+-->
+
+<h1 align="center">Call Organizer</h1>
+<p align="center">A record of the calls made by ACCR or about relevant ACCR cases.</p>
+
+<br>
+
+<%= image_tag("phone.png", :size => "100x400") %>
+
+<br>
+
+<h4 align="center">Where to Begin</h4>
+<p align="center">Rails of Justice Call Organizer is a system to keep track of all the incoming and outgoing calls about ACCR cases and its associated parties. Overall, the goal of Call Organizer is to promote the organization and strengthen the communication between ACCR and its clients by providing a system to associate calls with specific cases.</p>
+<%# <p align="center">and outgoing calls about ACCR cases and its associated parties. Overall,</p>
+<p align="center">the goal of Call Organizer is to promote the organization and strengthen the</p>
+<p align="center">communication between ACCR and its clients by providing a system to</p>
+<p align="center">associate calls with specific cases.</p> %>
+
+<p align="center"><%= link_to "Call Log", calls_path, class: "btn btn-info", method: :get %></p>
+<p align="center"><%= link_to "Add Call", new_call_path, class: "btn btn-success mb-3", method: :get %></p>

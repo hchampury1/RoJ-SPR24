@@ -11,6 +11,12 @@
 # Description: Configuration file for actions/routes of user options
 # Last modified on: 4/13/22
 
+# Project name: Call Organizer
+# Description: This project will keep track of the various calls ACCR recieves.
+# Filename: routes.rb
+# Description: Configuration file for actions/routes of user options.
+# Last modified on: 04/23/2023
+
 # frozen_string_literal: true
 
 
@@ -23,21 +29,24 @@
 
 Rails.application.routes.draw do
 
+# From collab12-final
+get 'calls_home/index'
+resources :calls
 
-  post 'speaker/show'
-  post 'webinars/deregisterSubmitted'
-  get 'webinars/deregisterSubmitted'
-  get 'speaker/new'
-  post 'speaker/created'
+# From main
+post 'speaker/show'
+post 'webinars/deregisterSubmitted'
+get 'webinars/deregisterSubmitted'
+get 'speaker/new'
+post 'speaker/created'
 
-  get 'requests/viewrequests'
-  get 'webinars/deregister'
-  
+get 'requests/viewrequests'
+get 'webinars/deregister'
 
-  resources :requests
+resources :requests
 
-  get 'webinars/exportCSV'
-  post 'webinars/exportCSV'
+get 'webinars/exportCSV'
+post 'webinars/exportCSV'
 
   get 'charges/new'
   get 'charges/create'
@@ -158,6 +167,13 @@ Rails.application.routes.draw do
   post 'registrants/new', to: 'registrants#create' # Creates post route for submitting form
   patch 'registrants/:id/activate',to:'registrants#activate' , as: :activate
   patch 'registrants/:id/deactivate',to:'registrants#deactivate' ,as: :deactivate
+  
+  get '/payment', to: 'payment_controller#blank_page'
+  
+  
+    #get '/', to: 'register#index'
+    #post '/orders/submit', to: 'orders#submit'
+  
   # Devise authentification pages. This controlls the user login
   # and authentification system.
 

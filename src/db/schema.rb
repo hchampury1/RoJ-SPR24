@@ -217,8 +217,10 @@ ActiveRecord::Schema.define(version: 2024_02_11_060949) do
     t.integer "amount"
     t.boolean "paid"
     t.string "state"
+
     t.string "deregistered"
     t.string "cleID", default: "None"
+
   end
 
   create_table "registrants_webinars", force: :cascade do |t|
@@ -261,14 +263,14 @@ ActiveRecord::Schema.define(version: 2024_02_11_060949) do
     t.integer "mailid"
     t.string "maillabel"
   end
-
-  create_table "speakers", force: :cascade do |t|
-    t.string "name"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.string "description"
-    t.string "link"
-  end
+  
+create_table "speakers", force: :cascade do |t|
+  t.string "name"
+  t.datetime "created_at", precision: 6, null: false
+  t.datetime "updated_at", precision: 6, null: false
+  t.string "description"
+  t.string "link"
+end
 
   create_table "states", force: :cascade do |t|
     t.string "name", null: false

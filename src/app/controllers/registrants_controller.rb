@@ -1,10 +1,4 @@
-=begin
-Project name: ACCR Webinar
-Description: This project will keep track of the webinars and their respective speakers.
-Filename: registrants_controller.rb
-Description: Handles creation of registrants
-Last modified on: April 22, 2023
-=end
+
 # class RegistrantsController < ApplicationController
 #   before_action :set_registrant, only: %i[ show edit update destroy ]
 #   skip_before_action :authenticate_user!, only: [:show, :index, :new, :create, :destroy, :update ]
@@ -93,6 +87,8 @@ class RegistrantsController < ApplicationController
   # GET /registrants/new
   def new
     @registrant = Registrant.new
+    @registrant.paid = params[:paid]
+    @registrant.amount = params[:amount]
     @webinar = Webinar.find(params[:format])
     @webinar.registrants.append(@registrant)
     # @registrant.webinars.append
@@ -108,8 +104,12 @@ class RegistrantsController < ApplicationController
   
 
   def charge
-    
+    @registrant = Registrant.find(params[:registrant_id])
+    if params[:paid].present?
+      @registrant.update(paid: true, amount: params[:amount])
+    end
   end
+  
   
   # PATCH/PUT /registrants/1 or /registrants/1.json
   def update
@@ -135,7 +135,12 @@ end
     end
     puts "\n\n\nRegistrant Params: #{registrant_params}\n\n\n"
     respond_to do |format|
-      if @registrant.errors.none? && @registrant.update(registrant_params)
+
+      if @registrant.update(registrant_params)
+        #if @registrant.job == 'Private Attorney' or @registrant.job == 'Conflict/Contract Counsel'
+          #redirect_to new_charge_path(@registrant.id)
+          #return
+       # end
         format.html { redirect_to registrant_url(@registrant), notice: "Registrant was successfully updated." }
         format.json { render :show, status: :ok, location: @registrant }
       else
@@ -163,6 +168,6 @@ end
 
     # Only allow a list of trusted parameters through.
     def registrant_params
-      params.require(:registrant).permit(:first_name, :last_name, :email, :webinar, :county, :job, :listserv, :topics)
+      params.require(:registrant).permit(:first_name, :last_name, :email, :webinar, :state, :county, :job, :listserv, :topics, :amount, :paid)
     end
 end

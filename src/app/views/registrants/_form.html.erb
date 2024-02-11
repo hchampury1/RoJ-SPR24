@@ -1,3 +1,58 @@
+
+<!-- Team 12 -->
+<!-- Modified on 4/27/23 -->
+
+
+
+
+
+
+<script>
+  $(document).ready(function() {
+    // Reference necessary HTML elements
+    var jobSelect = $('#job-select');
+    var paypalButton = $('#paypal-button-container');
+    var submitButton = $('#submit-btn');
+    var jobPrices = $('#item-options');
+
+
+
+    // Initially hide the PayPal button on page load
+    paypalButton.hide();
+    jobPrices.hide()
+    submitButton.show();
+
+
+    // Show the PayPal button if "Conflict/Contract Counsel" or "Private Attorney" is selected
+    jobSelect.change(function() {
+     var selectedJobText = jobSelect.find("option:selected").text();
+
+
+      // Check if the selected job text includes the specified job types
+      if (selectedJobText.includes('Conflict/Contract Counsel') || selectedJobText.includes('Private Attorney')) {
+        paypalButton.show();
+        submitButton.hide();
+      } else {
+        paypalButton.hide();
+        submitButton.show();
+      }
+    });
+  });
+  console.log($('#paypal-button-container').length); 
+console.log($('#submit-btn').length); 
+</script>
+
+
+
+
+<style>
+  .field {
+    margin-bottom: 20px;
+  }
+</style>
+
+
+<!-- This code displays the error messages if there are any errors when the user submits the form -->
 <div class="card">
   <% if registrant.errors.any? %>
     <div id="error_explanation" class="alert alert-danger" role="alert">
@@ -10,70 +65,137 @@
     </div>
   <% end %>
   <div class="card-header">
-    <h4> Registration for <%= @webinar_name %> </h4> 
+    <h4> Registration for <%= @webinar_name %> </h4>
   </div>
   <div class="card-body">
     <%= form_with(model: registrant, local: true) do |form| %>
+<% if registrant.errors.any? %>
+  <div id="error_explanation">
+    <h2><%= pluralize(registrant.errors.count, "error") %> prohibited this registrant from being saved:</h2>
+
+    <ul>
+      <% registrant.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<!-- a label and a text field for the user's first name -->
+<!-- Ensure that the following sections for user's first name or other fields are included here if they exist -->
+
       <div class="field">
-        <%= form.label "First Name:" %></br>
-        <%= form.text_field :first_name %>
+      <%= form.label "First Name:" %></br>
+      <%= form.text_field :first_name %>
       </div>
 
+
+    <!-- a label and a text field for the user's last name -->
       <div class="field">
         <%= form.label "Last Name:" %></br>
         <%= form.text_field :last_name %>
       </div>
 
+
+       <!-- a label and a text field for the user's email -->
       <div class="field">
         <%= form.label "Email:" %></br>
         <%= form.text_field :email %>
       </div>
 
+
+     
+     <!-- contains a hidden inout filed for the webinar name-->
       <div class="field">
         <%= form.text_field :webinar, value:@webinar_name, type: :hidden%>
       </div>
+   
 
+
+   <!-- generates a dropdown list for the user to select a state. -->
+   <h class="my-5">
+   <div class="field">
+  <%= form.label "State:" %></br>
+  <%= form.select :state, State.order(:name).pluck(:name, :abbreviation), { include_blank: true }, { id: "state-select" } %>
+
+
+</div>
+</h>
+
+
+      <!-- generates a label element with the text "County"-->
       <div class="field">
         <%= form.label "County:" %></br>
         <%= form.text_field :county %>
       </div>
 
-      <div class="field">
-        <%= form.label "CLE ID (optional):" %></br>
-        <%= form.text_field :cleID %>
-      </div>
+<!-- generates a label element with the text for occupation"-->
+<div class="field" id="job-select-wrapper" style="margin-bottom: 20px;">
+  <!-- Presumably, there's more content here related to the job selection that was omitted for brevity -->
+</div>
+
+<div class="field">
+  <%= form.label "CLE ID (optional):" %></br>
+  <%= form.text_field :cleID %>
+</div>
 
       <div class="select">
         <%= form.label "Which of the following describes your work?" %> </br>
-        <%= form.select :job, [
-          ["Public Defense - Full Time", "Public Defense - Full Time"],
-          ["Public Defense - Part Time", "Public Defense - Part Time"],
-          ["Conflict/Contract Counsel", "Conflict/Contract Counsel"],
-          ["Private Attorney", "Private Attorney"],
-          ["Mitigation Specialist", "Mitigation Specialist"],
-          ["Criminal Defense Investigator", "Criminal Defense Investigator"],
-          ["Other", "Other"]
-        ]%>
-      </div> 
+        <%= form.select :job, JobType.all.map { |jt| ["#{jt.name} - #{number_to_currency(jt.fee)}", jt.name] }, {}, { id: "job-select" } %>
+      </div>
 
+
+      <br>
+     
+      <!-- generates a label element witht the text if you are not already a member of the ACCR/PDAPS.........  -->
+      <div class="field" id="listserv-wrapper">
       <div class="field">
-        <%= form.label "If you are not already a member of the ACCR/PDAP Capital Case listserv, would you like to be added to it?" %><br />
+       <%= form.label :question, "If you are not already a member of the ACCR/PDAPs Capital Case listserv, would you like to be added to it?" %> </br>
         <%= form.label :listserv, "Yes", value: "true"  %>
         <%= form.radio_button :listserv, true %>
         <%= form.label :listserv, "No", value: "false" %>
         <%= form.radio_button :listserv, false, checked: true %>
       </div>
 
+
+
+
       <div class="field">
-        <%= form.label "We will have monthly CLE trainings from March until November, what other topics you would like to see covered?" %>
+        <%= form.label :info,"We will have monthly CLE trainings from March until November, what other topics you would like to see covered?" %>
         </br>
         <%= form.text_area :topics %>
       </div>
 
-      <div class="actions">
 
-        <%= form.submit 'Submit', class:'btn btn-primary' %>
+  <div class="field">
+  <!--%= form.label "Paid:" %></br!-->
+  <%= form.hidden_field :paid, id: "paid", value: false %>
+</div>
+
+
+<div class="field">
+  <!--%= form.label "Amount:" %></br!-->
+  <%= form.hidden_field :amount, id: "amount", value: 0 %>
+</div>
+
+
+ <!--label for="paid">Paid:</label>
+<input type="text" id="paid" name="paid" readonly>
+
+
+<label for="amount">Amount:</label>
+<input type="text" id="amount" name="amount" readonly!-->
+      <div class="actions">
+        <%= render 'payment' %>
+
+
+      <!-- creates a submit button for the form-->
+        <%= form.submit 'Submit', class:'btn btn-primary', id: 'submit-btn' %>
       </div>
+      <div class="field">
+      </br>
+      <!-- creates a support message at the bottom if users need help -->
+       <%= form.label :question, "If you have any problems with payment, please reach out to kchristian@atlanticcenter.org" %> </br>
     <% end %>
   </div>
 </div>

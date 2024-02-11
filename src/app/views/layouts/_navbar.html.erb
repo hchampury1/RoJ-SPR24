@@ -8,6 +8,14 @@
   Code written by Team 13, Team 14, and Team 24
 %>
 
+<!--
+ Project name: Call Organizer
+ Description: This project will keep track of the various calls ACCR recieves.
+ Filename: _navbar.html.erb
+ Description: Partial view used for generating the navigation bar on each page.
+ Last modified on: 04/23/2023
+-->
+
 
 
 <%# Contains the Bootstrap navbar that appears on each page. %>
@@ -205,6 +213,23 @@ mail manager nav is all above code -->
                 <% end %>
               </div>
             </li>
+
+            <!-- Call Organizer nav dropdown -->
+            <% if can?(:access, :rails_admin) %>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Call Organizer
+              </a>
+              <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" </a>
+                  <%= link_to "Home", calls_home_index_path, class: 'nav-link', method: :get %>
+                <a class="dropdown-item" </a>
+                  <%= link_to "Call Log", calls_path, class: 'nav-link', method: :get %>
+                <a class="dropdown-item" </a>
+                  <%= link_to "Add Call", new_call_path, class: 'nav-link', method: :get %>
+                </div>
+            </li>
+            <% end %>
 
           </ul>
 

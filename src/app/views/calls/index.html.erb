@@ -1,0 +1,64 @@
+<!--
+ Project name: Call Organizer
+ Description: This project will keep track of the various calls ACCR recieves.
+ Filename: index.html.erb 
+ Description: Displays the table containing various call entries.
+ Last modified on: 03/29/2023
+-->
+
+<h1>Call Log</h1>
+<%= link_to 'New Call', new_call_path, class:"btn btn-success mb-3" %>
+
+<section class="search-form">
+      <%# Iterate through the calls and search for user's entry by indicated text field tag  %>
+        <%= form_tag(calls_path, method: :get) do %>
+          <div class="input-group input-group-lg mb-3">
+            <%= label_tag(:search, params[:search], class: "sr-only") %>
+            <%= text_field_tag(:search, params[:search], placeholder: "Type here to search", class: "form-control input-lg") %>
+            <span class="input-group-btn">
+              <%= submit_tag("Search", name: nil, class: "btn btn-primary btn-lg") %>
+            </span>
+          </div>
+        <%end%>
+      </section>
+<table class="table table-striped table-bordered">
+  <thead>
+    <tr>
+      <th>Caller Type</th>
+      <th>Name</th>
+      <th>Phone #</th>
+      <th>Incarcerated Individual ID</th>
+      <th>Institution</th>
+      <th>Location</th>
+      <th>Point of contact</th>
+      <th>Date</th>
+      <th>Call Status </th>
+      <th>Notes</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @calls.each do |call| %>
+      <tr>
+        <td><%= call.caller_type %></td>
+        <td><%= call.name %></td>
+        <td><%= call.phone_number %></td>
+        <td><%= call.inmate_num %></td>
+        <td><%= call.institution %></td>
+        <td><%= call.location %></td>
+        <td><%= call.point_of_contact %></td>
+        <td><%= call.date %></td>
+        <td><%= call.call_status %></td>
+        <td><%= call.notes %></td>
+        <td><%= link_to 'View', call, class:"btn btn-info" %></td>
+        <td><%= link_to 'Edit', edit_call_path(call), class:"btn btn-secondary" %></td>
+        <% if can?(:access, :rails_admin) %>
+        <td><%= link_to 'Delete', call, class:"btn btn-danger", method: :delete, data: { confirm: 'Are you sure?' }%></td>
+        <% end %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>

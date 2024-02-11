@@ -1,0 +1,81 @@
+<!--
+ Project name: Call Organizer
+ Description: This project will keep track of the various calls ACCR recieves.
+ Filename: _form.html.erb 
+ Description: Displays the form for creating a new call.
+ Last modified on: 04/20/2023
+-->
+<%= form_with(model: call, local: true) do |form| %>
+  <% if call.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(call.errors.count, "error") %> prohibited this call from being saved:</h2>
+
+      <ul>
+        <% call.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+<div>
+  Note: Fields marked with * are required.
+</div>
+<br>
+
+  <div class="field" class="form-contorl">
+    <%= form.label :caller_type.to_s + "*:"%>  
+    <%= form.select :caller_type, ['Incarcerated Individual', 'Attorney', 'Mitigation Specialist', 'Journalist', 'Other'], required: true%>
+  </div>
+
+  <div class="field" class="form-group">
+    <%= form.label :name.to_s + "*:"%>
+    <%= form.text_field :name, required: true %>
+  </div>
+
+  <div class="field" class="form-group">
+    <%= form.label "Phone #:" %>
+    <%= form.text_field :phone_number%>
+  </div>
+
+  <div class="field" class="form-group">
+    <%= form.label "Incarcerated person ID:" %>
+    <%= form.text_field :inmate_num %>
+  </div>
+
+  <div class="field" class="form-group">
+    <%= form.label :institution.to_s + ":" %>
+    <%= form.text_field :institution %>
+  </div>
+
+  <div class="field" class="form-group">
+    <%= form.label :location.to_s + ":" %>
+    <%= form.text_field :location %>
+  </div>
+
+  <div class="field" class="form-group">
+    <%= form.label :point_of_contact.to_s + "*:"%>
+    <%= form.select :point_of_contact, ['Marc', 'Kaylyn', 'Frances', 'Maura', 'Gregory', 'Other'], required: true%>
+  </div>
+
+  <div class="field" class="form-group  mb-3">
+    <%= form.label :date.to_s + "*:"%>
+    <%= form.date_select :date, required: true %>
+  </div>
+
+  <div class="field" class="form-group">
+    <%= form.label :call_status.to_s + "*:"%>
+    <%= form.select :call_status, ['Call Back', 'Urgent','Follow Up Via Mail','Scheduled','Complete','Other'], required: true%>
+  </div>
+
+  <div class="field" class="form-group mb-3">
+    <%= form.label :notes.to_s + ":" %>
+    <small>(If 'Other' is selected in a dropdown specify in notes)</small><br>
+    <%= form.text_area :notes, :cols => "50", :rows => "8" %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit class:'btn btn-success' %>
+    <%= link_to 'Back', calls_path, class:"btn btn-primary" %>
+  </div>
+<% end %>

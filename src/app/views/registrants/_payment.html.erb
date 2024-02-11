@@ -1,0 +1,154 @@
+<!-- Team 12 -->
+<!-- Modified on 4/27/23 -->
+
+<!-- tag that creates a container for the PayPal button code -->
+<div id="smart-button-container">
+      
+      <!-- lines 6-13 creates a dropdown menu to select the item to purchase
+      (with corresponding price) -->
+      <div style="text-align: center;">
+        <div style="margin-bottom: 1.25rem;">
+          <p></p>
+          <select id="item-options"><option value="Conflict/Contract Counsel" price="5.00">Conflict/Contract Counsel - 5.00 USD</option><option value="Private Attorney" price="25.00">Private Attorney - 25.00 USD</option></select>
+          <select style="visibility: hidden" id="quantitySelect"></select>
+        </div>
+      <div id="paypal-button-container"></div>
+      </div>
+    </div>
+    
+    <!-- loads the PayPal SDK script and specidie the client ID, including
+    Venmo and the currency -->
+   <script src="https://www.paypal.com/sdk/js?client-id=AX9mTan3RyWtb_9akZ2G3Fsv4T4he3ZlUTZ7mdARxw7eRn32Kvdhr6gKiU-1O7pyyyyVI8kAJip8VuAw&currency=USD" data-sdk-integration-source="button-factory"></script>
+
+   
+    <script>
+      // initializes the PayPal payment button and handles the payment processing
+      function initPayPalButton() {
+        var shipping = 0; //initializes the shipping cost to 0
+        var itemOptions = document.querySelector("#smart-button-container #item-options"); //retrieves the item options dropdown menu
+    var quantity = parseInt();
+    var quantitySelect = document.querySelector("#smart-button-container #quantitySelect"); //retrieves the quantity dropdown menu
+    if (!isNaN(quantity)) { //checks if the quantity is not a number
+      quantitySelect.style.visibility = "visible"; // If the quantity is a number, it shows the quantity dropdown menu
+    }
+    var orderDescription = ''; //initializes the order description to an empty string
+    if(orderDescription === '') { //checks if the order description is empty
+      orderDescription = 'Item'; //If the order description is empty, it sets the default order description to 'Item'
+    }
+    paypal.Buttons({ //creates the PayPal payment button and specifies its properties and callbacks
+      style: {
+        shape: 'pill',
+        color: 'blue',
+        layout: 'horizontal',
+        label: 'paypal',
+        
+      },
+      createOrder: function(data, actions) { //creates the PayPal order with the selected item, quantity, shipping cost, and tax
+       //lines 44-45 retrieve the selected item's description and price from an HTML select element with the id itemOptions
+        var selectedItemDescription = itemOptions.options[itemOptions.selectedIndex].value;
+        var selectedItemPrice = parseFloat(itemOptions.options[itemOptions.selectedIndex].getAttribute("price"));
+        //line 47 calculates the tax for the selected item.
+        var tax = (0 === 0 || false) ? 0 : (selectedItemPrice * (parseFloat(0)/100));
+        //lines 50-54 check if a statement with the id 'quantitySelect' has any options
+        //if it doesn't, it sets 'quantity' to 1
+        if(quantitySelect.options.length > 0) {
+          quantity = parseInt(quantitySelect.options[quantitySelect.selectedIndex].value);
+        } else {
+          quantity = 1;
+        }
+
+        // lines 57-58 calculates the total tax and rounds the result to 2 decimal places
+        tax *= quantity;
+        tax = Math.round(tax * 100) / 100;
+       
+       //lines 62-63 calculates the total price of the order by adding the price of the
+       //selected item, shipping cost, and tax. Result is rounded to 2 decimal places
+       var priceTotal = quantity * selectedItemPrice + parseFloat(shipping) + tax;
+        priceTotal = Math.round(priceTotal * 100) / 100;
+       
+       var itemTotalValue = Math.round((selectedItemPrice * quantity) * 100) / 100;
+
+     //Below code returns an object with the necessary information to create PayPal order   
+        return actions.order.create({
+         
+        //purchase_units array contains an object with a 'description', 'amount', 'items', and 'payee' 
+         purchase_units: [{
+            description: orderDescription,
+            amount: {
+              currency_code: 'USD',
+              value: priceTotal,
+              breakdown: {
+                item_total: {
+                  currency_code: 'USD',
+                  value: itemTotalValue,
+                },
+                shipping: {
+                  currency_code: 'USD',
+                  value: shipping,
+                },
+                tax_total: {
+                  currency_code: 'USD',
+                  value: tax,
+                }
+              }
+            },
+            items: [{
+              name: selectedItemDescription,
+              unit_amount: {
+                currency_code: 'USD',
+                value: selectedItemPrice,
+              },
+              quantity: quantity
+            }],
+            payee: { //contains the email-address of the PayPal account that will receive the payment
+              email_address: 'sb-mrpw225294631@business.example.com' // replace with your email address
+            }
+          }]
+        });
+      },
+      onApprove: function(data, actions) {
+        //line 107: finalizes the payment and captures the funds from the customer's account. 
+        return actions.order.capture().then(function(orderData) {
+          
+          // Full available details
+          console.log('Capture result', orderData, JSON.stringify(orderData, null, 2));
+
+          // Show a success message and information about the captured payment including transaction ID and amount paid
+          const element = document.getElementById('paypal-button-container');
+          element.innerHTML = '';
+          element.innerHTML = '<h3>Thank you for your payment!</h3>';
+          element.innerHTML += '<p>Payment successful! Transaction ID: ' + orderData.purchase_units[0].payments.captures[0].id + '</p>';
+          element.innerHTML += '<p>Amount paid: ' + orderData.purchase_units[0].payments.captures[0].amount.value + ' ' + orderData.purchase_units[0].payments.captures[0].amount.currency_code + '</p>';
+
+          $('#submit-btn').show(); //submit button on the form
+
+        //set the values of the hidden input fields with IDs 'paid' and 'amount' to true and the 
+        //the amount paid, respectively. Useful for server-side processing of the payment
+        document.getElementById("paid").value = "true";
+        document.getElementById("amount").value = orderData.purchase_units[0].payments.captures[0].amount.value;
+        //var successLabel = document.createElement("p");
+        //successLabel.innerHTML = "Paid: " + orderData.purchase_units[0].payments.captures[0].amount.value + " " + orderData.purchase_units[0].payments.captures[0].amount.currency_code;
+        //document.getElementById("paypal-button-container").appendChild(successLabel);
+
+        });
+      },
+      onError: function(err) {
+        console.log(err);
+      },
+    }).render('#paypal-button-container');
+  }
+  initPayPalButton();
+  
+  
+  //This defines a function to handle payment success. It updates the paid and amount fields, and adds a success label to the PayPal button container.
+  function onPaymentSuccess(orderData) {
+  document.getElementById("paid").value = "true";
+  document.getElementById("amount").value = orderData.purchase_units[0].payments.captures[0].amount.value;
+
+  var successLabel = document.createElement("p");
+  successLabel.innerHTML = "Paid: " + orderData.purchase_units[0].payments.captures[0].amount.value + " " + orderData.purchase_units[0].payments.captures[0].amount.currency_code;
+  document.getElementById("paypal-button-container").appendChild(successLabel);
+
+}
+
+    </script>

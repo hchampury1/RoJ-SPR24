@@ -1,0 +1,46 @@
+<!--
+ Project name: Call Organizer
+ Description: This project will keep track of the various calls ACCR recieves.
+ Filename: show.html.erb 
+ Description: Displays the view of a specific call entry.
+ Last modified on: 03/29/2023
+-->
+
+<h1><strong> <%= @call.name %> </strong></h1>
+
+<table class="table table-hover table-striped">
+   <body>
+      <tr>
+          <td><strong>Caller type:</strong>
+            <%= @call.caller_type %>
+          <td><strong>Phone number:</strong>
+            <%= @call.phone_number %>
+      </tr>
+       <tr>
+          <td><strong>Point of contact:</strong>
+            <%= @call.point_of_contact %>
+          <td><strong>Call Status:</strong>
+            <%= @call.call_status %>
+        </tr>
+        <tr>
+          <td><strong>Location:</strong>
+            <%= @call.location %>
+          <td><strong>Institution:</strong>
+            <%= @call.institution %>
+        </tr>
+        <tr>
+          <td><strong>Incarcerated Individual ID:</strong>
+            <%= @call.inmate_num %>
+          <td><strong>Date:</strong>
+            <%= @call.date %>
+        </tr>
+   </body>
+</table>
+
+<p>
+  <strong>Notes:</strong>
+  <%= @call.notes %>
+</p>
+
+<%= link_to 'Edit', edit_call_path(@call), class: 'btn btn-secondary' %>
+<%= link_to 'Back', calls_path, class: 'btn btn-primary' %>

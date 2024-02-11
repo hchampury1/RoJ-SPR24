@@ -1,3 +1,6 @@
+<!-- Team 12 -->
+<!-- Modified on 4/27/23 -->
+
 <p id="notice"><%= notice %></p>
 
 <p>
@@ -20,6 +23,10 @@
 
   <strong>Webinar:</strong>
   <%= @registrant.webinar %>
+</p>
+
+<strong>State:</strong>
+  <%= @registrant.state %>
 </p>
 
 <p>
@@ -45,6 +52,17 @@
   <strong>Topics:</strong>
   <%= @registrant.topics %>
 </p>
+
+<p>
+  <strong>Paid:</strong>
+  <%= @registrant.paid %>
+</p>
+
+<p>
+  <strong>Amount:</strong>
+  <%= number_to_currency(@registrant.amount) %>
+</p>
+
 
 
 <%# <%= link_to 'Edit', edit_registrant_path(@registrant) temporary fix %>

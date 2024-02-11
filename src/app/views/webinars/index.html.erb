@@ -72,12 +72,14 @@ Last modified on: April 22, 2023
       <tr>
         <td><%= webinar.webinar_name %></td>
         <td><%= webinar.description %></td>
-        <td><%= webinar.date_and_time.strftime("%B %d, %Y %I:%M%p") %></td>
-        <td><% speakers_info_array = WebinarsSpeaker.select(:speaker_id).where(webinar_id: webinar.id)
-               speakers_info_array.each() do |speaker_info| %>
-            <%= link_to Speaker.find_by(id: speaker_info.speaker_id).name, speaker_show_path(speaker_info.speaker_id), method: :post %><br>
-            <% end %>
-        </td>
+<td><%= webinar.date_and_time.strftime("%B %d, %Y %-I:%M%p") %></td>
+<td>
+  <% speakers_info_array = WebinarsSpeaker.select(:speaker_id).where(webinar_id: webinar.id) %>
+  <% speakers_info_array.each do |speaker_info| %>
+    <%= link_to Speaker.find_by(id: speaker_info.speaker_id).name, speaker_show_path(speaker_info.speaker_id), method: :post %><br>
+  <% end %>
+</td>
+
         <td><%= link_to 'Show', webinar, class:'btn btn-primary' %></td>
         <% if can?(:access, :rails_admin) %>
           <td><%= link_to 'Edit', edit_webinar_path(webinar), class:'btn btn-primary'  %></td>
