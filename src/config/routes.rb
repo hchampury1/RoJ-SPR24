@@ -29,9 +29,10 @@
 
 Rails.application.routes.draw do
 
-# From collab12-final
-get 'calls_home/index'
-resources :calls
+
+  get 'calls_home/index'
+  resources :calls
+
 
 # From main
 post 'speaker/show'
