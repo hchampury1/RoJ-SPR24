@@ -47,8 +47,10 @@ end
 
       <div class="field form-group">
         <label class="form-label", for="webinar_speakers">Speakers (drag to select multiple): </label>
+
         <br> Speaker not listed? Create a speaker here:
          <%= link_to "Create Speaker Form", speaker_new_path, class:"btn btn-primary btn-sm"%>
+
         <%= form.select :speakers, speakers_array, {}, {multiple: true, class: "form-select", id: "webinar_speakers"} %>
       </div>
 

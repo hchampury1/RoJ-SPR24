@@ -1,0 +1,39 @@
+<%
+=begin
+Project name: ACCR Webinar
+Description: This project will keep track of speaker
+Filename: all.html.erb
+Description: Handles showing information about a speaker
+Last modified on: April 29, 2023
+=end
+%>
+
+<p id="notice"><%= notice %></p>
+<h2>Speakers</h2>
+<h6>View speaker information below. The delete option will only appear if speaker is not attached to any webinars.</h6>
+<table class="table table-bordered table-hover">
+  <thead class="thead-dark">
+    <tr>
+      <th>Speaker</th>
+      <th>Description</th>
+      <th>Link</th>
+        <th colspan="100%"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @speakers.each do |speaker| %>
+      <tr> 
+        <td><%= speaker.name %></td>
+        <td><%= speaker.description %></td>
+        <td> <a href=<%= speaker.link%>><%= speaker.link%></a></td>
+    <% if can?(:access, :rails_admin) %>
+        <% if webinarList(speaker.id).length == 0 %>
+            <td> <%= link_to "Delete", speaker_delete_path(speaker.id), class:'btn btn-primary', method: :get %><td>
+        <%end%>
+    <%end%>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<%= link_to "Create Speaker", speaker_new_path, class:"btn btn-primary"%>

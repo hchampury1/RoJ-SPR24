@@ -29,26 +29,26 @@
 
 Rails.application.routes.draw do
 
-
-
-  get 'calls_home/index'
+   get 'calls_home/index'
   resources :calls
 
+  
+  get 'speaker/all'
+  get 'speaker/delete'
+  post 'speaker/show'
+  post 'webinars/deregisterSubmitted'
+  get 'webinars/deregisterSubmitted'
+  get 'speaker/new'
+  post 'speaker/created'
 
-# From main
-post 'speaker/show'
-post 'webinars/deregisterSubmitted'
-get 'webinars/deregisterSubmitted'
-get 'speaker/new'
-post 'speaker/created'
+  get 'requests/viewrequests'
+  get 'webinars/deregister'
+  
 
-get 'requests/viewrequests'
-get 'webinars/deregister'
+  resources :requests
 
-resources :requests
-
-get 'webinars/exportCSV'
-post 'webinars/exportCSV'
+  get 'webinars/exportCSV'
+  post 'webinars/exportCSV'
 
 
   get 'charges/new'
@@ -62,13 +62,13 @@ post 'webinars/exportCSV'
   get 'in_kinds_home/index'
   get 'inkinds/index'
 
+
   
   resources :inkinds  do
     collection do
       get 'download_pdf'
     end
   end
-
 
 
   #pro-bono donations
@@ -220,5 +220,7 @@ post 'webinars/exportCSV'
   # stripe
   resources :charges, only: [:new, :create, :thanks]
   get 'thanks', to: 'charges#thanks', as: 'thanks'
+
+  
 end
 

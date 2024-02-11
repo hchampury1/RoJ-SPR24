@@ -91,8 +91,10 @@ include WebinarsHelper
   def index
     # date_and_time_range goes from January 1, 1900 until the current system time.
     date_and_time_range = Time.new(1900,1,1,0,0,0) .. Time.now
-    @completed_webinars = Webinar.where(date_and_time: date_and_time_range)
-    @upcoming_webinars = Webinar.where.not(date_and_time: date_and_time_range)
+
+    @completed_webinars = Webinar.where(date_and_time: date_and_time_range).order(date_and_time: :DESC)
+    @upcoming_webinars = Webinar.where.not(date_and_time: date_and_time_range).order(date_and_time: :ASC)
+
     @webinars = Webinar.all
 
     if user_signed_in? === false
@@ -132,6 +134,11 @@ include WebinarsHelper
 
   # GET /webinars/1 or /webinars/1.json
   def show
+    speakers_id_array = WebinarsSpeaker.where(webinar_id: params[:id]).pluck(:speaker_id)
+    @speakers_name_array = Array.new()
+    speakers_id_array.each do |speaker_id|
+      @speakers_name_array.push(Speaker.find_by(id: speaker_id).name)
+    end
   end
 
   def registrants

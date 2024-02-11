@@ -8,4 +8,5 @@ Issue and version tracking for this project is expected to be done through Githu
 
 Make sure that the code is clearly labeled and formatted correctly and executes without errors, and any bugs are acknowledged and recorded. Label and describe your contributions so that it is clear what it is that you did. Further discussion or questions that can’t be managed through Github can be done through  in-person meetings with the project managers. 
 
+
 tl;dr : ACCR is a great non-profit to help by updating the website. Use labels, issues, and pull requests. 

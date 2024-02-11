@@ -1,6 +1,12 @@
 <div class="jumbotron">
     <h2 class="display-4"><%= @speaker.name %></h2>
+
+    <h5><%= @speaker.description %></h5>
+    <a href=<%= @speaker.link %>><%= @speaker.link %></a>
+    
     <% if @webinars_id_array.length > 0 %>
+    <br><br>
+
         <p class="lead">Speaker for</p>
         <ul class="list-group">
             <% @webinars_id_array.each() do |webinar_info|%>

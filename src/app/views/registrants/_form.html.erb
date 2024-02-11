@@ -61,6 +61,7 @@
   </div>
   <div class="card-body">
     <%= form_with(model: registrant, local: true) do |form| %>
+
 <% if registrant.errors.any? %>
   <div id="error_explanation">
     <h2><%= pluralize(registrant.errors.count, "error") %> prohibited this registrant from being saved:</h2>
@@ -77,7 +78,7 @@
 <!-- Ensure that the following sections for user's first name or other fields are included here if they exist -->
 
      
-    <!-- a label and a text field for the user's first name -->
+
       <div class="field">
       <%= form.label "First Name:" %></br>
       <%= form.text_field :first_name %>
@@ -126,15 +127,11 @@
       </div>
 
 
-<!-- generates a label element with the text for occupation"-->
-<div class="field" id="job-select-wrapper" style="margin-bottom: 20px;">
-  <!-- Presumably, there's more content here related to the job selection that was omitted for brevity -->
-</div>
+      <div class="field">
+        <%= form.label "CLE ID (optional):" %></br>
+        <%= form.text_field :cleID %>
+      </div>
 
-<div class="field">
-  <%= form.label "CLE ID (optional):" %></br>
-  <%= form.text_field :cleID %>
-</div>
 
       <div class="select">
         <%= form.label "Which of the following describes your work?" %> </br>

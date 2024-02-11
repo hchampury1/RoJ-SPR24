@@ -10,7 +10,16 @@
     <%= @webinar.description %><br><br>
     </p>
     <p class="card-text">
-      Speakers Placeholder
+
+      Speakers:<br>
+      <% if @speakers_name_array.any? %>
+        <% @speakers_name_array.each() do |speaker_name| %>
+          <%= speaker_name %><br>
+        <% end %>
+      <% else %>
+        There are no speakers for this webinar yet.
+      <% end %>
+
     </p>
   </div>
   <div class="card-footer text-muted">

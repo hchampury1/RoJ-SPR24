@@ -196,6 +196,10 @@ mail manager nav is all above code -->
                 <%= link_to "View Webinars", webinars_path, class: 'nav-link', method: :get %>
                 <% if can?(:access, :rails_admin) %>
                 <%= link_to "View Requests", requests_viewrequests_path, class: 'nav-link', method: :get %>
+
+               
+                <a class="dropdown-item" </a>
+                <%= link_to "View Speakers", speaker_all_path, class: 'nav-link', method: :get %>
                 <% end %>
             </div>
 
@@ -285,6 +289,7 @@ mail manager nav is all above code -->
                     <%= link_to "Overview", requests_path , class: 'nav-link', method: :get %>
                   <a class="dropdown-item" </a>
                     <%= link_to "View Webinars", webinars_path, class: 'nav-link', method: :get %>
+
                 </div>
               </li>
               <!-- Event Calendar nav dropdown -->

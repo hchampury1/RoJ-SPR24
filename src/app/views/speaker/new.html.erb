@@ -6,8 +6,16 @@
   <div class="card-body">
 
     <%= form_with url: speaker_created_path, method: :post, local: true do |form|%>
-        <%= form.label :speakerInfo, "Name" %>
+        <%= form.label :speakerName, "Name" %>
+        <%= form.text_field :speakerName %>
+        <br>
+         <%= form.label :speakerInfo, "Description" %>
         <%= form.text_field :speakerInfo %>
+        <br>
+         <%= form.label :speakerLink, "Website Link" %>
+        <%= form.text_field :speakerLink %>
+        <br>
+
         <button class = "btn btn-primary" <%= form.button 'CREATE'%></button>
 
     <%end%>

@@ -77,7 +77,8 @@ class RequestsController < ApplicationController
     @request.destroy
 
     respond_to do |format|
-      format.html { redirect_to requests_url, notice: "Request was successfully destroyed." }
+      format.html { redirect_to requests_viewrequests_url, notice: "Request was successfully destroyed." }
+
       format.json { head :no_content }
     end
   end
