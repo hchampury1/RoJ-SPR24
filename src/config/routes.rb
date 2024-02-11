@@ -1,4 +1,3 @@
-
 # Project name: ACCR Mail Manager
 # Description: Mail database and management system for ACCR community partner
 # Filename: routes.rb
@@ -24,8 +23,25 @@
 
 Rails.application.routes.draw do
 
+
+  post 'speaker/show'
+  post 'webinars/deregisterSubmitted'
+  get 'webinars/deregisterSubmitted'
+  get 'speaker/new'
+  post 'speaker/created'
+
+  get 'requests/viewrequests'
+  get 'webinars/deregister'
+  
+
+  resources :requests
+
+  get 'webinars/exportCSV'
+  post 'webinars/exportCSV'
+
   get 'charges/new'
   get 'charges/create'
+  post 'exportCSV', to: 'webinars#exportCSV', as: 'exportCSV'
 
 # delete from here if problem 
 
@@ -33,7 +49,14 @@ Rails.application.routes.draw do
   resources :donars
   get 'in_kinds_home/index'
   get 'inkinds/index'
-  resources :inkinds
+  
+  resources :inkinds  do
+    collection do
+      get 'download_pdf'
+    end
+  end
+
+  # ...
 
   #pro-bono donations
   get '/donations.csv' => 'donations#index'
@@ -59,6 +82,10 @@ Rails.application.routes.draw do
   get 'webinars/about'
   # does not need devise login
   # get 'webinarjoin', to: "webinarjoin#index"
+  
+
+  # routes for speaker information page
+  get 'speaker/index'
 
   # The root page is set for the index.
   ### root 'home#index'
@@ -99,6 +126,7 @@ Rails.application.routes.draw do
   get 'home/index'
   get 'report/index'
   get 'dashboard/aboutus'
+
   
   # The root page, e.g. www.example.com/, is sent here
   # root 'controller#method_in_controller'
@@ -111,6 +139,16 @@ Rails.application.routes.draw do
   get 'upload/index'
   post 'upload/uploadcsv'
   get 'upload/downloadcsv'
+  get 'upload/edit'
+  post 'upload/update'
+  patch 'upload/:format', to: 'upload#update'
+  get 'upload/destroy'
+  #patch 'upload/:format', to: 'upload#destroy'
+
+  #Used for clearing sorting
+  get "/donations/clear_sort", to: "donations#clear_sort", as: "clear_sort"
+  
+  get "/donations/filtering", to: "donations#filtering", as: "filtering"
 
   get 'in_kinds_home/index'
   get 'donors/index'
@@ -156,3 +194,4 @@ Rails.application.routes.draw do
   resources :charges, only: [:new, :create, :thanks]
   get 'thanks', to: 'charges#thanks', as: 'thanks'
 end
+

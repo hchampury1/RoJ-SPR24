@@ -3,21 +3,24 @@
 The user can hover over a county to view its statistics. Additionally, several counties can be clicked to generate charts-->
 <!-- Filename: index.html.erb -->
 <!-- Description: The page generates the view for our home page. It includes buttons that link to our other functionalities -->
-<!-- Last modified on: 4/9/2022 -->
+<!-- Last modified on: 4/24/2022 -->
 
 <!-- Headers and directions -->
 <br>
 <h1 class="text-center"> Rails of Justice: Mapping Justice </h1>
 <hr>
+<div class="container">
+    <h1 class="text-center">About Mapping Justice</h1>  
+    <hr>
+    <p class="text-center">Mapping Justice is an interactive geographical map for the State of Pennsylvania that is broken down by each county in Pennsylvania to show data on the capital punishment such as offence committed, race of offender, race of victim, age, rate of capital convictions of that county. The map allows you to hover over a county and show the data on a pop up. Each county has a color assigned to it, and each county has different shades of color. The darker the shade means that there is a high rate of people sentenced to capital punishment from that county, and a lighter color means that there is little or no capital punishment sentaces from that county. This adds value to understand capital punishment in Pennsylvania becasue ACCR is be able to visually see where prosecutors are seeking the death penalty in certain counties, in addition to if counties seek it more than others.</p>
+</div>
+
 <p class="text-center"> Click one of the links below to get started.  </p>
 <!-- Links to different functionalities -->
 <figure class="text-center">
     <%= link_to 'Map', map_index_path, class: "btn btn-outline-primary"%>
-    <% if can?(:access, :rails_admin) %>
-     <%= link_to 'Add to Database', upload_index_path, class: "btn btn-outline-primary"%>
-    <% else %>
-    <% end %>
-    <%= link_to 'About', about_index_path, class: "btn btn-outline-primary"%>
+    <%= link_to 'County Data', upload_index_path, class: "btn btn-outline-primary"%>
+    <%#= link_to 'About', about_index_path, class: "btn btn-outline-primary"%>
 </figure>
 
 <!-- Div for footer -->

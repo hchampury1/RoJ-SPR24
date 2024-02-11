@@ -1,0 +1,13 @@
+<div class="jumbotron">
+    <h2 class="display-4"><%= @speaker.name %></h2>
+    <% if @webinars_id_array.length > 0 %>
+        <p class="lead">Speaker for</p>
+        <ul class="list-group">
+            <% @webinars_id_array.each() do |webinar_info|%>
+            <li class="list-group-item"><%= Webinar.find_by(id: webinar_info.webinar_id).webinar_name %></li>
+            <% end %>
+        </ul>
+    <% else %>
+    <p class="lead">This speaker has not done any webinars.</p>
+    <% end %>
+</div>

@@ -5,9 +5,16 @@
   Description: Pro bono hour management system for ACCR community partner
   Filename: _form.html.erb
   Description: Page used as a form for inserting pro bono hours
-  Last modified on: 12/4/22
+  Last modified on: 4/27/23 by Team 24
   Code written by Team 21
 %>
+
+  <style>
+    .red_ast {
+     color: red;
+     margin-left: 5px;
+    }
+  </style>
 
   <script>>
       $(".date").date_field({
@@ -29,40 +36,61 @@
     <% end %>
 
 <!-- Shows the required insertions -->
+<!-- Modified 4/23/2023 "Moved Red Asteriks inline" -->
     <div class="form">
       <div class="field row d-flex justify-content-center">
-        <%= f.label :lawyername, 'Staff Name', :class => "required" %>
+        <span style="display:inline;">
+          <%= f.label :lawyername, 'Staff Name (Must be between 3-80 chars.)' , :class => "required" %>
+          <span class="red_ast">*</span>
+        </span>
         <%= f.text_field :lawyername %>
       </div>
       <br>
       <div class="field row d-flex justify-content-center">
-        <%= f.label :caseaddress, 'Service Type' %>
+        <span style="display:inline;">
+          <%= f.label :caseaddress, 'Service Type', :class => "required" %>
+          <span class="red_ast">*</span>
+        </span>
         <%= f.select :caseaddress, ['', 'Court', 'Training', 'Consulting', 'Direct Representation', 'Other']%>
       </div>
       <br>
 
-      <%= f.label :project_id, 'Project Type' %>
-      <%# <%= f.search_field :project, :name %>
-      <%= f.select(:project_id, Project.all.collect { |p| [p.name, p.id] }) %>
-     
-      <br>
+      <!-- Following line of code does not work -->
+        <!-- <%= f.label :project_id, 'Project Type' %>
+        <%#= f.search_field :project, :name %>
+        <%= f.select(:project_id, Project.all.collect { |p| [p.name, p.id] }) %>
+        <br>
+      -->
+      
       <div class="field row d-flex justify-content-center">
-        <%= f.label :name, 'Case Name', :class => "required" %>
+        <span style="display:inline;">
+          <%= f.label :caseaddress, 'Service Name (Must be between 3-80 chars.)', :class => "required" %>
+          <span class="red_ast">*</span>
+        </span>
         <%= f.text_field :name %>
       </div>
       <br>
       <div class="field row d-flex justify-content-center">
-        <%= f.label :hours, 'Hours' %>
+        <span style="display:inline;">
+          <%= f.label :hours, 'Total Hours', :class => "required" %>
+          <span class="red_ast">*</span>
+        </span>
         <%= f.text_field :hours %>
       </div>
       <br>
       <div class="field row d-flex justify-content-center">
-        <%= f.label :fees, 'Fees' %>
+        <span style="display:inline;">
+          <%= f.label :fees, 'Hourly Fee', :class => "required" %>
+          <span class="red_ast">*</span>
+        </span>
         <%= f.text_field :fees %>
       </div>
       <br>
       <div class="field row d-flex justify-content-center">
-        <%= f.label :date, 'Date' %>
+        <span style="display:inline;">
+          <%= f.label :date, 'Date', :class => "required" %>
+          <span class="red_ast">*</span>
+        </span>
         <%= f.date_field :date, value: Date.today.strftime('%Y-%m-%d')%>
       </div>
       <br>

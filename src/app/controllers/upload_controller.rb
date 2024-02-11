@@ -4,9 +4,11 @@
 #Filename: map_controller.rb
 #Description: The upload controller performs multiple functionalities including allowing the user to download current data and upload new data files. 
 #During the upload process, it performs file validation, adds to the current database, and maintains records of previous uploads.
-#Last modified on: 4/12/2022
+#Last modified on: 4/23/2023
 
 class UploadController < ApplicationController
+    skip_before_action :authenticate_user!
+    before_action :get_county, only: %i[edit]
     #CONSTANTS definition
     #MAX_UPLOADS indicates the max number of previous file uploads that are kept in storage
     MAX_UPLOADS = 6
@@ -17,9 +19,43 @@ class UploadController < ApplicationController
     'Juniata','Lackawanna','Lancaster','Lawrence','Lebanon','Lehigh','Luzerne','Lycoming','McKean','Mercer','Mifflin',
     'Monroe','Montgomery','Montour','Northampton','Northumberland','Perry','Philadelphia','Pike','Potter','Schuylkill',
     'Snyder','Somerset','Sullivan','Susquehanna','Tioga','Union','Venango','Warren','Washington','Wayne','Westmoreland','Wyoming',
-    'York']
+    'York']   
     #COLUMNS represents the expected values for headers in uploaded data
     COLUMNS = ['name', 'num_cur_cases', 'num_cur_cases_b', 'num_cur_cases_w', 'num_cur_cases_o','population', 'num_dr', 'num_dr_b', 'num_dr_w', 'num_dr_o']
+
+    def index
+        if params[:keywords].present?
+            # Get any keywords from search box
+            @keywords = params[:keywords]
+            # Use keywords to create new search term object
+            county_search_term = CountySearchTerm.new(@keywords)
+
+            @counties = County.where(name: params[:keywords])
+        else
+            @counties = County.order(:name)
+        end
+    end
+    
+    def edit
+        get_county()
+    end
+
+    def update
+        get_county()
+        if @county.update_attributes(county_params)
+            flash[:notice] = 'County updated!'
+            redirect_to upload_index_path
+        else
+            flash[:error] = 'Failed to edit county'
+            render "edit"
+        end
+    end
+
+    # def destroy
+    #     get_county()
+    #     @county.destroy
+    #     redirect_to upload_index_path, notice: "County has been successfully deleted."
+    # end
 
     #This function allows the user to download a copy of the current data for easy viewing as well as modification
     def downloadcsv
@@ -105,6 +141,10 @@ class UploadController < ApplicationController
     #This function changes the data represented by the map. New data is appended to existing data in the database.
     def change_map_data(file_path)
         begin
+            @counties = County.all
+            @counties.each do |county|
+                county.delete
+            end
             CSV.foreach(file_path, :headers => true, :encoding => 'ISO-8859-1', :converters => :integer) do |row|
                 County.create!(row.to_hash)
             end
@@ -122,5 +162,13 @@ class UploadController < ApplicationController
             File.delete((uploads).min_by{|f| File.mtime(f)})
             uploads = Dir[Rails.root.join('public','uploads',"*")]
         end
+    end
+
+    def get_county
+        @county = County.find(params[:format])
+    end
+
+    def county_params
+        params.require(:county).permit(:name, :num_cur_cases, :num_cur_cases_w, :num_cur_cases_b, :num_cur_cases_o, :population, :num_dr, :num_dr_w, :num_dr_b, :num_dr_o)
     end
 end

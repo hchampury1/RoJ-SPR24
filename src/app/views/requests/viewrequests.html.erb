@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Requests</h1>
+
+<table class="table table-bordered table-hover">
+  <thead class="thead-dark">
+    <tr>
+      <th>First Name</th>
+      <th>Last Name</th>
+      <th>Email</th>
+      <th>Request</th>
+      <th colspan="100%"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @requests.each do |request|  %>
+      <tr>
+        <td><%= request.first_name %></td>
+        <td><%= request.last_name %></td>
+        <td><%= request.email %></td>
+        <td><%= request.request %></td>
+        <td><%= link_to 'Show', request, class:'btn btn-primary' %></td>
+        <td><%= link_to 'Delete', request, method: :delete, data: { confirm: 'Are you sure?' }, class:'btn btn-primary'  %></td>
+      
+      </tr>
+    <% end %>
+  </tbody>
+</table>

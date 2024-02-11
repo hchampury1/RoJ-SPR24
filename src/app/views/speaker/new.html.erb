@@ -1,0 +1,15 @@
+<div class="card">
+
+  <div class="card-header">
+    <h4>Add New Speaker</h4>
+  </div>
+  <div class="card-body">
+
+    <%= form_with url: speaker_created_path, method: :post, local: true do |form|%>
+        <%= form.label :speakerInfo, "Name" %>
+        <%= form.text_field :speakerInfo %>
+        <button class = "btn btn-primary" <%= form.button 'CREATE'%></button>
+
+    <%end%>
+  </div>
+</div>

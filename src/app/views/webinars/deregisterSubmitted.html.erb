@@ -1,0 +1,9 @@
+
+<%if @success == "yes"%>
+Sucessfully Submitted.
+<%else%>
+Not Submitted. Please consider if you have registered for this webinar.
+<%end%>
+<br>
+<br>
+<%= link_to 'Back to webinars', webinars_path, class:"btn btn-primary"%>

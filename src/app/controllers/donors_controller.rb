@@ -1,3 +1,8 @@
+#Project Name: InKind Donations
+#FileName:donors_controller.rb
+#Description: Donors controller creates donor parameters
+#Last Modified: February 5, 2023
+
 class DonorsController < ApplicationController
   before_action :set_donor, only: %i[ show edit update destroy ]
 

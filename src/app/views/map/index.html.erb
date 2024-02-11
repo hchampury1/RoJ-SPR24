@@ -1,9 +1,9 @@
 <!-- Project name: Mapping Justice -->
-<!-- Description: For our ACCR Collaborative Project we have created an interactive map of PA. The map is color coded by cases + death sentences and population. 
+<!-- Description: For our ACCR Collaborative Project we have created an interactive map of PA. The map is color coded by cases + death sentences and population.
 The user can hover over a county to view its statistics. Additionally, several counties can be clicked to generate charts-->
 <!-- Filename: index.html.erb -->
 <!-- Description: The page renders the interactive map. Charts are generated using Chart.js -->
-<!-- Last modified on: 4/13/2022 -->
+<!-- Last modified on: 3/07/2023 -->
 
 <!-- Headers and directions -->
 <br>
@@ -14,14 +14,28 @@ The user can hover over a county to view its statistics. Additionally, several c
 
 <!-- Divs for map and tooltip -->
 
-<div id="tooltip" display="none" style="position: absolute; display: none; z-index: 1000"></div>
+<div id="tooltip" display="none" style="position: absolute; display: none; z-index: 1000; background: #fff; padding: .188rem">
+</div>
 
 <div id="map">
 </div>
 
+<!-- Divs for map buttons -->
+<p id="map-text" class="text-center" style="padding:0 0 1em 0"> Select desired number of counties and click a button below to compare data.</p>
+
+<div id="toggle-reset-buttons" style="text-align: center">
+    <%# <input type="checkbox" id = "toggle-button" checked data-toggle="toggle" data-on="Cases Where Capital Punishment is Sought" data-off="Number of Individuals on Death Row" data-onstyle="btn btn-outline-primary" data-offstyle="btn btn-outline-primary"> %>
+
+    <button type="button" class="btn btn-outline-primary" id="change-button" onclick="get_dr_color_codings();"> Death Row Cases </button>
+    <button type="button" class="btn btn-outline-primary" id="change-button" onclick="get_cases_color_codings();"> Ongoing Cases </button>
+    <button type="button" class="btn btn-outline-primary" id="change-button" onclick="get_population_color_codings();"> Population </button>
+
+    <%# <button type="button" class="btn btn-outline-primary" id="get-graphs" onclick="generate_graphs();"> Get Graphs </button> %>
+</div>
+
 <!-- Divs for charts -->
 
-<p id="chart-text" > Select desired number of counties and click the button below to compare data.</p>
+<p id="chart-text" class="text-center" style="padding:2em 0 2em 0"> Select desired number of counties and click a button below to compare data.</p>
 <div id="pie-chart">
     <canvas id="pie"></canvas>
 </div>
@@ -29,11 +43,12 @@ The user can hover over a county to view its statistics. Additionally, several c
     <canvas id="bar"></canvas>
 </div>
 
-<!-- Divs for buttons -->
+<!-- Divs for chart buttons -->
 
-<div id="toggle-reset-buttons"> 
-    <input type="checkbox" id = "toggle-button" checked data-toggle="toggle" data-on="Cases/DR" data-off="Population" data-onstyle="btn btn-outline-primary" data-offstyle="btn btn-outline-primary">
-    <button type="button" class="btn btn-outline-primary" id="get-graphs" onclick="generate_graphs();"> Get Graphs </button>
+<div id="toggle-reset-buttons" style="text-align: center">
+    <button type="button" class="btn btn-outline-primary" id="get-graphs" onclick="generate_dr_graphs();"> Get Graphs of Death Row Cases </button>
+    <button type="button" class="btn btn-outline-primary" id="get-graphs" onclick="generate_case_graphs();"> Get Graphs of Ongoing Cases </button>
+
     <button type="button" class="btn btn-outline-primary" id="reset-button" onclick="reset_toggle();" > Reset </button>
 </div>
 
@@ -49,13 +64,14 @@ The user can hover over a county to view its statistics. Additionally, several c
     let data = JSON.parse('<%= raw(@county_map.to_json) %>');
     let population_color_codings = JSON.parse('<%= raw(@population_color_codings.to_json) %>');
     let cases_color_codings = JSON.parse('<%= raw(@cases_color_codings.to_json) %>');
+    let dr_color_codings = JSON.parse('<%= raw(@dr_color_codings.to_json) %>');
 
     //Load the map
 
-    $(document).ready(function(){ 
+    $(document).ready(function(){
         $("#map").html("<%= j (render 'map') %>");
-        get_cases_color_codings(); 
-    }) 
+        get_cases_color_codings();
+    })
 
     //JS functions for color coding
 
@@ -70,11 +86,12 @@ The user can hover over a county to view its statistics. Additionally, several c
         color_code_resets();
         if ($("#toggle-button").prop('checked')) {
             get_cases_color_codings();
+        // } else if ( $("#toggle-button").prop('checked') ) {
+        //     get_dr_color_codings();
+        } else {
+            get_dr_color_codings();
         }
-        else {
-            get_population_color_codings();
-        }
-        $("#chart-text").html("Select desired number of counties and click the button below to compare data.");
+        $("#chart-text").html("Select desired number of counties and click a button below to compare data.");
     }
 
     function color_code_resets() {
@@ -87,19 +104,31 @@ The user can hover over a county to view its statistics. Additionally, several c
         }
     }
 
-    //function colors all counties by cases + dr sentences
+    //function colors all counties by cases                 + dr sentences
     function get_cases_color_codings(county){
+        $("#map-text").html("Currently Viewing Ongoing Cases.");
         let eles = $(".map-county");
         for (let i = 0; i < eles.length; i++) {
             $('#' + eles[i].id).css("fill", cases_color_codings[eles[i].id]);
         }
+
     }
 
     //function colors all counties by population
     function get_population_color_codings(county){
+        $("#map-text").html("Currently Viewing Population.");
         let eles = $(".map-county");
         for (let i = 0; i < eles.length; i++) {
             $('#' + eles[i].id).css("fill", population_color_codings[eles[i].id]);
+        }
+    }
+
+    //function colors all counties by dr
+    function get_dr_color_codings(county){
+        $("#map-text").html("Currently Viewing Incarcerated Individuals on Death Row.");
+        let eles = $(".map-county");
+        for (let i = 0; i < eles.length; i++) {
+            $('#' + eles[i].id).css("fill", dr_color_codings[eles[i].id]);
         }
     }
 
@@ -110,13 +139,13 @@ The user can hover over a county to view its statistics. Additionally, several c
             $("#" + county).addClass("clicked");
         }
         else{
-            $("#" + county).removeClass("clicked");    
+            $("#" + county).removeClass("clicked");
             if ($("#toggle-button").prop("checked")){
                 $('#' + county).css("fill", cases_color_codings[county]);
             }
             else{
-                $('#' + county).css("fill", population_color_codings[county]);
-            }       
+                $('#' + county).css("fill", dr_color_codings[county]); //population_color_codings
+            }
         }
     }
 
@@ -131,12 +160,40 @@ The user can hover over a county to view its statistics. Additionally, several c
             Chart.getChart("bar").destroy();
         }
         $("#chart-text").html("");
-        draw_bar_chart();
-        draw_pie_chart();
+        draw_pie_chart_cases();
+        draw_bar_chart_case();
+        draw_pie_chart_dr();
+        draw_bar_chart_dr();
+    }
+
+    //base function to create charts
+    function generate_dr_graphs(){
+        if (Chart.getChart("pie") != undefined){
+            Chart.getChart("pie").destroy();
+        }
+        if (Chart.getChart("bar") != undefined){
+            Chart.getChart("bar").destroy();
+        }
+        $("#chart-text").html("");
+        draw_pie_chart_dr();
+        draw_bar_chart_dr();
+    }
+
+    //base function to create charts
+    function generate_case_graphs(){
+        if (Chart.getChart("pie") != undefined){
+            Chart.getChart("pie").destroy();
+        }
+        if (Chart.getChart("bar") != undefined){
+            Chart.getChart("bar").destroy();
+        }
+        $("#chart-text").html("");
+        draw_pie_chart_cases();
+        draw_bar_chart_case();
     }
 
     //function generates chart.js options for bar chart
-    function get_bar_chart_options(){
+    function get_bar_chart_options_dr(){
         var options = {
             responsive: true,
             maintainAspectRatio: false,
@@ -148,7 +205,27 @@ The user can hover over a county to view its statistics. Additionally, several c
             plugins: {
                 title: {
                     display: true,
-                    text: 'Current Cases and Death Row Sentences County Breakdown'
+                    text: 'Death Row Sentences County Breakdown'
+                }
+            }
+        };
+        return options;
+    }
+
+    //function generates chart.js options for bar chart
+    function get_bar_chart_options_cases(){
+        var options = {
+            responsive: true,
+            maintainAspectRatio: false,
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            },
+            plugins: {
+                title: {
+                    display: true,
+                    text: 'Current Cases County Breakdown'
                 }
             }
         };
@@ -156,7 +233,7 @@ The user can hover over a county to view its statistics. Additionally, several c
     }
 
     //function generates chart.js data for bar chart
-    function get_bar_chart_data(){
+    function get_bar_chart_data_case(){
         let graph_data = {};
         graph_data['datasets'] = [];
         graph_data['labels'] = [];
@@ -187,9 +264,62 @@ The user can hover over a county to view its statistics. Additionally, several c
 
         for (let i = 0; i < eles.length; i++) {
             county_data = data[eles[i].id];
-            death_row_cases_b =  county_data['num_cur_cases_b'] + county_data['num_dr_b'];
-            death_row_cases_w = county_data['num_cur_cases_w'] + county_data['num_dr_w'];
-            death_row_cases_o = county_data['num_cur_cases_o'] + county_data['num_dr_o'];
+            current_cases_b = county_data['num_cur_cases_b']
+            current_cases_w = county_data['num_cur_cases_w']
+            current_cases_o = county_data['num_cur_cases_o']
+
+            if (current_cases_b > 0 || current_cases_w > 0 || current_cases_o > 0){
+                zero_bool = false;
+            }
+            black["data"].push(current_cases_b)
+            white["data"].push(current_cases_w)
+            other["data"].push(current_cases_o)
+        }
+        if (zero_bool == true){
+            return "zero"
+        }
+        graph_data['datasets'].push(black);
+        graph_data['datasets'].push(white);
+        graph_data['datasets'].push(other);
+        return graph_data;
+    }
+
+    //function generates chart.js data for bar chart
+    function get_bar_chart_data_dr(){
+        let graph_data = {};
+        graph_data['datasets'] = [];
+        graph_data['labels'] = [];
+        let eles = $(".clicked");
+        zero_bool = true;
+
+        if (eles.length == 0){
+            return "empty";
+        }
+
+        for (let i = 0; i < eles.length; i++){
+            graph_data['labels'].push(eles[i].id);
+        }
+
+        let black = {};
+        let white = {};
+        let other = {};
+        black['label'] = "Black";
+        black['backgroundColor'] = "#308dc0";
+        white['label'] = "White";
+        white['backgroundColor'] = "#DC1C13";
+        other['label'] = "Other";
+        other['backgroundColor'] = "rgb(250, 250, 106)";
+
+        black['data'] = []
+        white['data'] = []
+        other['data'] = []
+
+        for (let i = 0; i < eles.length; i++) {
+            county_data = data[eles[i].id];
+            death_row_cases_b =  county_data['num_dr_b'];
+            death_row_cases_w =  county_data['num_dr_w'];
+            death_row_cases_o =  county_data['num_dr_o'];
+
             if (death_row_cases_b > 0 || death_row_cases_w > 0 || death_row_cases_o > 0){
                 zero_bool = false;
             }
@@ -207,18 +337,40 @@ The user can hover over a county to view its statistics. Additionally, several c
     }
 
     //function draws the bar chart by targeting bar id
-    function draw_bar_chart(){
-        options = get_bar_chart_options();
-        graph_data = get_bar_chart_data();
+    function draw_bar_chart_case(){
+        options = get_bar_chart_options_cases();
+        graph_data = get_bar_chart_data_case();
         if (graph_data == "empty"){
             $("#chart-text").html("Please make sure to select counties!");
             return;
         }
         else if (graph_data == "zero"){
-            $("#chart-text").html("The selected counties do not cases or death penalty sentences.");
+            $("#chart-text").html("The selected counties do not have cases.");
             return;
         }
-        const bar_chart  = new Chart(
+        bar_chart  = new Chart(
+            document.getElementById("bar").getContext("2d"),
+            {
+                type: 'bar',
+                data: graph_data,
+                options: options
+            }
+        );
+    }
+
+        //function draws the bar chart by targeting bar id
+    function draw_bar_chart_dr(){
+        options = get_bar_chart_options_dr();
+        graph_data = get_bar_chart_data_dr();
+        if (graph_data == "empty"){
+            $("#chart-text").html("Please make sure to select counties!");
+            return;
+        }
+        else if (graph_data == "zero"){
+            $("#chart-text").html("The selected counties do not have death penalty sentences.");
+            return;
+        }
+        bar_chart  = new Chart(
             document.getElementById("bar").getContext("2d"),
             {
                 type: 'bar',
@@ -229,7 +381,7 @@ The user can hover over a county to view its statistics. Additionally, several c
     }
 
     //function generates chart.js options for pie chart
-    function get_pie_chart_options(){
+    function get_pie_chart_options_cases(){
         var options = {
             responsive: true,
             maintainAspectRatio: false,
@@ -239,7 +391,25 @@ The user can hover over a county to view its statistics. Additionally, several c
                     },
                     title: {
                         display: true,
-                        text: 'Current Cases and Death Row Sentences by County'
+                        text: 'Current Cases by County'
+                    }
+                }
+        };
+        return options
+    }
+
+    //function generates chart.js options for pie chart
+    function get_pie_chart_options_dr(){
+        var options = {
+            responsive: true,
+            maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'top',
+                    },
+                    title: {
+                        display: true,
+                        text: 'Current Death Row Sentences by County'
                     }
                 }
         };
@@ -247,7 +417,7 @@ The user can hover over a county to view its statistics. Additionally, several c
     }
 
     //function generates chart.js data for pie chart
-    function get_pie_chart_data(){
+    function get_pie_chart_data_cases(){
         let graph_data = {};
         graph_data['datasets'] = [];
         graph_data['labels'] = [];
@@ -266,23 +436,14 @@ The user can hover over a county to view its statistics. Additionally, several c
             graph_data['labels'].push(eles[i].id);
         }
 
-        if ($("#toggle-button").prop("checked")){
-            for (let i = 0; i < eles.length; i++){
-                county_data = data[eles[i].id];
-                cases = county_data['num_cur_cases'] + county_data['num_dr'];
-                if (cases > 0){
-                    zero_bool = false;
-                }
-                data_hash['data'].push(cases);
+        // if ($("#toggle-button").prop("checked")){
+        for (let i = 0; i < eles.length; i++){
+            county_data = data[eles[i].id];
+            cases = county_data['num_cur_cases'];
+            if (cases > 0){
+                zero_bool = false;
             }
-        }
-        else{
-            zero_bool = false;
-            for (let i = 0; i < eles.length; i++){
-                county_data = data[eles[i].id];
-                population = county_data['population'];
-                data_hash['data'].push(population);
-            }
+            data_hash['data'].push(cases);
         }
         if (zero_bool == true){
             return "zero"
@@ -291,20 +452,80 @@ The user can hover over a county to view its statistics. Additionally, several c
         return graph_data;
     }
 
+
+    //function generates chart.js data for pie chart
+    function get_pie_chart_data_dr(){
+        let graph_data = {};
+        graph_data['datasets'] = [];
+        graph_data['labels'] = [];
+        data_hash = {};
+        data_hash['data'] = [];
+        let eles = $(".clicked");
+        zero_bool = true;
+
+        if (eles.length == 0){
+            return "empty";
+        }
+
+        data_hash['backgroundColor'] = ["#308dc0", "#DC1C13", "rgb(250, 250, 106)", "#0000FF"];
+
+        for (let i = 0; i < eles.length; i++){
+            graph_data['labels'].push(eles[i].id);
+        }
+
+        for (let i = 0; i < eles.length; i++){
+            county_data = data[eles[i].id];
+            dr = county_data['num_dr'];
+            if (dr > 0){
+                zero_bool = false;
+            }
+            data_hash['data'].push(dr);
+        }
+        if (zero_bool == true){
+            return "zero"
+        }
+        graph_data['datasets'].push(data_hash);
+        return graph_data;
+    }
+
+
     //function draws the pie chart by targeting pie id
-    function draw_pie_chart(){
-        options = get_pie_chart_options();
-        graph_data = get_pie_chart_data();
+    function draw_pie_chart_cases(){
+        options = get_pie_chart_options_cases();
+        graph_data = get_pie_chart_data_cases();
         if (graph_data == "empty"){
             $("chart-text").html("Please make sure to select counties!");
             return;
         }
         else if (graph_data == "zero"){
-            $("#chart-text").html("The selected counties do not cases or death penalty sentences.");
+            $("#chart-text").html("The selected counties do not have cases.");
             return;
         }
         $("#chart-text").html("");
-        const bar_chart  = new Chart(
+        bar_chart  = new Chart(
+            document.getElementById("pie").getContext("2d"),
+            {
+                type: 'pie',
+                data: graph_data,
+                options: options
+            }
+        );
+    }
+
+    //function draws the pie chart by targeting pie id
+    function draw_pie_chart_dr(){
+        options = get_pie_chart_options_dr();
+        graph_data = get_pie_chart_data_dr();
+        if (graph_data == "empty"){
+            $("chart-text").html("Please make sure to select counties!");
+            return;
+        }
+        else if (graph_data == "zero"){
+            $("#chart-text").html("The selected counties do not have death penalty sentences.");
+            return;
+        }
+        $("#chart-text").html("");
+        bar_chart  = new Chart(
             document.getElementById("pie").getContext("2d"),
             {
                 type: 'pie',

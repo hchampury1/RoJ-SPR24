@@ -4,7 +4,7 @@
   Description: Mail database and management system for ACCR community partner
   Filename: _navbar.html.erb
   Description: Partial view used for generating the navigation bar on each page
-  Last modified on: 4/26/22
+  Last modified on: 4/24/23
   Code written by Team 13, Team 14, and Team 24
 %>
 
@@ -129,12 +129,8 @@ mail manager nav is all above code -->
                   <%= link_to "Mapping Justice Home", mapping_justice_home_index_path, class: 'nav-link', method: :get %>
                 <a class="dropdown-item" </a>
                   <%= link_to "View Maps", map_index_path, class: 'nav-link', method: :get %>
-                <% if can?(:access, :rails_admin) %>
                 <a class="dropdown-item" </a>
-                  <%= link_to "Add to Database", upload_index_path, class: 'nav-link', method: :get %>
-                <% end %>
-                <a class="dropdown-item" </a>
-                  <%= link_to "About", about_index_path, class: 'nav-link', method: :get %>
+                  <%= link_to "County Data", upload_index_path, class: 'nav-link', method: :get %>
               </div>
             </li>
 
@@ -182,13 +178,17 @@ mail manager nav is all above code -->
             <!-- Webinar Dropdown -->
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Webinar Registration
+          Webinars
               </a>
               <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item" </a>
-                  <%= link_to "View Webinars", webinars_path, class: 'nav-link', method: :get %>
-                  
-              </div>
+              <a class="dropdown-item" </a>
+                <%= link_to "Overview", requests_path , class: 'nav-link', method: :get %>
+              <a class="dropdown-item" </a>
+                <%= link_to "View Webinars", webinars_path, class: 'nav-link', method: :get %>
+                <% if can?(:access, :rails_admin) %>
+                <%= link_to "View Requests", requests_viewrequests_path, class: 'nav-link', method: :get %>
+                <% end %>
+            </div>
             </li>
             
             <!-- Event Calendar nav dropdown -->
@@ -244,15 +244,17 @@ mail manager nav is all above code -->
                   <a class="dropdown-item" </a>
                     <%= link_to "View Maps", map_index_path, class: 'nav-link', method: :get %>
                   <a class="dropdown-item" </a>
-                    <%= link_to "About", about_index_path, class: 'nav-link', method: :get %>
+                    <%= link_to "County Data", upload_index_path, class: 'nav-link', method: :get %>
                 </div>
               </li>
               <!-- Webinar Dropdown -->
               <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  Webinar Registration
+                  Webinars
                 </a>
                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                  <a class="dropdown-item" </a>
+                    <%= link_to "Overview", requests_path , class: 'nav-link', method: :get %>
                   <a class="dropdown-item" </a>
                     <%= link_to "View Webinars", webinars_path, class: 'nav-link', method: :get %>
                 </div>

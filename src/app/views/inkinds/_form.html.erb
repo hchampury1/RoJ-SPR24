@@ -1,3 +1,89 @@
+<% 
+=begin
+    Project Name: InKind Donations
+    FileName:/home/student5/RoJ-Spr23/src/app/views/inkinds/_form.html.erb
+    Description: Displays the Edit functionality for the Inkind. Javascript usedto dynamically displaly fields based on genre of inkind
+    Last Modified: April 26, 2023
+=end
+%>
+
+<%= javascript_tag do %>
+<%# Add event listener for when the DOM content has been loaded %>
+  document.addEventListener('DOMContentLoaded', function() {
+    <%# Get the genre select dropdown element %>
+    const genreSelect = document.getElementById('inkind_genre');
+    
+    <%# Function to show or hide the hours field for a given row %>
+    function toggleHoursFieldForRow(row) {
+      const hoursField = row.querySelector('.hours-field');  
+
+      <%# Show the hours field if the selected genre is 'service', else hide it %>
+      if (genreSelect.value === 'service') {
+        hoursField.style.display = 'block';
+      } else {
+        hoursField.style.display = 'none';
+      }
+    }
+
+    <%# Function to show or hide the hours field for all rows %>
+    function toggleHoursFieldForAllRows() {
+      <%#  Get all fields-row elements %>
+      const rows = document.querySelectorAll('.fields-row');
+      <%# Call toggleHoursFieldForRow for each row %>
+      rows.forEach((row) => toggleHoursFieldForRow(row));
+    }
+
+    <%# Add event listener to the genre select element to toggle hours field visibility on change %>
+    genreSelect.addEventListener('change', toggleHoursFieldForAllRows);
+
+    <%# Add event listener to the 'add-additional' button to clone a row %>
+    document.getElementById('add-additional').addEventListener('click', function(event) {
+      event.preventDefault();
+      const fieldsToClone = document.querySelector('.clone-fields');
+      const clonedFields = fieldsToClone.cloneNode(true);
+      <%# Insert the cloned fields before the add-additional-wrapper element %>
+      fieldsToClone.parentElement.insertBefore(clonedFields, document.getElementById('add-additional-wrapper'));
+
+      <%#  Calculate the new index for the cloned row %>
+      const newIndex = document.querySelectorAll('.fields-row').length - 1;
+      <%#  Define patterns for replacing ID and name attributes %>
+      const idPattern = /inkind_inkindentries_attributes_\d+_/;
+      const namePattern = /inkind\[inkindentries_attributes\]\[\d+\]/;
+      <%#  Update ID, name, and for attributes for all input, label, and select elements within the cloned fields %>
+      clonedFields.querySelectorAll('input, label, select').forEach(function (element) {
+        if (element.hasAttribute('id')) {
+          element.setAttribute('id', element.getAttribute('id').replace(idPattern, `inkind_inkindentries_attributes_${newIndex}_`));
+        }
+        if (element.hasAttribute('name')) {
+          element.setAttribute('name', element.getAttribute('name').replace(namePattern, `inkind[inkindentries_attributes][${newIndex}]`));
+        }
+        if (element.tagName === 'LABEL') {
+          element.setAttribute('for', element.getAttribute('for').replace(idPattern, `inkind_inkindentries_attributes_${newIndex}_`));
+        }
+      });
+
+      <%#  Toggle hours field visibility for the cloned row %>
+      toggleHoursFieldForRow(clonedFields.querySelector('.fields-row'));
+      <%#  Show the 'delete-additional' button %>
+      document.getElementById('delete-additional').style.display = 'inline';
+    });
+
+    <%#  Add event listener to the 'delete-additional' button to remove the last row %>
+    document.getElementById('delete-additional').addEventListener('click', function(event) {
+      event.preventDefault();
+      const fields = document.querySelectorAll('.fields-row');
+      const lastField = fields[fields.length - 1];
+      lastField.remove();
+      <%# Hide the "Delete additional" button when there is only one remaining "fields-row" after deletion %>
+      if (fields.length === 2) {
+        document.getElementById('delete-additional').style.display = 'none';
+      }
+    });
+
+    toggleHoursFieldForAllRows();
+  });
+<% end %>
+
 <%= form_with(model: inkind, local: true) do |form| %>
   <% if inkind.errors.any? %>
     <div id="error_explanation">
@@ -11,37 +97,63 @@
     </div>
   <% end %>
   <div class="field">
-    <%= form.label :name %>
+    <%= form.label :name, "Project Name" %>
     <%= form.text_field :name %>
   </div>
 
   <div class="field">
-    <%= form.label :date %>
-    <%= form.text_field :date %>
+    <%= form.label :date, "Date" %>
+    <%= form.date_field :date %>
   </div>
-
-  <div class="field">
-    <%= form.label :value %>
-    <%= form.number_field :value %>
+  <div style="font-size: 0.8em;"><b> (Selecting Service from dropdown will create field for hours) </b> </div>
+   <div class="field">
+    <%= form.label :type %>
+    <%# Dropdown for selecting the type good(s), facility, or service %>
+    <%= form.select(:genre, options_for_select([["good(s)", "good(s)"], ["facility", "facility"], ["service", "service"]])) %> 
   </div>
-
-  <div class="field">
-    <%= form.label :description %>
-    <%= form.text_field :description %>
+   <div style="font-size: 0.8em;"><b> (When adding value to an entry, value should be entered as total hours) </b> </div>
+  <%# Container for cloning fields-row elements %>
+  <div class="clone-fields">
+  <%# Nested inkindentries attribute form for values, description, and hours %>
+  <%= form.fields_for :inkindentries do |description_fields| %> 
+    <div class="fields-row">
+      <div class="field">
+        <%= description_fields.label :description %>
+        <%= description_fields.text_field :description %>
+      </div>
+      <div class="field hours-field" style="margin-left: 0.5em">
+        <%= description_fields.label :hours %>
+        <%= description_fields.number_field :hours, min: 0, step: 0.5 %>
+      </div>
+      <div class="field " style="margin-left: 0.5em">
+        <%= description_fields.label :"Value \($\)" %>
+        <%= description_fields.number_field :value, min: 0 %>
+      </div>
+    </div>
+    <% end %>
   </div>
+  <%# Hides add additional button fromm edit page %>
+  <% if inkind.new_record? %>
+    <div id="add-additional-wrapper">
+      <%= link_to "Add additional", "#", id: "add-additional" %>
+      <%= link_to "Delete additional", "#", id: "delete-additional", style: "display: none;" %>
+    </div>
+  <% end %>
 
   <div class="field">
     <%= form.text_field :user, value: current_user.email, type: :hidden%>
   </div>
 
-  <div class="field">
-    <%= form.label :genre %>
-    <%= form.select(:genre, options_for_select([["discount", "discount"], ["facility", "facility"], ["service", "service"]])) %> 
-  </div>
-
+  <%# Donor field for selecting a donor from the list of donor names %>
   <div class="field">
     <%= form.label :donor %>
-    <%= form.text_field :donor_name %>
+    <%= form.select(:donor_name, @donor_names ? options_for_select(@donor_names) : '' )%>
+  </div>
+
+  <%#TODO: Bad UI: This will remove any progress they've made, and
+  doesn't give them an easy way to get back to this page.%>
+  <div>
+	<%= link_to "Go to \"New Donor\" page", new_donor_path %>
   </div>
 
   <div class="field">

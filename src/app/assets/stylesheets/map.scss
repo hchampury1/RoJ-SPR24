@@ -17,6 +17,7 @@ h1 {
     z-index:9999;
 }
 
+
 #footer {
     position: static;
     text-align: center;
@@ -28,7 +29,7 @@ path {
     fill-opacity:1;
     fill-rule:nonzero;
     stroke:#000000;
-    stroke-width:0.3;
+    stroke: width 25%;
     stroke-linecap:butt;
     stroke-linejoin:bevel;
     stroke-miterlimit:4;
@@ -43,6 +44,14 @@ path:hover {
 
 #map{
     position: relative;
+}
+
+#toggle{
+    position: static;
+    //float:left;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 0;
 }
 
 #toggle-reset-buttons {

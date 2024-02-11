@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_11_17_020327) do
+ActiveRecord::Schema.define(version: 2024_02_11_060949) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -41,6 +41,21 @@ ActiveRecord::Schema.define(version: 2022_11_17_020327) do
     t.text "logo_url"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "calls", force: :cascade do |t|
+    t.string "caller_type"
+    t.string "name"
+    t.string "phone_number"
+    t.string "inmate_num"
+    t.string "institution"
+    t.string "location"
+    t.string "point_of_contact"
+    t.date "date"
+    t.string "notes"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.string "call_status"
   end
 
   create_table "counties", force: :cascade do |t|
@@ -80,7 +95,7 @@ ActiveRecord::Schema.define(version: 2022_11_17_020327) do
 
   create_table "donors", force: :cascade do |t|
     t.string "email"
-    t.integer "phoneNumber"
+    t.string "phoneNumber"
     t.string "location"
     t.string "donor_name"
     t.datetime "created_at", precision: 6, null: false
@@ -99,9 +114,19 @@ ActiveRecord::Schema.define(version: 2022_11_17_020327) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "inkindentries", force: :cascade do |t|
+    t.bigint "inkind_id", null: false
+    t.string "description"
+    t.float "hours"
+    t.integer "value"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["inkind_id"], name: "index_inkindentries_on_inkind_id"
+  end
+
   create_table "inkinds", force: :cascade do |t|
     t.string "name"
-    t.string "date"
+    t.date "date"
     t.integer "value"
     t.string "description"
     t.string "user"
@@ -110,7 +135,15 @@ ActiveRecord::Schema.define(version: 2022_11_17_020327) do
     t.bigint "donor_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.float "hours"
     t.index ["donor_id"], name: "index_inkinds_on_donor_id"
+  end
+
+  create_table "job_types", force: :cascade do |t|
+    t.string "name"
+    t.decimal "fee", precision: 8, scale: 2
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "joins", force: :cascade do |t|
@@ -138,6 +171,25 @@ ActiveRecord::Schema.define(version: 2022_11_17_020327) do
     t.string "home_institution"
   end
 
+  create_table "orders", force: :cascade do |t|
+    t.integer "product_id"
+    t.integer "user_id"
+    t.integer "status"
+    t.string "token"
+    t.string "charge_id"
+    t.string "error_message"
+    t.string "customer_id"
+    t.integer "payment_gateway"
+    t.integer "price_cents", default: 0, null: false
+    t.string "price_currency", default: "USD", null: false
+  end
+
+  create_table "products", force: :cascade do |t|
+    t.string "name"
+    t.integer "price_cents", default: 0, null: false
+    t.string "price_currency", default: "USD", null: false
+  end
+
   create_table "projects", force: :cascade do |t|
     t.text "name"
     t.datetime "created_at", precision: 6, null: false
@@ -162,6 +214,11 @@ ActiveRecord::Schema.define(version: 2022_11_17_020327) do
     t.text "topics"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "amount"
+    t.boolean "paid"
+    t.string "state"
+    t.string "deregistered"
+    t.string "cleID", default: "None"
   end
 
   create_table "registrants_webinars", force: :cascade do |t|
@@ -186,6 +243,15 @@ ActiveRecord::Schema.define(version: 2022_11_17_020327) do
     t.index ["deleted_at"], name: "index_reminders_on_deleted_at"
   end
 
+  create_table "requests", force: :cascade do |t|
+    t.string "first_name"
+    t.string "last_name"
+    t.string "email"
+    t.string "request"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "responses", force: :cascade do |t|
     t.boolean "response_sent"
     t.text "response_message"
@@ -194,6 +260,21 @@ ActiveRecord::Schema.define(version: 2022_11_17_020327) do
     t.datetime "updated_at", precision: 6, null: false
     t.integer "mailid"
     t.string "maillabel"
+  end
+
+  create_table "speakers", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.string "description"
+    t.string "link"
+  end
+
+  create_table "states", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "abbreviation", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "tags", force: :cascade do |t|
@@ -223,7 +304,12 @@ ActiveRecord::Schema.define(version: 2022_11_17_020327) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.datetime "date_and_time"
-    t.text "speaker"
+    t.integer "csvEntry"
+  end
+
+  create_table "webinars_speakers", force: :cascade do |t|
+    t.integer "webinar_id", null: false
+    t.integer "speaker_id", null: false
   end
 
   create_table "worklogs", force: :cascade do |t|
@@ -246,9 +332,12 @@ ActiveRecord::Schema.define(version: 2022_11_17_020327) do
   add_foreign_key "donations", "projects"
   add_foreign_key "donations", "users"
   add_foreign_key "donations", "users", column: "entered_by_id"
+  add_foreign_key "inkindentries", "inkinds"
   add_foreign_key "inkinds", "donors"
   add_foreign_key "registrants_webinars", "registrants"
   add_foreign_key "registrants_webinars", "webinars"
+  add_foreign_key "webinars_speakers", "speakers"
+  add_foreign_key "webinars_speakers", "webinars"
   add_foreign_key "worklogs", "projects"
   add_foreign_key "worklogs", "users"
   add_foreign_key "worklogs", "users", column: "entered_by_id"

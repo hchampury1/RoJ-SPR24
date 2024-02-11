@@ -2,7 +2,7 @@
 # Description: Pro-Bono Tracker for ACCR to oversee work done on several cases
 # Filename: statistics_helper.rb
 # Description: Handles calculations and retrival for data in Worklogs and CategoryView
-# Last modified on: 4/13/22
+# Last modified on: 4/21/23
 
 module StatisticsHelper
   
@@ -52,6 +52,9 @@ module StatisticsHelper
     curr_month_end_date = curr_year.to_s  + '-' + curr_month.to_s + '-' + curr_month_end_day.to_s
 
     curr_month_tuples = Donation.where('date BETWEEN ? AND ?', curr_month_start_date, curr_month_end_date)
+
+    #Modified 3/27/23
+    return curr_month_tuples
   end
 
   # Returns every tuple last month in worklog
@@ -72,7 +75,8 @@ module StatisticsHelper
       prev_month = "12"
     end
 
-    prev_month_end_day = Time.days_in_month(prev_month.to_i, prev_year) 
+    #Changed on 3/5/23 -> needed to typecast year into an integer
+    prev_month_end_day = Time.days_in_month(prev_month.to_i, prev_year.to_i) 
 
     prev_month_start_date = prev_year.to_s + '-' + prev_month.to_s + '-01' 
     prev_month_end_date = prev_year.to_s  + '-' + prev_month.to_s + '-' + prev_month_end_day.to_s
@@ -80,24 +84,27 @@ module StatisticsHelper
   end
 
   # Returns every tuple this month for the current user
+  #Changed on 4/21/23 -> changing to all users
   def get_curr_month_user_val
     # This uses the logic which selects all the tuples within the current month
     # and isolates it further to just display the tuples created by the user
     curr_month_tuples = get_all_curr_month_val()
-    final_tuples = curr_month_tuples.where(user_id: current_user.id)
+    final_tuples = curr_month_tuples #.where(user_id: current_user.id)
 
     return final_tuples
   end
 
+  # IMPLEMENT
   # Returns every tuple last month for the current user
+  # This uses the logic which selects all the tuples within the previous month
+  # and isolates it further to just display the tuples created by the user
+
+  # Returns every tuple last month for all users
+  #Changed on 4/21/23 -> changing to all users
   def get_prev_month_user_val
-        # This uses the logic which selects all the tuples within the previous month
-    # and isolates it further to just display the tuples created by the user
     prev_month_tuples = get_all_prev_month_val()
-    final_tuples = prev_month_tuples.where(user_id: current_user.id)
-
+    final_tuples = prev_month_tuples 
     return final_tuples
-
   end
 
   # Calculates the change in % for fees 
@@ -236,29 +243,31 @@ module StatisticsHelper
     return cat_id.name
   end
 
-  # Returns the number of entries for a category in CategoryView
+  # Returns the number of entries for a category in Donations
+  #Modified 4/21/23
   def get_cat_quant(cat)
-    cat_quant = Donation.where(:project_id => cat.project_id)
-    cat_user_quant = cat_quant.where(user_id: current_user.id).count()
-    return cat_user_quant
+    cat_quant = Donation.where(caseaddress: cat).count()
+    return cat_quant
   end
 
-  # Returns the total fees for a category in CategoryView
+  # Returns the total fees for a category in Donations
+  #Modified 4/21/23
   def get_cat_fees(cat)
-    cat_fees = Donation.where(:project_id => cat.project_id)
-    cat_user_fees = cat_fees.where(user_id: current_user.id).sum(:fees)
-    return cat_user_fees
+    cat_fees = Donation.where(caseaddress: cat).sum(:fees)
+    return cat_fees
   end
 
   # Returns the percentage a category makes up of the total 
-  # in CategoryView
+  # in Donations
+  #Modified 4/21/23
   def get_cat_percentage(cat)
     cat_fees = get_cat_fees(cat)
-    total_fees = Donation.where(user_id: current_user.id).sum(:fees)
+    total_fees = Donation.all.sum(:fees)
     return ((cat_fees.to_f / total_fees) * 100).round(2)
   end
 
   # Returns the total number of hours for Consultation, Training, or Representation
+  #Modified 4/21/23
   def get_cat_hours(cat_name)
     cat_hours = 0.0
 
@@ -271,49 +280,31 @@ module StatisticsHelper
   end
 
   # Returns number of hours for categories in "Training" section
+  #Modified 4/21/23
   def calculate_training
-    # We have currently identified Monthly CLE Webinar and BYOCT
-    # as the only two categories which are considered to be "Training",
-    # but in the future, we could a classification system to put
-    # any categories underneath this classification for scalability
-    webinar_hours = get_cat_hours("Monthly CLE Webinar")
-
-    case_id = get_cat_hours("Bring Your Own Case Training")
-
-    return (webinar_hours + case_id).round(2)
+    return Donation.where(caseaddress: "Training").sum(:hours).to_i
   end
 
   # Returns number of hours for categories in "Representation" section
+  #Modified 4/21/23
   def calculate_representation
-    # We have currently identified any category with "Direct Representation"
-    # as the only category which are considered to be "Representation",
-    # but in the future, we could a classification system to put
-    # any categories underneath this classification for scalability
-    representation_hours = 0
-    representation_ids = Project.find_by('name LIKE ?', '%Representation%')
-    if !representation_ids.nil?
-      representation_hours = Donation.where(project_id: representation_ids.id, user_id: current_user.id).sum(:hours)
-    end
-    return representation_hours.round(2)
+    return Donation.where(caseaddress: "Direct Representation").sum(:hours).to_i
   end
 
-  # Returns number of hours for categories in "Consultation" section
-  def calculate_consultation
-    # Since there are 3 categories, the remaining hours not in
-    # training or representation hours must be hours for consultation
-    # there is also not an easy way to identify which categories are
-    # considered "consultation", so this approach helps 
-    # us to calculate this since it's unclear
-    training_hours = calculate_training()
-    representation_hours = calculate_representation()
-    all_hours = Donation.where(user_id: current_user.id).sum(:hours)
-    user_hours = all_hours - training_hours - representation_hours
-    
-    if user_hours == all_hours        
-      user_hours = 0
-    end
+  # Returns number of hours for categories in "Court" section
+  def calculate_court
+    return Donation.where(caseaddress: "Court").sum(:hours).to_i
+  end
 
-    return user_hours.round(2)
+  # Returns number of hours for categories in "Other" section
+  def calculate_other
+    return Donation.where(caseaddress: "Other").sum(:hours).to_i
+  end
+
+  # Returns number of hours for categories in "Consulting" section
+  #Modified 4/21/23
+  def calculate_consultation
+    return Donation.where(caseaddress: "Consulting").sum(:hours).to_i
   end
 
 end

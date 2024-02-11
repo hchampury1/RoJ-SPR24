@@ -25,7 +25,7 @@ if Rails.env.development?
   admin = User.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password', first_name: 'Addy', last_name: 'Minesoda', role: 1)
   user = User.create!(email: 'user@example.com', password: 'password', password_confirmation: 'password', first_name: 'Jane', last_name: 'Doe', role: 0)
 
-  donor1 = Donor.create!(donor_name: 'Test', id: 0)
+  # donor1 = Donor.create!(donor_name: 'Test', id: 0)
 
 =begin
   # Create example donations:

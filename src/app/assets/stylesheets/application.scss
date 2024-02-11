@@ -2,7 +2,7 @@
 // Description: Mail database and management system for Rails of Justice community partner
 // Filename: application.scss
 // Description: Stylesheet for styles used by the entire application
-// Last modified on: 4/26/22
+// Last modified on: 4/22/23
 // Code written by Team 13 and 24
 
 /*
@@ -43,6 +43,9 @@
 
 //for calendar formatting
 @import "simple_calendar";
+
+// Sortable tables:
+@import "bootstrap-table/bootstrap-table";
 
 
 // Add any GLOBAl SCSS/CSS to this file for your project. If it is specific
@@ -86,7 +89,7 @@ div.file-preview {
 
 // Used to create the blue overlay for background on image
 .bg-ACCR {
-  background-color: #31629b !important;
+    background-color: #31629b !important;
 }
 
 // webkit is used to provide a more modern-looking scrollbar
@@ -112,3 +115,12 @@ div.file-preview {
 .supersize {
   font-size: 1.5em;
 }
+
+.fields-row {
+    display: flex;
+}
+  
+.half-width {
+    width: 50%;
+}
+  

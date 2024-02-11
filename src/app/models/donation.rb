@@ -34,6 +34,7 @@ class Donation < ApplicationRecord
     def search(query)
       @_results = Donation.all.to_a
 
+      
       @_results.delete_if do |result|
         _invalid = true
         [ result.lawyername, result.caseaddress, result.name, result.description ].each do |field|
@@ -42,6 +43,8 @@ class Donation < ApplicationRecord
                 break
             end
         end
+
+    
         #date search is individual
         if (result.date&.strftime("%m/%d/%Y").include?(query.downcase.strip)) then
           _invalid = false
@@ -50,6 +53,9 @@ class Donation < ApplicationRecord
       end
       @_results
     end
+
+    
+
   end
 
   #method meant to compile all donations and export them all into a CSV file

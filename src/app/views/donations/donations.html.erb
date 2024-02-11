@@ -3,22 +3,24 @@
   Description: Pro bono hour management system for ACCR community partner
   Filename: donations.html.erb
   Description: Page used for viewing and searching / filtering through all pro bono hours
-  Last modified on: 12/4/22
-  Code written by Team 21
+  Last modified on: 4/22/23 by Team 24 (Spring 2023)
 %>
 
 <h2>Pro-Bono Hours</h2>
 <br>
 
+<p class= "text-center" >
+  The purpose of this page is to view Pro-Bono information of all the entries you have added through the form. In addition to search specific entries,
+  it can be filtered by each attribute (or a set of attributes), as well as sorting based on the selected attribute.
+</p>
+
 <div class="container">
 
   <div class="row">
     <div class="col text-left">
-
       <%# Allow the user to search by description (or :desc_summary) in the database %>
       <section class="search-form">
-
-      <%# Iterate through the donations and search for user's entry by indicated text field tag  %>
+        <%# Iterate through the donations and search for user's entry by indicated text field tag  %>
         <%= form_tag(donations_path, method: :get) do %>
           <div class="input-group input-group-lg">
             <%= label_tag(:search, params[:search], class: "sr-only") %>
@@ -33,18 +35,86 @@
     </div>
   </div>
 
+  <div class= "border border-dark rounded container" style= "background-color:#31629b">
+  
+    <%# Sub-form that will be used for filtering attributes within the Pro-Bono Hours table %>
+    <%= form_tag(donations_path, method: :get) do %>
+      
+      <%# Lawyer Name Filter %>
+      <div class = "row text-center mx-auto" style= "margin:15px; max-width: 90%;">
+        <div class = "filter_block col">
+          <%= label_tag(:lawyer_name, 'Staff Name (By First Name):', style: "color:white") %>
+          <%= select_tag(:lawyer_name, options_for_select(['', 'A-E', 'F-J', 'K-O', 'P-T', 'U-Z'], params[:lawyer_name]), style: "min-width:175px") %>
+        </div>
+
+        <%# Service Type Filter %>
+        <div class = "filter_block col">
+          <%= label_tag(:service_type, 'Service Type:', style: "color:white") %>
+          <%= select_tag(:service_type, options_for_select(['', 'Court', 'Training', 'Consulting', 'Direct Representation', 'Other'], params[:service_type]), style: "min-width:175px") %>
+        </div>
+
+        <%# Start Date Choice Filter %>
+        <div class = "filter_block col">
+          <%= label_tag(:date_range_start, 'Start Date:', style: "color:white") %>
+          <%= date_field_tag(:date_range_start, Date.today.strftime("%m/%d/%Y"), value: params[:date_range_start], style: "min-width:175px")%>
+        </div>
+
+        <%# End Date Choice Filter %>
+        <div class = "filter_block col">
+          <%= label_tag(:date_range_end, 'End Date:', style: "color:white") %>
+          <%= date_field_tag(:date_range_end, Date.today.strftime("%m/%d/%Y"), value: params[:date_range_end], style: "min-width:175px")%>
+        </div>
+
+      </div>
+
+      <div class = "row text-center mx-auto" style= "max-width: 50%">
+        <%# Fee Range Filter %>
+        <div class = "filter_block col">
+          <%= label_tag(:fee_range, 'Hourly Fee Range: $', style: "color:white") %>
+          <%= select_tag(:fee_range, options_for_select(['', '0-49.99', '50-149.99', '150-299.99', '300-499.99', 'More than 499.99'], params[:fee_range]), style: "min-width:175px") %>
+        </div>
+
+        <%# Hour Range Filter %>
+        <div class = "filter_block col">
+          <%= label_tag(:hour_range, 'Total Hours Range:', style: "color:white") %>
+          <%= select_tag(:hour_range, options_for_select(['', '0-25', '26-50', '51-75', 'More than 75'], params[:hour_range]), style: "min-width:175px") %>
+        </div>
+      </div>
+
+      <div class="text-center" style="padding:20px">
+      <%# Button to apply filtering %>
+        <%= submit_tag('Apply Filters', name: nil, class: "btn btn-dark btn-md")%>
+
+        <!-- This is a button that is used for clearing the sort and filtering -->
+        <%= link_to "Clear Sort and Filters", clear_sort_path, class: "btn btn-outline-light" %>
+      </div>
+    <% end %>
+
+  </div>
+
+
+  <!-- Displays in which direction the data the ordered by -->
   <br>
 
-<!-- Displays the Pro Bono Hours in a table -->
+  <div class = "text-center" >
+    <% if sort_column.present? && sort_direction.present? %>
+      <% direction_text = sort_direction == "asc" ? "ascending order" : "descending order" %>
+      <p>Note: Data is sorted in <%= direction_text %>!</p>
+    <% else %>
+      <p>Note: The following entries are unsorted. To sort your entries, please click on a column to sort by.</p>
+    <% end %>
+  </div>
+
   <table class="table table-hover table-striped">
     <thead>
       <tr>
-        <th scope="col">Staff Name</th>
-        <th scope="col">Service Type</th>
-        <th scope="col">Case Name</th>
-        <th scope="col">Date</th>
-        <th scope="col">Hours</th>
-        <th scope="col">Fees</th>
+        <%# Modified 3/25/23, Calls the sortable function when a pro-bono case attribute is clicked %>
+        <th scope="col"><%= sortable "lawyername", "Staff Name"%></th>
+        <th scope="col"><%= sortable "caseaddress", "Service Type"%></th>
+        <th scope="col"><%= sortable "name", "Service Name"%></th>
+        <th scope="col"><%= sortable "date", "Date"%></th>
+        <th scope="col"><%= sortable "hours", "Total Hours"%></th>
+        <th scope="col"><%= sortable "fees", "Hourly Fee"%></th>
         <!-- <th scope="col">Description</th> -->
         <th scope="col">Actions</th>
       </tr>

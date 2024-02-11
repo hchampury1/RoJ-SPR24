@@ -1,21 +1,19 @@
 <div class="card">
+  <% if registrant.errors.any? %>
+    <div id="error_explanation" class="alert alert-danger" role="alert">
+    <h2><%= pluralize(registrant.errors.count, "error") %> prohibited this registrant from being saved:</h2>
+    <ul>
+      <% registrant.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+      <% end %>
+    </ul>
+    </div>
+  <% end %>
   <div class="card-header">
     <h4> Registration for <%= @webinar_name %> </h4> 
   </div>
   <div class="card-body">
     <%= form_with(model: registrant, local: true) do |form| %>
-      <% if registrant.errors.any? %>
-        <div id="error_explanation">
-          <h2><%= pluralize(registrant.errors.count, "error") %> prohibited this registrant from being saved:</h2>
-
-          <ul>
-            <% registrant.errors.full_messages.each do |message| %>
-              <li><%= message %></li>
-            <% end %>
-          </ul>
-        </div>
-      <% end %>
-
       <div class="field">
         <%= form.label "First Name:" %></br>
         <%= form.text_field :first_name %>
@@ -38,6 +36,11 @@
       <div class="field">
         <%= form.label "County:" %></br>
         <%= form.text_field :county %>
+      </div>
+
+      <div class="field">
+        <%= form.label "CLE ID (optional):" %></br>
+        <%= form.text_field :cleID %>
       </div>
 
       <div class="select">

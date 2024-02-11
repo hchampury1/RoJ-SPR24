@@ -1,0 +1,74 @@
+<%# 
+  Project name: ACCR Mapping Justice
+  Description: Pro bono hour management system for ACCR community partner
+  Filename: edit.html.erb
+  Description: Page used to edit pro bono hours
+  Last modified on: 12/4/22
+  Code written by Team 21
+%>
+
+<h2>County Edit</h2>
+<br>
+<p> Please fill out the required information in the form below. </p>
+
+<div>
+    Note: Fields marked with <span style="color: red;">*</span> are required.
+</div>
+<br>
+<div class = "container">
+<%= form_for @county, url:{controller: 'upload', action: 'update'} do |f|%>
+  <div>
+    <label>County Name:</label>
+    <b><%=@county.name%></b>
+  </div>
+
+  <div>
+    <label>Current Pending Cases</label>
+    <%=f.text_field :num_cur_cases%>
+  </div>
+
+  <div>
+    <label>Current Pending Cases: Black</label>
+    <%=f.text_field :num_cur_cases_b%>
+  </div>
+
+  <div>
+    <label>Current Pending Cases: White</label>
+    <%=f.text_field :num_cur_cases_w%>
+  </div>
+
+  <div>
+    <label>Current Pending Cases: Other</label>
+    <%=f.text_field :num_cur_cases_o%>
+  </div>
+
+  <div>
+    <label>Population</label>
+    <%=f.text_field :population%>
+  </div>
+
+  <div>
+    <label>Number of Death Sentence Cases</label>
+    <%=f.text_field :num_dr%>
+  </div>
+
+  <div>
+    <label>Number of Death Sentence Cases: Black</label>
+    <%=f.text_field :num_dr_b%>
+  </div>
+  <div>
+    <label>Number of Death Sentence Cases: White</label>
+    <%=f.text_field :num_dr_w%>
+  </div>
+  <div>
+    <label>Number of Death Sentence Cases: Other</label>
+    <%=f.text_field :num_dr_o%>
+  </div>
+
+  <div>
+    <%= link_to 'Back', {controller: 'upload', action: 'index'}%>
+    <%=f.submit 'Update County'%>
+  <div>
+
+<%end%>
+</div>

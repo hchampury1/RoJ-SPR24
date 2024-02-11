@@ -9,7 +9,6 @@ class WebinarRegistrationHomeController < ApplicationController
     end
 
     def create
-
         @webinar_form = WebinarForm.new(params.require(:webinar_form.permit(:firstName, :lastName, :email, :occupation, :wantsCredit, :paid)))
         if @webinar_form.save
             flash[:success] = "Webinarform submitted. Registration successful!"
@@ -19,6 +18,4 @@ class WebinarRegistrationHomeController < ApplicationController
             render :new
         end
     end
-
-
 end

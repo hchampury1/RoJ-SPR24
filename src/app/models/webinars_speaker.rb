@@ -1,0 +1,2 @@
+class WebinarsSpeaker < ApplicationRecord
+end

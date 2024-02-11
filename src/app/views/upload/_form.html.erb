@@ -6,9 +6,16 @@ The user can hover over a county to view its statistics. Additionally, several c
 <!-- Last modified on: 4/8/2022 -->
 
 <!-- A form to upload files -->
+
+
+ <script>>
+      $(".date").date_field({
+        format: "yyyy-mm-dd",
+      });
+  </script>
+
 <%= form_tag upload_uploadcsv_path, multipart: true, local: true  do %>
     <%= file_field_tag 'file', class: "form-control", :required => true, :accept => '.csv' %>
     <br/>
     <%= submit_tag 'Upload File', class: "btn btn-outline-primary" %>
 <% end %>
-

@@ -1,0 +1,21 @@
+<div class="card">
+    <div class="card-header">
+        <h4> Deregistration for <%= @name %> </h4> 
+    </div>
+
+    <div class= "card-body">
+        <!-- FORM HERE -->
+            <%= form_with url: webinars_deregisterSubmitted_path, id: "DR", method: :post, local: true do |form| %>
+            
+            <div class="field">
+                <%= form.label "Email:" %></br>
+                <%= form.text_field :email, id: 'DRemail' %>
+              <%= form.hidden_field :webID, value:@webID %></div>
+            <div class="actions">
+            <br>
+                <%= form.submit 'Submit', class:'btn btn-primary' %>
+            </div>
+        <% end %>
+    </div>
+</div>
+

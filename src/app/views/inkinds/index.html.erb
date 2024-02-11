@@ -1,3 +1,12 @@
+<% 
+=begin
+    Project Name: InKind Donations
+    FileName:/home/student5/RoJ-Spr23/src/app/views/inkinds/index.html.erb
+    Description: Displays Inkind Donations List
+    Last Modified: April 28, 2023
+=end
+%>
+
 <style>
 body {
     font-family: Helvetica;
@@ -39,31 +48,50 @@ p {
 
 <h1> In-Kind Donation List</h1>
 
-<table class="table table-striped table-bordered table-hover">
+<table class="table table-striped table-bordered table-hover" data-toggle="table">
   <thead>
     <tr>
-      <th>Name</th>
-      <th>Date</th>
-      <th>Value</th>
-      <th>Description</th>
-      <th>User</th>
-      <th>Type</th>
-      <th>Donor</th>
-      <th colspan="3"></th>
+      <th data-field="name" data-sortable="false">Name</th>
+      <th data-field="date" data-sortable="true" data-sorter="dateSorter">Date</th>
+      <th data-field="user" data-sortable="true">User</th>
+      <th data-field="type" data-sortable="false">Type</th>
+      <th data-field="value" data-sortable="false">Value</th>
+      <th data-field="hours" data-sortable="false">Hours</th>
+      <th data-field="desc" data-sortable="false">Description</th>
+      <th data-field="donor" data-sortable="true">Donor</th>
+	  <th></th>
+	  <th></th>
+	  <th></th>
     </tr>
   </thead>
 
   <tbody>
     <% @inkinds.each do |inkind|%>
       <tr>
-        <td><%= inkind.name %></td>
-        <td><%= inkind.date %></td>
-        <td><%= inkind.value %></td>
-        <td><%= inkind.description %></td>
+        <td><%= link_to inkind.name, inkind %></td>
+        <td><%= inkind.date.strftime("%m/%d/%Y") %></td>
         <td><%= inkind.user %></td>
         <td><%= inkind.genre %></td>
+        <td>
+          <% inkind.inkindentries.each do |inkind_des| %>
+            <%= number_to_currency(inkind_des.value, unit: "$") %>
+            <br>
+          <% end %>
+        </td>
+        <td>
+          <% inkind.inkindentries.each do |inkind_des| %>
+            <%= inkind_des.hours.present? ? "#{inkind_des.hours}" : "" %>
+            <br>
+          <% end %>
+        </td>
+        <td>
+          <% inkind.inkindentries.each do |inkind_des| %>
+            <%= inkind_des.description %>
+            <br>
+          <% end %>
+        </td> 
         <td><%= inkind.donor_name %></td>
-        <td><%= link_to 'Show', inkind %></td>
+        <td><%= link_to 'Download PDF', download_pdf_inkinds_path(inkind, id: inkind.id), class: "button", target: "_blank" %></td>
         <td><%= link_to 'Edit', edit_inkind_path(inkind) %></td>
         <td><%= link_to 'Remove', inkind, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
@@ -76,3 +104,15 @@ p {
 <%= link_to 'View/Edit Donors', donors_path, class: "btn btn-lightBlue text-center" %>
 
 <%= link_to "Download CSV Report" , inkinds_path(format: "csv"), class: "btn btn-darkBlue text-center" %>
+
+<script>
+//function to sort dates after string conversion
+  function dateSorter(a, b) {
+    const dateA = new Date(a);
+    const dateB = new Date(b);
+
+    if (dateA < dateB) return -1;
+    if (dateA > dateB) return 1;
+    return 0;
+  }
+</script>

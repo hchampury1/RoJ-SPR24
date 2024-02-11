@@ -13,6 +13,7 @@ class EventDetailsController < ApplicationController
   def index
     @event_details = EventDetail.all
     @webinars = Webinar.all
+    
   end
 
   # GET /event_details/1 or /event_details/1.json

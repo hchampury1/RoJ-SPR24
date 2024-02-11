@@ -1,0 +1,38 @@
+<div class="jumbotron">
+    <h3 class="text-center display-4">Webinars</h3>
+    <p class="text-center lead">
+      The webinars module contains upcoming and past webinars. 
+      Click the button below to view the webinars!
+    </p>
+    <p class="text-center">
+        <a  style ="color:white;" class="btn btn-primary btn-lg"<%= link_to 'View Webinars', webinars_path%></a>
+    </p>
+</div>
+
+
+<% if can?(:access, :rails_admin) %>
+<div class="jumbotron">
+    <h3 class="text-center display-4">Requests</h3>
+    <p class="text-center lead">
+      Click the button below to view requests for webinars.
+    </p>
+    <p class="text-center">
+        <a  style ="color:white;" class="btn btn-primary btn-lg"<%= link_to 'View Requests',requests_viewrequests_path %></a>
+    </p>
+</div>
+<% else %>
+<div class="jumbotron">
+    <h3 class="text-center display-4">Requests</h3>
+    <p class="text-center lead">
+      Missed a webinar that you would like to see happen again or have an idea for a webinar? <br>
+      Click the button below to creat a request.
+    </p>
+    <p class="text-center">
+        <a  style ="color:white;" class="btn btn-primary btn-lg"<%= link_to 'New Request', new_request_path%></a>
+    </p>
+</div>
+<%end %>
+
+
+    
+

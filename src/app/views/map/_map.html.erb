@@ -4,83 +4,673 @@ The user can hover over a county to view its statistics. Additionally, several c
 <!-- Filename: _map.html.erb -->
 <!-- Description: The page contains the interactive map partial. The path elements call JS functions on particular user actions. -->
 <!-- Last modified on: 4/11/2022 -->
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
 
-<svg class="pa" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:svg="http://www.w3.org/2000/svg" xmlns="http://www.w3.org/2000/svg" xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" version="1.0" width="100%" height="100%" viewbox="0 0 110 43" sodipodi:version="0.32" inkscape:version="0.48.2 r9819" sodipodi:docname="pa.svg" inkscape:output_extension="org.inkscape.output.svg.inkscape" id="svg3060" class="" style="transform: rotate(10.8deg);">
-  <metadata id="metadata3062">
+<svg
+   version="1.0"
+   width="340.22198mm"
+   height="140.66797mm"
+   viewBox="55 35 555 352"
+   id="svg9559"
+   sodipodi:version="0.32"
+   inkscape:version="1.2.2 (b0a84865, 2022-12-01)"
+   sodipodi:docname="US_weather_service_county_map (1).svg"
+   inkscape:output_extension="org.inkscape.output.svg.inkscape"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <metadata
+     id="metadata3671">
     <rdf:RDF>
-      <cc:Work rdf:about="">
+      <cc:Work
+         rdf:about="">
         <dc:format>image/svg+xml</dc:format>
-        <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"></dc:type>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
       </cc:Work>
     </rdf:RDF>
   </metadata>
-  <sodipodi:namedview inkscape:window-height="5000" inkscape:window-width="5000" inkscape:pageshadow="2" inkscape:pageopacity="0.0" guidetolerance="10.0" gridtolerance="10.0" objecttolerance="10.0" borderopacity="1.0" bordercolor="#666666" pagecolor="#ffffff" inkscape:zoom="7.3693741" inkscape:cx="40.47568" inkscape:cy="20.514634" inkscape:window-x="-8" inkscape:window-y="-8" inkscape:current-layer="svg3060" showguides="true" inkscape:guide-bbox="true" fit-margin-top="0" fit-margin-left="0" fit-margin-right="0" fit-margin-bottom="0" inkscape:window-maximized="0" id="namedview3064" showgrid="false"></sodipodi:namedview>
-  <defs id="defs3066"></defs>
-  <path style="" d="m 58.31268,25.167323 -0.622,0.906 -0.734,1.365 -0.385,0.55 -0.941,-1.262 0.46,-0.622 -0.513,-0.396 0.554,-0.852 0.549,0.365 0.996,-1.095 0.636,1.041" id="Philadelphia" class="map-county" inkscape:connector-curvature="Philadelphia" onmousemove="showTooltip(evt, 'Philadelphia');" onmouseout="hideTooltip();" onclick="county_clicked('Philadelphia');"></path>
-  <path style="" d="m 54.71268,18.744323 1.383,0.564 0.73,1.469 0.937,0.568 0.064,0.036 2.6,1.997 -2.114,1.789 -0.636,-1.041 -5.268,-2.57 1.099,-1.815 1.1,-1.2 0.105,0.203" id='Bucks' class="map-county" inkscape:connector-curvature="0" onmousemove="showTooltip(evt, 'Bucks');" onmouseout="hideTooltip();" onclick="county_clicked('Bucks');"></path>
-  <path style="" d="m 5.1206804,36.651323 1.986,-1.091 0.112,-0.014 1.078,-0.008 1.8269996,0.005 1.365,3.226 -4.9079996,0.82 -0.955,0.154 -0.505,-3.092" id="Greene" class="map-county" inkscape:connector-curvature="0" onmousemove="showTooltip(evt, 'Greene');" onmouseout="hideTooltip();" onclick="county_clicked('Greene');"> </path>
-  <path style="" d="m 10.97468,33.504323 1.281,-0.239 2.284,-0.566 0.235,-0.069 0.243,0.062 0.1,0.052 1.689,0.884 -0.248,0.666 -0.45,1.302 -0.077,0.631 0.338,1.51 0.208,0.14 -0.821,0.148 -2.791,0.492 -1.477,0.252 -1.365,-3.226 0.851,-2.039" id="Fayette" class="map-county" inkscape:connector-curvature="0" onmousemove="showTooltip(evt, 'Fayette');" onmouseout="hideTooltip();" onclick="county_clicked('Fayette');"></path>
-  <path style="" d="m 5.5566804,29.796323 2.02,1.573 2.266,0.942 1.0419996,0.278 0.09,0.915 -0.851,2.039 -1.8269996,-0.005 -1.078,0.008 -0.112,0.014 -1.986,1.091 -0.413,-2.528 -0.498,-3.07 -0.171,-1.005 1.518,-0.252" id="Washington" class="map-county" inkscape:connector-curvature="0" onmousemove="showTooltip(evt, 'Washington');" onmouseout="hideTooltip();" onclick="county_clicked('Washington');"></path>
-  <path style="" d="m 11.55168,26.249323 0.004,0.008 0.393,2.903 0.027,0.208 -0.009,0.066 -0.514,2.602 -0.09,0.229 -0.478,0.324 -1.0419996,-0.278 -2.266,-0.942 -2.02,-1.573 1.07,-1.438 0.711,-0.658 -0.167,-0.771 4.3809996,-0.68" id="Allegheny" class="map-county" inkscape:connector-curvature="0" onmousemove="showTooltip(evt, 'Allegheny');" onmouseout="hideTooltip();" onclick="county_clicked('Allegheny');"></path>
-  <path style="" d="m 3.2506804,25.255323 3.438,-0.62 0.482,2.294 0.167,0.771 -0.711,0.658 -1.07,1.438 -1.518,0.252 -0.342,-2.069 -0.446,-2.724" id="Beaver" class="map-county" inkscape:connector-curvature="0" onmousemove="showTooltip(evt, 'Beaver');" onmouseout="hideTooltip();" onclick="county_clicked('Beaver');"></path>
-  <path style="" d="m 6.8146804,21.787323 -0.126,2.848 -3.438,0.62 -0.114,-0.62 -0.465,-2.889 2.48,-0.447 1.077,0.005 0.586,0.483" id="Lawrence" class="map-county" inkscape:connector-curvature="0" onmousemove="showTooltip(evt, 'Lawrence');" onmouseout="hideTooltip();" onclick="county_clicked('Lawrence');"></path>
-  <path style="" d="m 10.46168,19.831323 1.09,6.418 -4.3809996,0.68 -0.482,-2.294 0.126,-2.848 0.703,-1.465 2.8989996,-0.514 0.045,0.023" id="Butler" class="map-county" inkscape:connector-curvature="0" onmousemove="showTooltip(evt, 'Butler');" onmouseout="hideTooltip();" onclick="county_clicked('Butler');"></path>
-  <path style="" d="m 15.25568,20.569323 0.317,1.781 0.31,1.736 -1.144,2.424 -0.546,1.119 -2.637,-1.372 -0.004,-0.008 -1.09,-6.418 0.247,0.87 0.032,0.117 0.225,0.527 1.041,0.658 0.203,0.031 0.289,0.023 0.18,-0.054 0.694,-0.249 1.037,-0.418 0.846,-0.767" id="Armstrong" class="map-county" inkscape:connector-curvature="0" onmousemove="showTooltip(evt, 'Armstrong');" onmouseout="hideTooltip();" onclick="county_clicked('Armstrong');"></path>
-  <path style="" d="m 12.00368,16.720323 0.733,-0.131 -0.108,-0.634 0.397,-0.073 1.442,-0.185 0.207,1.266 0.581,3.606 -0.846,0.767 -1.037,0.418 -0.694,0.249 -0.18,0.054 -0.289,-0.023 -0.203,-0.031 -1.041,-0.658 -0.225,-0.527 -0.032,-0.117 -0.247,-0.87 -0.045,-0.023 0.247,-1.104 0.161,-0.338 0.181,-0.271 0.438,-0.414 0.1,-0.017 0.567,-0.295 -0.107,-0.649" id="Clarion" class="map-county" inkscape:connector-curvature="0" onmousemove="showTooltip(evt, 'Clarion');" onmouseout="hideTooltip();" onclick="county_clicked('Clarion');"></path>
-  <path style="" d="m 11.14168,13.732323 5.255,-0.928 0.284,1.74 -0.081,0.495 -0.825,0.127 -0.218,0.437 0.178,1.055 -1.06,0.305 -0.207,-1.266 -1.442,0.185 -0.397,0.073 0.108,0.634 -0.733,0.131 -0.127,-0.689 -0.46,-0.794 -0.275,-1.505" id="Forest" class="map-county" inkscape:connector-curvature="0" onmousemove="showTooltip(evt, 'Forest');" onmouseout="hideTooltip();" onclick="county_clicked('Forest');"></path>
-  <path style="" d="m 11.14168,13.732323 0.275,1.505 0.46,0.794 0.127,0.689 0.107,0.649 -0.567,0.295 -0.1,0.017 -0.438,0.414 -0.181,0.271 -0.161,0.338 -0.247,1.104 -2.8989996,0.514 -0.694,-4.074 0.343,-0.366 1.027,-1.343 2.0149996,-0.545 -0.018,-0.085 0.951,-0.177" id="Venango" class="map-county" inkscape:connector-curvature="0" onmousemove="showTooltip(evt, 'Venango');" onmouseout="hideTooltip();" onclick="county_clicked('Venango');"></path>
-  <path style="" d="m 1.9026804,17.086323 4.921,-0.838 0.694,4.074 -0.703,1.465 -0.586,-0.483 -1.077,-0.005 -2.48,0.447 -0.017,-0.104 -0.752,-4.556" id="Mercer" class="map-county" inkscape:connector-curvature="0" onmousemove="showTooltip(evt, 'Mercer');" onmouseout="hideTooltip();" onclick="county_clicked('Mercer');"></path>
-  <path style="" d="m 9.6946804,11.015323 0.4959996,2.894 0.018,0.085 -2.0149996,0.545 -1.027,1.343 -0.343,0.366 -4.921,0.838 -0.024,-0.14 -0.734,-4.48 5.742,-0.978 2.142,-0.385 0.666,-0.088" id="Crawford" class="map-county" inkscape:connector-curvature="0" onmousemove="showTooltip(evt, 'Crawford');" onmouseout="hideTooltip();" onclick="county_clicked('Crawford');"></path>
-  <path style="" d="m 9.3836804,9.1033229 0.311,1.9120001 -0.666,0.088 -2.142,0.385 -5.742,0.978 -0.26799999,-1.636 1.65699999,-1.0450004 2.185,-1.8119997 1.731,-1.416 0.91,-0.667 0.055,0.342 0.248,1.43 0.297,1.6889997 1.28,-0.2209997 0.144,-0.027" id="Erie" class="map-county" inkscape:connector-curvature="0" onmousemove="showTooltip(evt, 'Erie');" onmouseout="hideTooltip();" onclick="county_clicked('Erie');"></path>
-  <path style="" d="m 14.19268,27.629323 -0.067,0.169 0.135,0.42 0.024,0.023 0.643,0.257 2.37,0.144 1.763,-0.112 -0.522,1.558 -1.732,3.54 -1.689,-0.884 -0.1,-0.052 -0.243,-0.062 -0.235,0.069 -2.284,0.566 -1.281,0.239 -0.09,-0.915 0.478,-0.324 0.09,-0.229 0.514,-2.602 0.009,-0.066 -0.027,-0.208 -0.393,-2.903 2.637,1.372" id="Westmoreland" class="map-county" inkscape:connector-curvature="0" onmousemove="showTooltip(evt, 'Westmoreland');" onmouseout="hideTooltip();" onclick="county_clicked('Westmoreland');"></path>
-  <path style="" d="m 15.57268,22.350323 3.925,-0.636 0.454,2.312 -0.891,4.504 -1.763,0.112 -2.37,-0.144 -0.643,-0.257 -0.024,-0.023 -0.135,-0.42 0.067,-0.169 0.546,-1.119 1.144,-2.424 -0.31,-1.736" id="Indiana" class="map-county" inkscape:connector-curvature="0" onmousemove="showTooltip(evt, 'Indiana');" onmouseout="hideTooltip();" onclick="county_clicked('Indiana');"></path>
-  <path style="" d="m 14.67468,16.963323 1.06,-0.305 0.188,-0.199 1.051,-0.307 2.353,0.879 0.315,0.375 0.068,0.365 -0.537,0.085 -0.162,0.793 -0.005,0.028 0.011,0.373 0.481,2.664 -3.925,0.636 -0.317,-1.781 -0.581,-3.606" id="Jefferson" class="map-county" inkscape:connector-curvature="0" onmousemove="showTooltip(evt, 'Jefferson');" onmouseout="hideTooltip();" onclick="county_clicked('Jefferson');"></path>
-  <path style="" d="m 14.53968,8.1893229 1.339,-0.226 0.135,0.568 0.257,1.4339997 -0.026,0.1340004 -0.258,0.055 0.41,2.65 -5.255,0.928 -0.951,0.177 -0.4959996,-2.894 -0.311,-1.9120001 5.1559996,-0.914" id="Warren" class="map-county" inkscape:connector-curvature="0" onmousemove="showTooltip(evt, 'Warren');" onmouseout="hideTooltip();" onclick="county_clicked('Warren');"></path>
-  <path style="" d="m 21.60868,6.8863229 0.949,-0.188 0.951,4.8620001 -1.996,0.586 -0.672,-0.239 -1.28,0.262 -0.491,0.129 -1.465,0.299 -1.208,0.207 -0.41,-2.65 0.258,-0.055 0.026,-0.1340004 -0.257,-1.4339997 -0.135,-0.568 0.415,-0.072 2.604,-0.506 2.711,-0.499" id="McKean" class="map-county" inkscape:connector-curvature="0" onmousemove="showTooltip(evt, 'McKean');" onmouseout="hideTooltip();" onclick="county_clicked('McKean');"></path>
-  <path style="" d="m 21.51268,12.146323 1.996,-0.586 2.37,1.442 -0.355,3.48 -1.396,0.085 -0.205,-1.193 -0.374,-1.002 -1.572,0.293 -0.464,-2.519" id="Cameron" class="map-county" inkscape:connector-curvature="0" onmousemove="showTooltip(evt, 'Cameron');" onmouseout="hideTooltip();" onclick="county_clicked('Cameron');"></path>
-  <path style="" d="m 16.39668,12.804323 1.208,-0.207 1.465,-0.299 0.491,-0.129 1.28,-0.262 0.672,0.239 0.464,2.519 1.572,-0.293 0.374,1.002 0.205,1.193 -3.075,0.343 -0.847,0.172 -0.496,0.689 -0.068,-0.365 -0.315,-0.375 -2.353,-0.879 -1.051,0.307 -0.188,0.199 -0.178,-1.055 0.218,-0.437 0.825,-0.127 0.081,-0.495 -0.284,-1.74" id="Elk" class="map-county" inkscape:connector-curvature="0" onmousemove="showTooltip(evt, 'Elk');" onmouseout="hideTooltip();" onclick="county_clicked('Elk');"></path>
-  <path style="" d="m 24.12768,16.567323 1.396,-0.085 0.677,0.707 0.094,1.527 0.013,0.308 -0.116,0.802 -0.051,0.058 -0.54,0.222 -0.46,0.405 -0.108,0.121 -1.086,2.257 0.013,0.042 0.168,0.207 0.138,0.086 -4.314,0.802 -0.454,-2.312 -0.481,-2.664 -0.011,-0.373 0.005,-0.028 0.162,-0.793 0.537,-0.085 0.496,-0.689 0.847,-0.172 3.075,-0.343" id="Clearfield" class="map-county" inkscape:connector-curvature="0" onmousemove="showTooltip(evt, 'Clearfield');" onmouseout="hideTooltip();" onclick="county_clicked('Clearfield');"></path>
-  <path style="" d="m 24.12768,23.138323 2.342,-0.522 -0.716,0.676 -0.104,0.194 -0.036,0.149 0.523,1.423 0.532,0.347 0.28,0.429 0.009,0.089 -0.019,0.122 -0.117,0.478 -0.636,1.983 -0.066,0.352 -0.1,0.378 -1.56,-0.107 -1.833,-0.343 1.639,-5.562 -0.138,-0.086" id="Blair" class="map-county" inkscape:connector-curvature="0" onmousemove="showTooltip(evt, 'Blair');" onmouseout="hideTooltip();" onclick="county_clicked('Blair');"></path>
-  <path style="" d="m 19.95168,24.026323 4.314,-0.802 -1.639,5.562 -0.167,1.14 -0.879,0.162 -1.263,0.19 -0.193,-0.274 -0.338,-0.141 -1.248,0.225 0.522,-1.558 0.891,-4.504" id="Cambria" class="map-county" inkscape:connector-curvature="0" onmousemove="showTooltip(evt, 'Cambria');" onmouseout="hideTooltip();" onclick="county_clicked('Cambria');"></path>
-  <path style="" d="m 22.45968,29.926323 -0.375,2.362 0.406,3.178 -0.028,0.373 -0.229,1.005 -5.656,1.033 -0.208,-0.14 -0.338,-1.51 0.077,-0.631 0.45,-1.302 0.248,-0.666 1.732,-3.54 1.248,-0.225 0.338,0.141 0.193,0.274 1.263,-0.19 0.879,-0.162" id="Somerset" class="map-county" inkscape:connector-curvature="0" onmousemove="showTooltip(evt, 'Somerset');" onmouseout="hideTooltip();" onclick="county_clicked('Somerset');"></path>
-  <path style="" d="m 22.62668,28.786323 1.833,0.343 1.56,0.107 0.1,-0.378 0.066,-0.352 1.501,1.47 -0.126,0.595 -0.31,1.889 -0.33,2.154 -0.27,0.861 -0.271,0.604 -4.146,0.765 0.229,-1.005 0.028,-0.373 -0.406,-3.178 0.375,-2.362 0.167,-1.14" id="Bedford" class="map-county" inkscape:connector-curvature="0" onmousemove="showTooltip(evt, 'Bedford');" onmouseout="hideTooltip();" onclick="county_clicked('Bedford');"></path>
-  <path style="" d="m 27.68668,29.976323 0.631,0.307 1.533,0.116 0.69,0.401 -0.099,0.109 -0.055,0.094 -0.234,0.641 -0.041,0.73 -0.212,1.244 -0.121,0.455 -0.437,1.073 -0.235,0.419 -2.361,0.446 -0.366,0.068 0.271,-0.604 0.27,-0.861 0.33,-2.154 0.31,-1.889 0.126,-0.595" id="Fulton" class="map-county" inkscape:connector-curvature="0" onmousemove="showTooltip(evt, 'Fulton');" onmouseout="hideTooltip();" onclick="county_clicked('Fulton');"></path>
-  <path style="" d="m 26.46968,22.616323 1.754,0.293 2.174,-0.721 0.241,-0.253 -0.067,0.298 -0.545,1.198 -0.284,0.542 -0.122,0.32 -0.068,0.234 -0.293,1.884 0.51,0.437 0.104,0.068 0.252,-0.037 0.639,-0.188 0.073,-0.15 0.752,1.379 -1.049,2.88 -0.69,-0.401 -1.533,-0.116 -0.631,-0.307 -1.501,-1.47 0.636,-1.983 0.117,-0.478 0.019,-0.122 -0.009,-0.089 -0.28,-0.429 -0.532,-0.347 -0.523,-1.423 0.036,-0.149 0.104,-0.194 0.716,-0.676" id="Huntingdon" class="map-county" inkscape:connector-curvature="0" onmousemove="showTooltip(evt, 'Huntingdon');" onmouseout="hideTooltip();" onclick="county_clicked('Huntingdon');"></path>
-  <path style="" d="m 31.58968,27.920323 0.236,-0.391 0.783,1.046 -0.104,0.161 0.262,0.415 1.465,1.672 0.383,0.73 0.685,2.839 -0.094,0.019 -6.099,1.154 0.235,-0.419 0.437,-1.073 0.121,-0.455 0.212,-1.244 0.041,-0.73 0.234,-0.641 0.055,-0.094 0.099,-0.109 1.049,-2.88" id="Franklin" class="map-county" inkscape:connector-curvature="0" onmousemove="showTooltip(evt, 'Franklin');" onmouseout="hideTooltip();" onclick="county_clicked('Franklin');"></path>
-  <path style="" d="m 33.37068,19.843323 0.167,0.496 0.941,1.321 -0.536,0.365 -0.306,0.23 -0.587,0.505 -0.319,0.312 -0.896,1.486 -0.997,1.983 -0.073,0.15 -0.639,0.188 -0.252,0.037 -0.104,-0.068 -0.51,-0.437 0.293,-1.884 0.068,-0.234 0.122,-0.32 0.284,-0.542 0.545,-1.198 0.067,-0.298 2.732,-2.092" id="Mifflin" class="map-county" inkscape:connector-curvature="0" onmousemove="showTooltip(evt, 'Mifflin');" onmouseout="hideTooltip();" onclick="county_clicked('Mifflin');"></path>
-  <path style="" d="m 28.15168,5.6253229 1.235,5.8050001 0.175,0.811 -3.683,0.761 -2.37,-1.442 -0.951,-4.8620001 4.282,-0.808 1.312,-0.265" id="Potter" class="map-county" inkscape:connector-curvature="0" onmousemove="showTooltip(evt, 'Potter');" onmouseout="hideTooltip();" onclick="county_clicked('Potter');"></path>
-  <path style="" d="m 29.56168,12.241323 0.1,0.473 0.667,0.643 1.149,1.024 3.223,2.263 0.188,-0.041 0.069,0.32 -1.727,1.081 -1.532,0.64 -0.888,-0.941 -0.148,-0.292 -0.357,-0.19 -3.295,-0.934 -0.81,0.902 -0.677,-0.707 0.355,-3.48 3.683,-0.761" id="Clinton" class="map-county" inkscape:connector-curvature="0" onmousemove="showTooltip(evt, 'Clinton');" onmouseout="hideTooltip();" onclick="county_clicked('Clinton');"></path>
-  <path style="" d="m 26.20068,17.189323 0.81,-0.902 3.295,0.934 0.357,0.19 0.148,0.292 0.888,0.941 1.532,-0.64 1.727,-1.081 -0.443,0.771 -0.486,1.163 -0.658,0.986 -2.732,2.092 -0.241,0.253 -2.174,0.721 -1.754,-0.293 -2.342,0.522 -0.168,-0.207 -0.013,-0.042 1.086,-2.257 0.108,-0.121 0.46,-0.405 0.54,-0.222 0.051,-0.058 0.116,-0.802 -0.013,-0.308 -0.094,-1.527" id="Centre" class="map-county" inkscape:connector-curvature="0" onmousemove="showTooltip(evt, 'Centre');" onmouseout="hideTooltip();" onclick="county_clicked('Centre');"></path>
-  <path style="" d="m 34.88868,16.603323 1.525,-0.554 0.012,-0.815 0.627,0.003 0.239,0.554 0.35,1.412 -0.012,0.162 0.113,0.229 0.316,0.42 0.323,0.24 0.253,0.067 -0.32,-0.018 -1.036,0.211 -1.247,0.532 -2.108,1.06 -0.386,0.233 -0.167,-0.496 0.658,-0.986 0.486,-1.163 0.443,-0.771 -0.069,-0.32" id="Union" class="map-county" inkscape:connector-curvature="0" onmousemove="showTooltip(evt, 'Union');" onmouseout="hideTooltip();" onclick="county_clicked('Union');"></path>
-  <path style="" d="m 38.51768,14.499323 0.915,0.032 0.442,0.959 0.496,0.194 0.748,1.091 0.081,0.166 0.018,0.838 -0.992,-0.707 -0.207,-0.117 -0.289,0 -0.656,0.316 -0.538,0.216 -0.022,-0.027 0.094,-1.343 -0.09,-1.618" id="Montour" class="map-county" inkscape:connector-curvature="0" onmousemove="showTooltip(evt, 'Montour');" onmouseout="hideTooltip();" onclick="county_clicked('Philadelphia');"></path>
-  <path style="" d="m 34.53368,4.3223229 1.542,5.0529997 -0.044,0.107 -0.647,0.6330004 -2.167,0.512 -3.831,0.803 -1.235,-5.8050001 6.021,-1.223 0.361,-0.08" id="Tioga" class="map-county" inkscape:connector-curvature="0" onmousemove="showTooltip(evt, 'Tioga');" onmouseout="hideTooltip();" onclick="county_clicked('Tioga');"></path>
-  <path style="" d="m 36.07568,9.3753226 0.59,-0.038 1.068,2.2130004 1.763,0.993 0.446,0.058 0.995,0.023 -1.505,1.907 -0.915,-0.032 -1.465,0.738 -0.627,-0.003 -0.012,0.815 -1.525,0.554 -0.188,0.041 -3.223,-2.263 -1.149,-1.024 -0.667,-0.643 -0.1,-0.473 -0.175,-0.811 3.831,-0.803 2.167,-0.512 0.647,-0.6330004 0.044,-0.107" id="Lycoming" class="map-county" inkscape:connector-curvature="0" onmousemove="showTooltip(evt, 'Lycoming');" onmouseout="hideTooltip();" onclick="county_clicked('Lycoming');"></path>
-  <path style="" d="m 43.05668,7.1853229 0.031,0.107 2.308,-0.5 1.388,-0.275 -0.068,0.098 -0.253,0.871 -0.121,0.703 0.338,0.162 -0.374,1.1209997 -0.139,0.105 -1.389,0.7930004 -2.556,0.635 0.15,-2.2160001 0.685,-1.604" id="Wyoming" class="map-county" inkscape:connector-curvature="0" onmousemove="showTooltip(evt, 'Wyoming');" onmouseout="hideTooltip();" onclick="county_clicked('Wyoming');"></path>
-  <path style="" d="m 36.66568,9.3373226 5.706,-0.5479997 -0.15,2.2160001 -0.081,0.929 -1.203,0.69 -0.995,-0.023 -0.446,-0.058 -1.763,-0.993 -1.068,-2.2130004" id="Sullivan" class="map-county" inkscape:connector-curvature="0" onmousemove="showTooltip(evt, 'Sullivan');" onmouseout="hideTooltip();" onclick="county_clicked('Sullivan');"></path>
-  <path style="" d="m 42.14068,11.934323 0.141,1.036 0.063,0.299 0.585,0.847 1.146,2.177 -0.302,0.511 -0.249,0.48 0.005,1.087 -0.622,0.477 -1.69,-1.069 -0.018,-0.838 -0.081,-0.166 -0.748,-1.091 -0.496,-0.194 -0.442,-0.959 1.505,-1.907 1.203,-0.69" id="Columbia" class="map-county" inkscape:connector-curvature="0" onmousemove="showTooltip(evt, 'Columbia');" onmouseout="hideTooltip();" onclick="county_clicked('Columbia');"></path>
-  <path style="" d="m 37.05268,15.237323 1.465,-0.738 0.09,1.618 -0.094,1.343 0.022,0.027 0.538,-0.216 0.656,-0.316 0.289,0 0.207,0.117 0.992,0.707 1.69,1.069 -2.749,2.132 -0.405,0.126 -1.114,0.739 -0.447,0.176 -0.045,0.018 -0.112,-0.028 -0.157,-0.17 0.068,-0.154 0.076,-0.09 0.359,-0.64 0.073,-0.166 0.045,-0.172 0.018,-0.225 -0.081,-0.343 0.104,-1.135 0.094,-0.595 -0.253,-0.067 -0.323,-0.24 -0.316,-0.42 -0.113,-0.229 0.012,-0.162 -0.35,-1.412 -0.239,-0.554" id="Northumberland" class="map-county" inkscape:connector-curvature="0" onmousemove="showTooltip(evt, 'Northumberland');" onmouseout="hideTooltip();" onclick="county_clicked('Northumberland');"></path>
-  <path style="" d="m 38.63468,18.321323 -0.094,0.595 -0.104,1.135 0.081,0.343 -0.018,0.225 -0.045,0.172 -0.073,0.166 -0.359,0.64 -0.076,0.09 -0.032,-0.095 -0.055,-0.045 -0.991,-0.175 -0.676,-0.027 -0.375,0.226 -1.339,0.089 -0.941,-1.321 0.386,-0.233 2.108,-1.06 1.247,-0.532 1.036,-0.211 0.32,0.018" id="Snyder" class="map-county" inkscape:connector-curvature="0" onmousemove="showTooltip(evt, 'Snyder');" onmouseout="hideTooltip();" onclick="county_clicked('Snyder');"></path>
-  <path style="" d="m 37.94668,21.687323 -0.068,0.154 -1.939,1.257 -1.032,0.793 -1.37,1.262 -0.726,0.735 -0.825,1.321 -0.161,0.32 -0.236,0.391 -0.752,-1.379 0.997,-1.983 0.896,-1.486 0.319,-0.312 0.587,-0.505 0.306,-0.23 0.536,-0.365 1.339,-0.089 0.375,-0.226 0.676,0.027 0.991,0.175 0.055,0.045 0.032,0.095" id="Juniata" class="map-county" inkscape:connector-curvature="0" onmousemove="showTooltip(evt, 'Juniata');" onmouseout="hideTooltip();" onclick="county_clicked('Juniata');"></path>
-  <path style="" d="m 38.99468,25.582323 -0.544,0.365 -0.428,0.162 -3.525,1.324 -1.776,1.303 -0.113,-0.161 -0.783,-1.046 0.161,-0.32 0.825,-1.321 0.726,-0.735 1.37,-1.262 1.032,-0.793 1.939,-1.257 -0.078,0.585 -0.072,2.601 0.009,0.045 0.13,0.244 0.145,0.076 0.982,0.19" id="Perry" class="map-county" inkscape:connector-curvature="0" onmousemove="showTooltip(evt, 'Perry');" onmouseout="hideTooltip();" onclick="county_clicked('Perry');"></path>
-  <path style="" d="m 38.99468,25.582323 0.795,1.198 -0.429,0.599 -1.186,0.992 -0.658,0.947 -0.243,0.369 -0.348,0.317 -0.675,0.279 -1.104,0.509 -0.532,0.761 -0.383,-0.73 -1.465,-1.672 -0.262,-0.415 0.104,-0.161 0.113,0.161 1.776,-1.303 3.525,-1.324 0.428,-0.162 0.544,-0.365" id="Cumberland" class="map-county" inkscape:connector-curvature="0" onmousemove="showTooltip(evt, 'Cumberland');" onmouseout="hideTooltip();" onclick="county_clicked('Cumberland');"></path>
-  <path style="" d="m 37.51668,29.318323 0.113,0.009 0.366,0.107 0.801,0.365 0.708,0.899 0.045,0.18 0.072,0.617 -0.158,0.581 0,0.053 0.275,1.375 -2.097,0.424 -2.342,0.464 -0.685,-2.839 0.532,-0.761 1.104,-0.509 0.675,-0.279 0.348,-0.317 0.243,-0.369" id="Adams" class="map-county" inkscape:connector-curvature="0" onmousemove="showTooltip(evt, 'Adams');" onmouseout="hideTooltip();" onclick="county_clicked('Adams');"></path>
-  <path style="" d="m 39.78968,26.780323 1.586,1.082 0.91,0.618 0.632,0.026 0.265,-0.036 0.225,0.054 1.871,1.61 1.735,1.694 0.054,0.082 0,0.063 -3.178,0.666 -2.099,0.437 -2.052,0.428 -0.275,-1.375 0,-0.053 0.158,-0.581 -0.072,-0.617 -0.045,-0.18 -0.708,-0.899 -0.801,-0.365 -0.366,-0.107 -0.113,-0.009 0.658,-0.947 1.186,-0.992 0.429,-0.599" id="York" class="map-county" inkscape:connector-curvature="0" onmousemove="showTooltip(evt, 'York');" onmouseout="hideTooltip();" onclick="county_clicked('York');"></path>
-  <path style="" d="m 40.15868,20.980323 1.856,0.979 -1.149,1.305 1.771,3.336 0.032,-0.022 -1.293,1.284 -1.586,-1.082 -0.795,-1.198 -0.982,-0.19 -0.145,-0.076 -0.13,-0.244 -0.009,-0.045 0.072,-2.601 0.078,-0.585 0.157,0.17 0.112,0.028 0.045,-0.018 0.447,-0.176 1.114,-0.739 0.405,-0.126" id="Dauphin" class="map-county" inkscape:connector-curvature="0" onmousemove="showTooltip(evt, 'Dauphin');" onmouseout="hideTooltip();" onclick="county_clicked('Dauphin');"></path>
-  <path style="" d="m 42.01468,21.959323 1.064,0.567 3.24,1.708 -1.329,1.086 -1.19,0.478 -1.131,0.78 -0.032,0.022 -1.771,-3.336 1.149,-1.305" id="Lebanon" class="map-county" inkscape:connector-curvature="0" onmousemove="showTooltip(evt, 'Lebanon');" onmouseout="hideTooltip();" onclick="county_clicked('Lebanon');"></path>
-  <path style="" d="m 46.31868,24.234323 3.143,1.704 -0.591,0.509 -0.063,2.073 0.036,0.329 0.049,0.226 0.126,0.346 -0.098,0.699 -0.154,0.568 -0.127,0.338 -0.567,0.73 -0.942,0.204 -0.063,0.013 0,-0.063 -0.054,-0.082 -1.735,-1.694 -1.871,-1.61 -0.225,-0.054 -0.265,0.036 -0.632,-0.026 -0.91,-0.618 1.293,-1.284 1.131,-0.78 1.19,-0.478 1.329,-1.086" id="Lancaster" class="map-county" inkscape:connector-curvature="0" onmousemove="showTooltip(evt, 'Lancaster');" onmouseout="hideTooltip();" onclick="county_clicked('Lancaster');"></path>
-  <path style="" d="m 51.89468,21.287323 -1.027,2.955 -1.406,1.696 -3.143,-1.704 -3.24,-1.708 1.231,-0.519 0.459,-0.117 0.194,-0.099 1.547,-1.063 0.427,-0.527 0.014,-0.406 0.865,-0.681 4.079,2.173" id="Berks" class="map-county" inkscape:connector-curvature="0" onmousemove="showTooltip(evt, 'Berks');" onmouseout="hideTooltip();" onclick="county_clicked('Berks');"></path>
-  <path style="" d="m 44.07568,16.293323 2.096,0.041 2.757,1.765 -1.113,1.015 -0.865,0.681 -0.014,0.406 -0.427,0.527 -1.547,1.063 -0.194,0.099 -0.459,0.117 -1.231,0.519 -1.064,-0.567 -1.856,-0.979 2.749,-2.132 0.622,-0.477 -0.005,-1.087 0.249,-0.48 0.302,-0.511" id="Schuylkill" class="map-county" inkscape:connector-curvature="0" onmousemove="showTooltip(evt, 'Schuylkill');" onmouseout="hideTooltip();" onclick="county_clicked('Schuylkill');"></path>
-  <path style="" d="m 46.17168,16.334323 2.248,-1.749 -0.122,-0.253 -0.378,-0.307 -0.045,-0.271 0.004,-0.112 0.028,-0.058 0.519,-0.618 0.039,-0.031 0.23,-0.082 0.198,0.113 0.307,0.108 1.51,1.289 -0.569,0.695 1.259,1.451 -1.204,0.625 -1.267,0.965 -2.757,-1.765" id="Carbon" class="map-county" inkscape:connector-curvature="0" onmousemove="showTooltip(evt, 'Carbon');" onmouseout="hideTooltip();" onclick="county_clicked('Carbon');"></path>
-  <path style="" d="m 42.22168,11.005323 2.556,-0.635 1.389,-0.7930004 0.139,-0.105 0.076,0.227 0.235,0.256 0.569,0.2110004 0.571,0.119 0.731,0.96 0.229,0.891 0.08,0.131 0.132,0.069 0.311,0.032 -0.347,0.598 -0.198,-0.113 -0.23,0.082 -0.039,0.031 -0.519,0.618 -0.028,0.058 -0.004,0.112 0.045,0.271 0.378,0.307 0.122,0.253 -2.248,1.749 -2.096,-0.041 -1.146,-2.177 -0.585,-0.847 -0.063,-0.299 -0.141,-1.036 0.081,-0.929" id="Luzerne" class="map-county" inkscape:connector-curvature="0" onmousemove="showTooltip(evt, 'Luzerne');" onmouseout="hideTooltip();" onclick="county_clicked('Luzerne');"></path>
-  <path style="" d="m 46.78368,6.5173229 2.425,-0.523 1.266,4.8080001 -0.157,0.189 -0.379,0.28 -0.699,1.097 -0.311,-0.032 -0.132,-0.069 -0.08,-0.131 -0.229,-0.891 -0.731,-0.96 -0.571,-0.119 -0.569,-0.2110004 -0.235,-0.256 -0.076,-0.227 0.374,-1.1209997 -0.338,-0.162 0.121,-0.703 0.253,-0.871 0.068,-0.098" id="Lackawanna" class="map-county" inkscape:connector-curvature="0" onmousemove="showTooltip(evt, 'Lackawanna');" onmouseout="hideTooltip();" onclick="county_clicked('Lackawanna');"></path>
-  <path style="" d="m 37.98668,3.6323229 3.844,-0.789 1.226,4.342 -0.685,1.604 -5.706,0.5479997 -0.59,0.038 -1.542,-5.0529997 3.453,-0.69" id="Bradford" class="map-county" inkscape:connector-curvature="0" onmousemove="showTooltip(evt, 'Bradford');" onmouseout="hideTooltip();" onclick="county_clicked('Bradford');"></path>
-  <path style="" d="m 42.21268,2.7623229 5.806,-1.2580001 1.19,4.4900001 -2.425,0.523 -1.388,0.275 -2.308,0.5 -0.031,-0.107 -1.226,-4.342 0.382,-0.081" id="Susquehanna" class="map-county" inkscape:connector-curvature="0" onmousemove="showTooltip(evt, 'Susquehanna');" onmouseout="hideTooltip();" onclick="county_clicked('Susquehanna');"></path>
-  <path style="" d="m 48.01868,1.5043228 1.153,-0.256 0.181,0.041 0.568,0.4 0.171,0.162 0.302,0.6450001 1.181,0.194 1.532,2.749 -0.704,2.127 -0.891,2.1019997 -0.208,1.2110004 -1.365,0.392 0.379,-0.28 0.157,-0.189 -1.266,-4.8080001 -1.19,-4.4900001" id="Wayne" class="map-county" inkscape:connector-curvature="0" onmousemove="showTooltip(evt, 'Wayne');" onmouseout="hideTooltip();" onclick="county_clicked('Wayne');"></path>
-  <path style="" d="m 53.10668,5.4393229 0.258,0.591 0.414,0.405 0.293,0.279 1.027,0.533 0.167,0.077 0.758,-0.041 0.423,-0.047 0.767,0.75 -0.569,0.41 -0.27,0.293 -0.23,0.473 -0.049,0.1439997 -0.117,0.5 -0.018,0.176 0.04,0.041 0.018,0.212 -0.058,0.388 -0.266,0.627 -0.384,0.54 -0.131,0.184 -0.324,0.203 -1.402,-0.586 -0.009,-1.364 -2.141,0.652 0.208,-1.2110004 0.891,-2.1019997 0.704,-2.127" id="Pike" class="map-county" inkscape:connector-curvature="0" onmousemove="showTooltip(evt, 'Pike');" onmouseout="hideTooltip();" onclick="county_clicked('Pike');"></path>
-  <path style="" d="m 51.30368,10.879323 2.141,-0.652 0.009,1.364 1.402,0.586 0.324,-0.203 0.131,-0.184 0.054,0.067 -1.05,1.961 -2.915,2.691 -1.259,-1.451 0.569,-0.695 -1.51,-1.289 -0.307,-0.108 0.347,-0.598 0.699,-1.097 1.365,-0.392" id="Monroe" class="map-county" inkscape:connector-curvature="0" onmousemove="showTooltip(evt, 'Monroe');" onmouseout="hideTooltip();" onclick="county_clicked('Monroe');"></path>
-  <path style="" d="m 54.31468,13.818323 0.915,1.078 0.032,0.076 -0.005,0.076 -0.324,0.993 -0.197,0.273 -0.146,0.02 -0.144,-0.014 -0.076,0.021 -0.164,0.385 0.1,0.778 0.238,0.92 0.064,0.117 -1.1,1.2 -0.734,-0.587 -1,-0.613 -1.28,-0.792 -0.127,-0.16 -0.171,-0.455 1.204,-0.625 2.915,-2.691" id="Northampton" class="map-county" inkscape:connector-curvature="0" onmousemove="showTooltip(evt, 'Northampton');" onmouseout="hideTooltip();" onclick="county_clicked('Northampton');"></path>
-  <path style="" d="m 50.19568,17.134323 0.171,0.455 0.127,0.16 1.28,0.792 1,0.613 0.734,0.587 -1.099,1.815 -0.514,-0.269 -4.079,-2.173 1.113,-1.015 1.267,-0.965" id="Lehigh" class="map-county" inkscape:connector-curvature="0" onmousemove="showTooltip(evt, 'Lehigh');" onmouseout="hideTooltip();" onclick="county_clicked('Lehigh');"></path>
-  <path style="" d="m 54.58068,25.766323 1.05,0.96 0.941,1.262 -1.783,1.248 -1.835,-0.066 1.627,-3.404" id="Delaware" class="map-county" inkscape:connector-curvature="0" onmousemove="showTooltip(evt, 'Delaware');" onmouseout="hideTooltip();" onclick="county_clicked('Delaware');"></path>
-  <path style="" d="m 52.40868,21.556323 5.268,2.57 -0.996,1.095 -0.549,-0.365 -0.554,0.852 0.513,0.396 -0.46,0.622 -1.05,-0.96 -1.077,-0.248 -0.952,-0.753 -0.102,-0.135 -0.032,-0.041 -1,-0.409 -0.55,0.062 1.027,-2.955 0.514,0.269" id="Montgomery" class="map-county" inkscape:connector-curvature="0" onmousemove="showTooltip(evt, 'Montgomery');" onmouseout="hideTooltip();" onclick="county_clicked('Montgomery');"></path>
-  <path style="" d="m 50.86768,24.242323 0.55,-0.062 1,0.409 0.032,0.041 0.102,0.135 0.952,0.753 1.077,0.248 -1.627,3.404 -1.536,1.87 -3.345,0.716 0.567,-0.73 0.127,-0.338 0.154,-0.568 0.098,-0.699 -0.126,-0.346 -0.049,-0.226 -0.036,-0.329 0.063,-2.073 0.591,-0.509 1.406,-1.696" id="Chester" class="map-county" inkscape:connector-curvature="0" onmousemove="showTooltip(evt, 'Chester');" onmouseout="hideTooltip();" onclick="county_clicked('Chester');"></path>
+  <sodipodi:namedview
+     inkscape:window-height="847"
+     inkscape:window-width="1280"
+     inkscape:pageshadow="2"
+     inkscape:pageopacity="0.0"
+     guidetolerance="10.0"
+     gridtolerance="10.0"
+     objecttolerance="10.0"
+     borderopacity="1.0"
+     bordercolor="#666666"
+     pagecolor="#ffffff"
+     id="base"
+     inkscape:zoom="1.1670635"
+     inkscape:cx="295.61375"
+     inkscape:cy="117.81707"
+     inkscape:window-x="5"
+     inkscape:window-y="25"
+     inkscape:current-layer="svg9559"
+     showguides="true"
+     inkscape:guide-bbox="true"
+     showgrid="false"
+     inkscape:showpageshadow="2"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:window-maximized="0" />
+  <defs
+     id="defs9561">
+    <inkscape:perspective
+       sodipodi:type="inkscape:persp3d"
+       inkscape:vp_x="0 : 175.83398 : 1"
+       inkscape:vp_y="0 : 1000 : 0"
+       inkscape:vp_z="555.22198 : 175.83398 : 1"
+       inkscape:persp3d-origin="277.61099 : 117.22266 : 1"
+       id="perspective3149" />
+  </defs>
+  <path
+     style="font-size:12px;fill:#d0d0d0;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:0.79424;stroke-linecap:butt;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-start:none"
+     d="m 497.85169,259.3645 -6.12994,6.21355 -7.64645,9.64591 -3.77994,3.76216 -5.59264,-11.18247 4.46647,-4.22079 -3.4576,-3.81364 5.52315,-5.88622 3.78257,3.62158 9.31712,-7.16798 3.51726,9.0279"
+     id="Philadelphia"
+     inkscape:label="Philadelphia, PA"
+     class="map-county"
+     onmouseout="hideTooltip();"
+     onmousemove="showTooltip(evt, 'Philadelphia'); "
+     onclick="county_clicked('Philadelphia');" />
+  <path
+     style="font-size:12px;fill:#d0d0d0;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:0.79424;stroke-linecap:butt;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-start:none"
+     d="m 478.6869,204.11282 10.02398,6.34372 3.654,12.50562 6.53317,5.75129 0.4424,0.37096 17.53581,19.24957 -19.03286,11.03046 -3.51478,-9.02748 -37.59259,-27.45937 11.12936,-12.65417 10.27836,-7.8442 0.53641,1.73421"
+     id="Bucks"
+     inkscape:label="Bucks, PA"
+     class="map-county"
+     onmouseout="hideTooltip();"
+     onmousemove="showTooltip(evt, 'Bucks'); "
+     onclick="county_clicked('Bucks');"  />
+  <path
+     style="font-size:12px;fill:#d0d0d0;fill-rule:nonzero;stroke:#000000;stroke-width:0.79424;stroke-linecap:butt;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-start:none"
+     d="m 65.916597,274.77367 17.05106,-5.75279 0.89616,0.0498 8.43017,1.49714 14.283683,2.56125 6.16084,27.13077 -39.519813,-0.4515 -7.68202,-0.13223 0.37583,-24.88046"
+     id="Greene"
+     inkscape:label="Greene, PA"
+     class="map-county"
+     onmouseout="hideTooltip();"
+     onmousemove="showTooltip(evt, 'Greene'); "
+     onclick="county_clicked('Greene');" />
+  <path
+     style="font-size:12px;fill:#d0d0d0;fill-rule:nonzero;stroke:#000000;stroke-width:0.79424;stroke-linecap:butt;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-start:none"
+     d="m 116.08552,258.35508 10.34857,-0.0771 18.65056,-1.23145 1.93434,-0.20635 1.81249,0.81619 0.70891,0.54764 11.96935,9.27229 -2.87092,4.86071 -5.33788,9.55088 -1.48143,4.82612 0.53038,12.27823 1.43027,1.38625 -6.62539,0.007 -22.50942,-0.056 -11.89802,-0.0945 -6.16483,-27.13171 9.50635,-14.75138"
+     id="Fayette"
+     inkscape:label="Fayette, PA"
+     class="map-county"
+     onmouseout="hideTooltip();"
+     onmousemove="showTooltip(evt, 'Fayette'); "
+     onclick="county_clicked('Fayette');" />
+  <path
+     style="font-size:12px;fill:#d0d0d0;fill-rule:nonzero;stroke:#000000;stroke-width:0.79424;stroke-linecap:butt;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-start:none"
+     d="m 78.909467,221.78833 13.59449,15.12277 16.399573,10.53379 7.75804,3.63001 -0.57471,7.28035 -9.50498,14.75174 -14.282963,-2.56105 -8.42952,-1.4969 -0.89753,-0.0523 -17.05085,5.75351 0.30662,-20.34117 0.39844,-24.69916 0.0685,-8.09697 12.21994,0.15207"
+     id="Washington"
+     inkscape:label="Washington, PA"
+     class="map-county"
+     onmouseout="hideTooltip();"
+     onmousemove="showTooltip(evt, 'Washington'); "
+     onclick="county_clicked('Washington');" />
+  <path
+     style="font-size:12px;fill:#d0d0d0;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:0.79424;stroke-linecap:butt;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-start:none"
+     d="m 130.74123,202.43939 0.002,0.009 -0.98561,23.24697 -0.0783,1.66421 -0.10387,0.51266 -7.65638,19.62456 -1.02582,1.66491 -4.1906,1.86466 -7.75714,-3.63005 -16.399353,-10.53373 -13.5947,-15.12344 10.3771,-9.74713 6.47842,-4.14998 -0.22699,-6.26151 35.202893,0.80948"
+     id="Allegheny"
+     inkscape:label="Allegheny, PA"
+     class="map-county"
+     onmouseout="hideTooltip();"
+     onmousemove="showTooltip(evt, 'Allegheny'); "
+     onclick="county_clicked('Allegheny');" />
+  <path
+     style="font-size:12px;fill:#d0d0d0;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:0.79424;stroke-linecap:butt;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-start:none"
+     d="m 67.230577,183.05976 27.74898,-0.0384 0.55853,18.60925 0.22728,6.26128 -6.47893,4.15036 -10.37761,9.74702 -12.21969,-0.15239 0.21817,-16.65239 0.32245,-21.92374"
+     id="Beaver"
+     inkscape:label="Beaver, PA"
+     class="map-county"
+     onmouseout="hideTooltip();"
+     onmousemove="showTooltip(evt, 'Beaver'); "
+     onclick="county_clicked('Beaver');" />
+  <path
+     style="font-size:12px;fill:#d0d0d0;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:0.79424;stroke-linecap:butt;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-start:none"
+     d="m 99.943627,160.93002 -4.96407,22.09045 -27.74898,0.0379 -0.0238,-5.00637 0.40405,-23.23753 20.01471,-0.0265 8.41959,1.51247 3.90507,4.59531"
+     id="Lawrence"
+     inkscape:label="Lawrence, PA"
+     class="map-county"
+     onmouseout="hideTooltip();"
+     onmousemove="showTooltip(evt, 'Lawrence'); "
+     onclick="county_clicked('Lawrence');" />
+  <path
+     style="font-size:12px;fill:#d0d0d0;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:0.79424;stroke-linecap:butt;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-start:none"
+     d="m 131.1936,150.73602 -0.45237,51.70337 -35.203153,-0.80953 -0.55856,-18.60939 4.9641,-22.09043 7.547303,-10.47098 23.38214,0.0335 0.32187,0.23869"
+     id="Butler"
+     inkscape:label="Butler, PA"
+     class="map-county"
+     onmouseout="hideTooltip();"
+     onmousemove="showTooltip(evt, 'Butler'); "
+     onclick="county_clicked('Butler');" />
+  <path
+     style="font-size:12px;fill:#d0d0d0;fill-rule:nonzero;stroke:#000000;stroke-width:0.79424;stroke-linecap:butt;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-start:none"
+     d="m 167.64349,163.20936 -0.01,14.36973 -0.002,14.00408 -12.3335,17.35308 -5.83452,7.98517 -18.69844,-14.41459 -0.002,-0.009 0.45259,-51.70334 0.7137,7.14728 0.0871,0.95967 1.02223,4.43494 7.2193,6.60063 1.54414,0.52583 2.22769,0.57957 1.48327,-0.17286 5.7748,-0.97583 8.691,-1.81922 7.68841,-4.81324"
+     id="Armstrong"
+     inkscape:label="Armstrong, PA"
+     class="map-county"
+     onmouseout="hideTooltip();"
+     onmousemove="showTooltip(evt, 'Armstrong'); "
+     onclick="county_clicked('Armstrong');" />
+  <path
+     style="font-size:12px;fill:#d0d0d0;fill-rule:nonzero;stroke:#000000;stroke-width:0.79424;stroke-linecap:butt;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-start:none"
+     d="m 147.59889,128.56944 5.91425,8.3e-4 0.0413,-5.10833 3.20746,-0.011 11.53167,0.56923 -0.15183,10.18794 -0.4992,29.00585 -7.68711,4.81475 -8.69177,1.8158 -5.77456,0.97749 -1.48357,0.17261 -2.22742,-0.58226 -1.54388,-0.52504 -7.21942,-6.60119 -1.02141,-4.43557 -0.0867,-0.95867 -0.71454,-7.14729 -0.32005,-0.24321 3.47579,-8.28625 1.73142,-2.4179 1.79456,-1.86595 4.00303,-2.6235 0.80383,0.008 4.84607,-1.51313 0.0707,-5.22466"
+     id="Clarion"
+     inkscape:label="Clarion, PA"
+     class="map-county"
+     onmouseout="hideTooltip();"
+     onmousemove="showTooltip(evt, 'Clarion'); "
+     onclick="county_clicked('Clarion');" />
+  <path
+     style="font-size:12px;fill:#d0d0d0;fill-rule:nonzero;stroke:#000000;stroke-width:0.79424;stroke-linecap:butt;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-start:none"
+     d="m 145.03806,104.00247 42.38538,0.0917 -0.21439,14.00177 -1.32314,3.7575 -6.62669,-0.16148 -2.31592,3.11165 -0.0823,8.4978 -8.71439,0.90275 0.15183,-10.18789 -11.53225,-0.56949 -3.20658,0.01 -0.0406,5.10827 -5.91333,-6.6e-4 -0.0299,-5.5649 -2.48473,-6.85159 -0.0455,-12.15068"
+     id="Forest"
+     inkscape:label="Forest, PA"
+     class="map-county"
+     onmouseout="hideTooltip();"
+     onmousemove="showTooltip(evt, 'Forest'); "
+     onclick="county_clicked('Forest');" />
+  <path
+     style="font-size:12px;fill:#d0d0d0;fill-rule:nonzero;stroke:#000000;stroke-width:0.79424;stroke-linecap:butt;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-start:none"
+     d="m 145.03806,104.00247 0.0456,12.15069 2.48739,6.85151 0.0259,5.56483 -0.07,5.2242 -4.84614,1.51241 -0.80556,-0.003 -4.00268,2.62354 -1.79374,1.86613 -1.73153,2.41722 -3.47598,8.28652 -23.38201,-0.0337 0.26911,-32.82276 3.19266,-2.38319 9.90869,-9.06382 16.51517,-1.44259 -0.0153,-0.69159 7.68369,-0.0532"
+     id="Venango"
+     inkscape:label="Venango, PA"
+     class="map-county"
+     onmouseout="hideTooltip();"
+     onmousemove="showTooltip(evt, 'Venango'); "
+     onclick="county_clicked('Venango');" />
+  <path
+     style="font-size:12px;fill:#d0d0d0;fill-rule:nonzero;stroke:#000000;stroke-width:0.79424;stroke-linecap:butt;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-start:none"
+     d="m 68.113797,117.30642 39.646413,0.32978 -0.26928,32.82286 -7.547303,10.47096 -3.90524,-4.59556 -8.41964,-1.51234 -20.01462,0.0266 0.009,-0.83785 0.49118,-36.67195"
+     id="Mercer"
+     inkscape:label="Mercer, PA"
+     class="map-county"
+     onmouseout="hideTooltip();"
+     onmousemove="showTooltip(evt, 'Mercer'); "
+     onclick="county_clicked('Mercer');" />
+  <path
+     style="font-size:12px;fill:#d0d0d0;fill-rule:nonzero;stroke:#000000;stroke-width:0.79424;stroke-linecap:butt;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-start:none"
+     d="m 137.52257,80.735487 -0.16761,23.320863 0.0141,0.6892 -16.51591,1.44108 -9.9076,9.06565 -3.19284,2.38305 -39.646893,-0.32995 0.007,-1.12747 0.52469,-36.053773 46.261543,0.38293 17.28502,-0.0115 5.33024,0.24649"
+     id="Crawford"
+     inkscape:label="Crawford, PA"
+     class="map-county"
+     onmouseout="hideTooltip();"
+     onmousemove="showTooltip(evt, 'Crawford'); "
+     onclick="county_clicked('Crawford');" />
+  <path
+     style="font-size:12px;fill:#d0d0d0;fill-rule:nonzero;stroke:#000000;stroke-width:0.79424;stroke-linecap:butt;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-start:none"
+     d="m 137.76643,65.352562 -0.24386,15.382925 -5.32829,-0.24621 -17.28579,0.0119 -46.260663,-0.38345 0.19239,-13.164454 14.41624,-5.853864 19.617503,-11.111296 15.51411,-8.65131 8.04663,-3.94207 -0.0398,2.752289 -0.0607,11.527191 -0.04,13.621775 10.3166,0.06076 1.16421,-0.005"
+     id="Erie"
+     inkscape:label="Erie, PA"
+     class="map-county"
+     onmouseout="hideTooltip();"
+     onmousemove="showTooltip(evt, 'Erie'); "
+     onclick="county_clicked('Erie');" />
+  <path
+     style="font-size:12px;fill:#d0d0d0;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:0.79424;stroke-linecap:butt;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-start:none"
+     d="m 149.45971,216.92142 -0.75736,1.22828 0.46897,3.47187 0.15427,0.21222 4.66907,2.90872 18.32753,4.43867 13.94137,1.58988 -6.26102,11.45154 -18.49023,25.25481 -11.96995,-9.27156 -0.70805,-0.55253 -1.81403,-0.81678 -1.93436,0.21098 -18.6487,1.23169 -10.34965,0.077 0.57549,-7.27925 4.18993,-1.86454 1.02183,-1.66586 7.65586,-19.62407 0.10387,-0.51136 0.0814,-1.66381 0.98629,-23.24725 18.69847,14.41412"
+     id="Westmoreland"
+     inkscape:label="Westmoreland, PA"
+     class="map-county"
+     onmouseout="hideTooltip();"
+     onmousemove="showTooltip(evt, 'Westmoreland'); "
+     onclick="county_clicked('Westmoreland');" />
+  <path
+     style="font-size:12px;fill:#d0d0d0;fill-rule:nonzero;stroke:#000000;stroke-width:0.79424;stroke-linecap:butt;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-start:none"
+     d="m 167.63065,177.57909 31.5779,0.51422 0.31542,18.71015 -13.26383,33.96924 -13.9421,-1.59039 -18.3262,-4.43762 -4.66796,-2.90994 -0.15486,-0.20935 -0.46933,-3.4719 0.75578,-1.22926 5.83324,-7.9846 12.33434,-17.35245 0.003,-14.00679"
+     id="Indiana"
+     inkscape:label="Indiana, PA"
+     class="map-county"
+     onmouseout="hideTooltip();"
+     onmousemove="showTooltip(evt, 'Indiana'); "
+     onclick="county_clicked('Indiana');" />
+  <path
+     style="font-size:12px;fill:#d0d0d0;fill-rule:nonzero;stroke:#000000;stroke-width:0.79424;stroke-linecap:butt;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-start:none"
+     d="m 168.14239,134.20402 8.71711,-0.90233 1.74554,-1.29493 8.64613,-0.92852 17.16745,10.16324 1.93814,3.37179 0.0199,2.9474 -4.31758,-0.0869 -2.37551,5.97321 -0.0446,0.216 -0.43692,2.93149 0.035,21.50077 -31.57773,-0.51474 0.009,-14.36929 0.4998,-29.00509"
+     id="Jefferson"
+     inkscape:label="Jefferson, PA"
+     class="map-county"
+     onmouseout="hideTooltip();"
+     onmousemove="showTooltip(evt, 'Jefferson'); "
+     onclick="county_clicked('Jefferson');" />
+  <path
+     style="font-size:12px;fill:#d0d0d0;fill-rule:nonzero;stroke:#000000;stroke-width:0.79424;stroke-linecap:butt;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-start:none"
+     d="m 179.35663,65.416337 10.78337,0.105194 0.26259,4.630056 0.003,11.57011 -0.38946,1.0118 -2.09539,0.0746 -0.49892,21.292373 -42.38372,-0.0926 -7.68286,0.0534 0.16792,-23.319693 0.24303,-15.383841 41.58961,0.06383"
+     id="Warren"
+     inkscape:label="Warren, PA"
+     class="map-county"
+     onmouseout="hideTooltip();"
+     onmousemove="showTooltip(evt, 'Warren'); "
+     onclick="county_clicked('Warren');" />
+  <path
+     style="font-size:12px;fill:#d0d0d0;fill-rule:nonzero;stroke:#000000;stroke-width:0.79424;stroke-linecap:butt;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-start:none"
+     d="m 236.44651,65.113156 7.68184,-0.143007 0.63784,39.342691 -16.42545,1.79118 -4.92004,-2.80809 -10.37313,0.25858 -4.02014,0.32134 -11.87104,0.29009 -9.73287,-0.071 0.49764,-21.292193 2.09533,-0.0742 0.39226,-1.01024 -0.003,-11.57106 -0.2627,-4.630029 3.34681,0.015 21.06641,-0.31449 21.89242,-0.110362"
+     id="McKean"
+     inkscape:label="McKean, PA"
+     class="map-county"
+     onmouseout="hideTooltip();"
+     onmousemove="showTooltip(evt, 'McKean'); "
+     onclick="county_clicked('McKean');" />
+  <path
+     style="font-size:12px;fill:#d0d0d0;fill-rule:nonzero;stroke:#000000;stroke-width:0.79424;stroke-linecap:butt;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-start:none"
+     d="m 228.34073,106.10408 16.42545,-1.7912 16.51265,14.58846 -7.64202,26.71212 -11.03242,-1.28967 0.0626,-9.61438 -1.52082,-8.35717 -12.70068,0.0926 -0.10513,-20.34265"
+     id="Cameron"
+     inkscape:label="Cameron, PA"
+     class="map-county"
+     onmouseout="hideTooltip();"
+     onmousemove="showTooltip(evt, 'Cameron'); "
+     onclick="county_clicked('Cameron');" />
+  <path
+     style="font-size:12px;fill:#d0d0d0;fill-rule:nonzero;stroke:#000000;stroke-width:0.79424;stroke-linecap:butt;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-start:none"
+     d="m 187.42344,104.09475 9.73294,0.0711 11.87104,-0.29014 4.02014,-0.32135 10.37307,-0.25845 4.9201,2.80792 0.1051,20.3436 12.70102,-0.0948 1.5205,8.35851 -0.0623,9.61456 -24.52139,-1.61731 -6.86263,0.15935 -4.84051,4.69305 -0.0176,-2.94712 -1.93821,-3.37169 -17.16751,-10.16344 -8.64614,0.92851 -1.74843,1.29458 0.0834,-8.49772 2.3158,-3.11172 6.62651,0.16149 1.32361,-3.75757 0.21378,-14.00184"
+     id="Elk"
+     inkscape:label="Elk, PA"
+     class="map-county"
+     onmouseout="hideTooltip();"
+     onmousemove="showTooltip(evt, 'Elk'); "
+     onclick="county_clicked('Elk');" />
+  <path
+     style="font-size:12px;fill:#d0d0d0;fill-rule:nonzero;stroke:#000000;stroke-width:0.79424;stroke-linecap:butt;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-start:none"
+     d="m 242.60409,144.32553 11.03219,1.29189 4.3048,6.47242 -1.39701,12.07161 -0.33251,2.42544 -2.02853,6.10837 -0.48078,0.38705 -4.53303,0.98088 -4.16283,2.52324 -1.01349,0.79549 -11.64739,16.12679 0.04,0.34727 1.02457,1.8535 0.9593,0.86593 -34.85118,0.23779 -0.31551,-18.71039 -0.036,-21.50094 0.43699,-2.93215 0.0443,-0.21551 2.37502,-5.97363 4.31715,0.0876 4.84155,-4.6931 6.8627,-0.16085 24.52133,1.61816"
+     id="Clearfield"
+     inkscape:label="Clearfield, PA"
+     class="map-county"
+     onmouseout="hideTooltip();"
+     onmousemove="showTooltip(evt, 'Clearfield'); "
+     onclick="county_clicked('Clearfield');" />
+  <path
+     style="font-size:12px;fill:#d0d0d0;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:0.79424;stroke-linecap:butt;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-start:none"
+     d="m 233.4161,195.69981 19.04032,-0.80592 -6.54404,4.28543 -1.0831,1.36988 -0.4932,1.11394 2.09815,11.85602 3.6746,3.45757 1.58964,3.74551 -0.11138,0.69491 -0.31885,0.92865 -1.58298,3.57296 -7.7457,14.6142 -1.0044,2.66116 -1.3097,2.81526 -12.04719,-3.01791 -13.85167,-5.24494 20.59174,-41.19419 -0.95933,-0.8641"
+     id="Blair"
+     inkscape:label="Blair, PA"
+     class="map-county"
+     onmouseout="hideTooltip();"
+     onmousemove="showTooltip(evt, 'Blair'); "
+     onclick="county_clicked('Blair');" />
+  <path
+     style="font-size:12px;fill:#d0d0d0;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:0.79424;stroke-linecap:butt;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-start:none"
+     d="m 199.52403,196.80346 34.85123,-0.23776 -20.59235,41.19453 -2.89972,8.68 -7.09901,0.036 -10.14078,-0.28102 -1.12561,-2.41221 -2.44495,-1.57448 -10.07251,0.0113 6.25987,-11.45151 13.26383,-33.96929"
+     id="Cambria"
+     inkscape:label="Cambria, PA"
+     class="map-county"
+     onmouseout="hideTooltip();"
+     onmousemove="showTooltip(evt, 'Cambria'); "
+     onclick="county_clicked('Cambria');" />
+  <path
+     style="font-size:12px;fill:#d0d0d0;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:0.79424;stroke-linecap:butt;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-start:none"
+     d="m 210.88319,246.44023 -6.23404,17.94185 -1.26965,25.41506 -0.73969,2.8761 -3.19579,7.53907 -45.66526,0.16767 -1.43095,-1.38563 -0.53047,-12.27921 1.47984,-4.82573 5.33764,-9.54833 2.87092,-4.8623 18.49088,-25.25518 10.07212,-0.0109 2.44595,1.57453 1.1256,2.41221 10.13995,0.28082 7.09962,-0.036"
+     id="Somerset"
+     inkscape:label="Somerset, PA"
+     class="map-county"
+     onmouseout="hideTooltip();"
+     onmousemove="showTooltip(evt, 'Somerset'); "
+     onclick="county_clicked('Somerset');" />
+  <path
+     style="font-size:12px;fill:#d0d0d0;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:0.79424;stroke-linecap:butt;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-start:none"
+     d="m 213.78291,237.76023 13.85103,5.24457 12.04768,3.0183 1.3105,-2.81578 1.0067,-2.65989 9.67943,13.5923 -1.81757,4.47568 -5.06512,14.33501 -5.59165,16.37992 -3.31486,6.35414 -2.96444,4.34266 -33.48379,0.1846 3.19557,-7.53914 0.73634,-2.87663 1.26889,-25.41525 6.23503,-17.94159 2.89986,-8.6802"
+     id="Bedford"
+     inkscape:label="Bedford, PA"
+     class="map-county"
+     onmouseout="hideTooltip();"
+     onmousemove="showTooltip(evt, 'Bedford'); "
+     onclick="county_clicked('Bedford');" />
+  <path
+     style="font-size:12px;fill:#d0d0d0;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:0.79424;stroke-linecap:butt;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-start:none"
+     d="m 251.68003,254.14004 4.50418,3.28216 11.82343,3.05044 4.83463,4.09997 -0.92815,0.71344 -0.56562,0.66051 -2.72701,4.68459 -1.33886,5.64925 -3.39846,9.43068 -1.58148,3.39022 -4.91717,7.77602 -2.4232,2.94703 -19.08365,0.18802 -2.95488,0.0143 2.96272,-4.34424 3.31471,-6.35306 5.59227,-16.38015 5.065,-14.33483 1.81657,-4.47615"
+     id="Fulton"
+     inkscape:label="Fulton, PA"
+     class="map-county"
+     onmouseout="hideTooltip();"
+     onmousemove="showTooltip(evt, 'Fulton'); "
+     onclick="county_clicked('Fulton');" />
+  <path
+     style="font-size:12px;fill:#d0d0d0;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:0.79424;stroke-linecap:butt;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-start:none"
+     d="m 252.45647,194.89456 13.3041,4.74316 18.00544,-2.5968 2.23801,-1.64174 -0.93698,2.23693 -5.93603,8.6044 -2.97836,3.83961 -1.40156,2.3331 -0.85679,1.73253 -4.92581,14.32233 3.37699,4.12883 0.7189,0.67366 2.02214,0.0611 5.25861,-0.57647 0.77714,-1.07142 3.9515,11.83359 -12.22828,21.05 -4.83481,-4.1002 -11.82296,-3.05115 -4.5045,-3.28232 -9.67931,-13.59183 7.74511,-14.61435 1.58361,-3.57376 0.31526,-0.92857 0.1122,-0.69735 -1.58963,-3.74531 -3.67491,-3.45562 -2.09899,-11.85794 0.49136,-1.11432 1.08391,-1.37117 6.54317,-4.2847"
+     id="Huntingdon"
+     inkscape:label="Huntingdon, PA"
+     class="map-county"
+     onmouseout="hideTooltip();"
+     onmousemove="showTooltip(evt, 'Huntingdon'); "
+     onclick="county_clicked('Huntingdon');" />
+  <path
+     style="font-size:12px;fill:#d0d0d0;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:0.79424;stroke-linecap:butt;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-start:none"
+     d="m 285.0712,243.52115 2.39126,-2.7257 4.65965,9.27311 -1.03866,1.11332 1.46767,3.61067 9.11687,15.1211 1.9731,6.24273 1.38795,23.15494 -0.76607,0.008 -49.29784,0.49406 2.42308,-2.94722 4.91605,-7.77744 1.58377,-3.38812 3.39687,-9.42985 1.34568,-5.65025 2.72516,-4.68271 0.56754,-0.66116 0.92805,-0.71334 12.2281,-21.04995"
+     id="Franklin"
+     inkscape:label="Franklin, PA"
+     class="map-county"
+     onmouseout="hideTooltip();"
+     onmousemove="showTooltip(evt, 'Franklin'); "
+     onclick="county_clicked('Franklin');" />
+  <path
+     style="font-size:12px;fill:#d0d0d0;fill-rule:nonzero;stroke:#000000;stroke-width:0.79424;stroke-linecap:butt;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-start:none"
+     d="m 310.28919,182.86346 0.61206,4.11109 5.50985,11.64356 -4.70085,2.10453 -2.71419,1.36968 -5.29526,3.12862 -2.9309,1.99178 -9.0831,10.36684 -10.56709,14.10966 -0.77776,1.07412 -5.25855,0.57386 -2.02318,-0.0598 -0.71733,-0.67549 -3.37716,-4.131 4.92553,-14.3196 0.85507,-1.7339 1.40161,-2.33256 2.97813,-3.84015 5.93621,-8.60431 0.93931,-2.23679 24.28446,-12.53527"
+     id="Mifflin"
+     inkscape:label="Mifflin, PA"
+     class="map-county"
+     onmouseout="hideTooltip();"
+     onmousemove="showTooltip(evt, 'Mifflin'); "
+     onclick="county_clicked('Mifflin');" />
+  <path
+     style="font-size:12px;fill:#d0d0d0;fill-rule:nonzero;stroke:#000000;stroke-width:0.79424;stroke-linecap:butt;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-start:none"
+     d="m 289.36547,64.402943 1.53856,47.113157 0.23426,6.58546 -29.85961,0.79971 -16.51266,-14.58846 -0.63769,-39.342696 34.60856,-0.329015 10.62851,-0.23829"
+     id="Potter"
+     inkscape:label="Potter, PA"
+     class="map-county"
+     onmouseout="hideTooltip();"
+     onmousemove="showTooltip(evt, 'Potter'); "
+     onclick="county_clicked('Potter');" />
+  <path
+     style="font-size:12px;fill:#d0d0d0;fill-rule:nonzero;stroke:#000000;stroke-width:0.79424;stroke-linecap:butt;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-start:none"
+     d="m 291.13844,118.10156 0.11957,3.83726 4.31606,5.9609 7.55097,9.61241 22.03414,22.19927 1.52664,-0.0572 0.0887,2.59848 -15.01327,6.03682 -12.87328,2.86159 -5.62762,-8.59845 -0.74912,-2.49012 -2.52568,-1.98462 -24.45503,-11.91045 -7.59351,5.92001 -4.30548,-6.4743 7.64291,-26.71156 29.85854,-0.79997"
+     id="Clinton"
+     inkscape:label="Clinton, PA"
+     class="map-county"
+     onmouseout="hideTooltip();"
+     onmousemove="showTooltip(evt, 'Clinton'); "
+     onclick="county_clicked('Clinton');" />
+  <path
+     style="font-size:12px;fill:#d0d0d0;fill-rule:nonzero;stroke:#000000;stroke-width:0.79424;stroke-linecap:butt;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-start:none"
+     d="m 257.94141,152.08741 7.59495,-5.91966 24.45549,11.9102 2.52553,1.9845 0.74859,2.48993 5.62703,8.5986 12.87387,-2.86183 15.01354,-6.03606 -4.54247,5.40745 -5.42513,8.41371 -6.52362,6.78921 -24.28517,12.53572 -2.23801,1.64174 -18.00544,2.5968 -13.3041,-4.74316 -19.04035,0.80627 -1.02476,-1.8529 -0.0383,-0.34739 11.64713,-16.12764 1.01364,-0.79495 4.1622,-2.5233 4.53182,-0.9807 0.48394,-0.38694 2.02761,-6.10856 0.3337,-2.42592 1.39652,-12.07006"
+     id="Centre"
+     inkscape:label="Centre, PA"
+     class="map-county"
+     onmouseout="hideTooltip();"
+     onmousemove="showTooltip(evt, 'Centre'); "
+     onclick="county_clicked('Centre');" />
+  <path
+     style="font-size:12px;fill:#d0d0d0;fill-rule:nonzero;stroke:#000000;stroke-width:0.79424;stroke-linecap:butt;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-start:none"
+     d="m 326.68701,159.65346 12.69875,-2.1982 1.23043,-6.35573 4.9013,0.88061 1.09484,4.66672 0.76176,11.5285 -0.31834,1.25082 0.56368,1.94779 1.88325,3.72578 2.18972,2.32781 1.88407,0.87595 -2.47717,-0.58547 -8.39411,0.20104 -10.49379,2.41516 -17.96409,5.34032 -3.34332,1.28162 -0.61213,-4.11108 6.52404,-6.78959 5.42506,-8.41333 4.54224,-5.40822 -0.0915,-2.59933"
+     id="Union"
+     inkscape:label="Union, PA"
+     class="map-county"
+     onmouseout="hideTooltip();"
+     onmousemove="showTooltip(evt, 'Union'); "
+     onclick="county_clicked('Union');" />
+  <path
+     style="font-size:12px;fill:#d0d0d0;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:0.79424;stroke-linecap:butt;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-start:none"
+     d="m 358.00355,148.27826 7.10612,1.53335 2.11618,8.11639 3.60707,2.20958 4.32277,9.57581 0.39831,1.41271 -1.03449,6.57407 -6.7671,-6.91298 -1.45521,-1.20519 -2.25937,-0.40408 -5.571,1.55329 -4.50835,0.9364 -0.13262,-0.23982 2.61527,-10.36736 1.5536,-12.77768"
+     id="Montour"
+     inkscape:label="Montour, PA"
+     class="map-county"
+     onmouseout="hideTooltip();"
+     onmousemove="showTooltip(evt, 'Montour'); "
+     onclick="county_clicked('Montour');" />
+  <path
+     style="font-size:12px;fill:#d0d0d0;fill-rule:nonzero;stroke:#000000;stroke-width:0.79424;stroke-linecap:butt;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-start:none"
+     d="m 341.08416,63.139556 4.99114,41.661774 -0.49511,0.77516 -5.9437,4.04472 -17.65805,0.97245 -31.07566,0.9229 -1.53863,-47.113137 48.78532,-1.143254 2.93373,-0.118218"
+     id="Tioga"
+     inkscape:label="Tioga, PA"
+     class="map-county"
+     onmouseout="hideTooltip();"
+     onmousemove="showTooltip(evt, 'Tioga'); "
+     onclick="county_clicked('Tioga');" />
+  <path
+     style="font-size:12px;fill:#d0d0d0;fill-rule:nonzero;stroke:#000000;stroke-width:0.79424;stroke-linecap:butt;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-start:none"
+     d="m 346.0753,104.80133 4.66471,0.52973 5.25604,18.79572 12.39614,10.22825 3.40485,1.0825 7.74775,1.57015 -14.43533,12.80555 -7.10585,-1.53543 -12.48352,3.72219 -4.90438,-0.88114 -1.22853,6.3553 -12.69799,2.19971 -1.52745,0.0588 -22.03407,-22.19986 -7.5515,-9.6126 -4.3161,-5.95924 -0.12078,-3.8387 -0.23424,-6.58542 31.07547,-0.92072 17.65836,-0.97397 5.94323,-4.04361 0.49415,-0.77582"
+     id="Lycoming"
+     inkscape:label="Lycoming, PA"
+     class="map-county"
+     onmouseout="hideTooltip();"
+     onmousemove="showTooltip(evt, 'Lycoming'); "
+     onclick="county_clicked('Lycoming');" />
+  <path
+     style="font-size:12px;fill:#d0d0d0;fill-rule:nonzero;stroke:#000000;stroke-width:0.79424;stroke-linecap:butt;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-start:none"
+     d="m 403.71798,97.441757 0.0933,0.87956 18.74386,-0.68161 11.23653,-0.20922 -0.66618,0.67426 -3.19621,6.455733 -1.92876,5.32721 2.41616,1.7391 -4.49137,8.24168 -1.23429,0.62618 -11.9683,4.2585 -20.87152,1.39032 4.27165,-17.11521 7.59775,-11.582773"
+     id="Wyoming"
+     inkscape:label="Wyoming, PA"
+     class="map-county"
+     onmouseout="hideTooltip();"
+     onmousemove="showTooltip(evt, 'Wyoming'); "
+     onclick="county_clicked('Wyoming');" />
+  <path
+     style="font-size:12px;fill:#d0d0d0;fill-rule:nonzero;stroke:#000000;stroke-width:0.79424;stroke-linecap:butt;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-start:none"
+     d="m 350.7402,105.33014 45.37918,3.69405 -4.27112,17.11549 -1.92918,7.1507 -10.37033,3.71445 -7.74654,-1.57101 -3.40553,-1.08212 -12.39583,-10.22876 -5.256,-18.79572"
+     id="Sullivan"
+     inkscape:label="Sullivan, PA"
+     class="map-county"
+     onmouseout="hideTooltip();"
+     onmousemove="showTooltip(evt, 'Sullivan'); "
+     onclick="county_clicked('Sullivan');" />
+  <path
+     style="font-size:12px;fill:#d0d0d0;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:0.79424;stroke-linecap:butt;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-start:none"
+     d="m 389.91532,133.28957 -0.34591,8.29998 0.0646,2.42108 3.38942,7.44022 5.9159,18.62339 -3.07537,3.5736 -2.61876,3.40429 -1.51346,8.50024 -5.52994,2.8597 -11.71823,-10.72164 1.03303,-6.57632 -0.39811,-1.41212 -4.32297,-9.57497 -3.60717,-2.2094 -2.11421,-8.11608 14.43305,-12.80421 10.37032,-3.71447"
+     id="Columbia"
+     inkscape:label="Columbia, PA"
+     class="map-county"
+     onmouseout="hideTooltip();"
+     onmousemove="showTooltip(evt, 'Columbia'); "
+     onclick="county_clicked('Columbia');" />
+  <path
+     style="font-size:12px;fill:#d0d0d0;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:0.79424;stroke-linecap:butt;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-start:none"
+     d="m 345.52005,152.00001 12.4835,-3.72175 -1.55828,12.77652 -2.61591,10.36873 0.13513,0.23959 4.50752,-0.93685 5.57097,-1.55311 2.25932,0.40393 1.45612,1.20539 6.76588,6.91414 11.71843,10.72096 -24.47389,12.82463 -3.34221,0.41939 -9.7434,4.21978 -3.74206,0.7511 -0.37866,0.074 -0.83723,-0.3716 -0.99042,-1.548 0.74414,-1.10973 0.71965,-0.59495 3.70172,-4.50204 0.79968,-1.19622 0.59434,-1.28157 0.45564,-1.73427 -0.15129,-2.79469 2.39913,-8.72907 1.56981,-4.51954 -1.88514,-0.87567 -2.19001,-2.32755 -1.8832,-3.72662 -0.56239,-1.94836 0.31609,-1.24996 -0.76188,-11.52964 -1.09422,-4.66485"
+     id="Northumberland"
+     inkscape:label="Northumberland, PA"
+     class="map-county"
+     onmouseout="hideTooltip();"
+     onmousemove="showTooltip(evt, 'Northumberland'); "
+     onclick="county_clicked('Northumberland');" />
+  <path
+     style="font-size:12px;fill:#d0d0d0;fill-rule:nonzero;stroke:#000000;stroke-width:0.79424;stroke-linecap:butt;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-start:none"
+     d="m 353.57316,178.32426 -1.56941,4.51941 -2.39851,8.72894 0.14877,2.79685 -0.45382,1.73179 -0.59553,1.28137 -0.80326,1.19564 -3.70154,4.50224 -0.71837,0.59516 -0.11814,-0.79051 -0.37355,-0.42775 -7.50335,-2.75343 -5.24715,-1.15839 -3.24769,1.24253 -10.59308,-1.17946 -5.5096,-11.64348 3.34312,-1.281 17.96367,-5.34093 10.49328,-2.41501 8.3944,-0.20211 2.47777,0.58806"
+     id="Snyder"
+     inkscape:label="Snyder, PA"
+     class="map-county"
+     onmouseout="hideTooltip();"
+     onmousemove="showTooltip(evt, 'Snyder'); "
+     onclick="county_clicked('Snyder');" />
+  <path
+     style="font-size:12px;fill:#d0d0d0;fill-rule:nonzero;stroke:#000000;stroke-width:0.79424;stroke-linecap:butt;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-start:none"
+     d="m 343.48811,203.67902 -0.74396,1.11008 -16.91759,7.11578 -9.17704,4.75694 -12.47578,7.95108 -6.70391,4.73141 -8.29747,9.17541 -1.70603,2.27639 -2.39113,2.72595 -3.95225,-11.8322 10.56972,-14.1095 9.08133,-10.3669 2.93057,-1.99191 5.29554,-3.12853 2.71411,-1.36968 4.70075,-2.10443 10.59353,1.17766 3.24731,-1.24248 5.248,1.15518 7.50347,2.75259 0.37207,0.43338 0.12095,0.79088"
+     id="Juniata"
+     inkscape:label="Juniata, PA"
+     class="map-county"
+     onmouseout="hideTooltip();"
+     onmousemove="showTooltip(evt, 'Juniata'); "
+     onclick="county_clicked('Juniata');" />
+  <path
+     style="font-size:12px;fill:#d0d0d0;fill-rule:nonzero;stroke:#000000;stroke-width:0.79424;stroke-linecap:butt;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-start:none"
+     d="m 346.23536,235.59897 -4.76372,2.09115 -3.57242,0.66832 -29.4115,5.42253 -15.70728,7.70425 -0.65833,-1.41666 -4.65965,-9.27311 1.70595,-2.27636 8.29756,-9.17554 6.7041,-4.73132 12.47533,-7.95128 9.17793,-4.75664 16.91759,-7.11576 -1.42653,4.46436 -4.19914,20.23534 -0.0518,0.35772 0.67497,2.08928 1.02778,0.79487 7.41168,2.85911"
+     id="Perry"
+     inkscape:label="Perry, PA"
+     class="map-county"
+     onmouseout="hideTooltip();"
+     onmousemove="showTooltip(evt, 'Perry'); "
+     onclick="county_clicked('Perry');" />
+  <path
+     style="font-size:12px;fill:#d0d0d0;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:0.79424;stroke-linecap:butt;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-start:none"
+     d="m 346.23536,235.59897 4.54056,10.47617 -4.19066,4.0837 -10.66132,6.09742 -6.46808,6.4837 -2.41544,2.54541 -3.16456,1.99177 -5.66757,1.23782 -9.34372,2.43578 -5.22348,5.20564 -1.9731,-6.24273 -9.11687,-15.1211 -1.46767,-3.61067 1.03866,-1.11332 0.65833,1.41666 15.70728,-7.70425 29.4115,-5.42253 3.57242,-0.66832 4.76372,-2.09115"
+     id="Cumberland"
+     inkscape:label="Cumberland, PA"
+     class="map-county"
+     onmouseout="hideTooltip();"
+     onmousemove="showTooltip(evt, 'Cumberland'); "
+     onclick="county_clicked('Cumberland');" />
+  <path
+     style="font-size:12px;fill:#d0d0d0;fill-rule:nonzero;stroke:#000000;stroke-width:0.79424;stroke-linecap:butt;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-start:none"
+     d="m 329.45586,262.73996 0.88147,0.16982 2.71156,1.34817 5.75226,3.97338 4.27795,8.01883 0.10054,1.4709 -0.30239,4.92391 -2.04821,4.32172 -0.074,0.41682 0.2289,11.13543 -16.98761,0.38196 -18.95923,0.35357 -1.3879,-23.15455 5.22429,-5.20537 9.34292,-2.43669 5.66805,-1.23719 3.16537,-1.99166 2.41391,-2.54521"
+     id="Adams"
+     inkscape:label="Adams, PA"
+     class="map-county"
+     onmouseout="hideTooltip();"
+     onmousemove="showTooltip(evt, 'Adams'); "
+     onclick="county_clicked('Adams');" />
+  <path
+     style="font-size:12px;fill:#d0d0d0;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:0.79424;stroke-linecap:butt;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-start:none"
+     d="m 350.77592,246.07514 10.88703,10.67744 6.24964,6.10636 4.90626,1.08245 2.12281,0.0846 1.68406,0.73706 12.37612,15.20379 11.19682,15.67049 0.309,0.71535 -0.0854,0.48177 -25.77878,0.76213 -17.02105,0.48231 -16.6417,0.47666 -0.22765,-11.13483 0.0745,-0.41805 2.04781,-4.32234 0.30179,-4.92355 -0.1044,-1.47143 -4.27818,-8.01801 -5.75217,-3.97389 -2.71211,-1.34806 -0.88143,-0.16964 6.46849,-6.4836 10.66079,-6.09836 4.19193,-4.08262"
+     id="York"
+     inkscape:label="York, PA"
+     class="map-county"
+     onmouseout="hideTooltip();"
+     onmousemove="showTooltip(evt, 'York'); "
+     onclick="county_clicked('York');" />
+  <path
+     style="font-size:12px;fill:#d0d0d0;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:0.79424;stroke-linecap:butt;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-start:none"
+     d="m 361.771,201.24408 13.14037,10.24941 -10.80643,8.59653 9.18182,28.55923 0.28416,-0.12544 -11.90302,8.23133 -10.88837,-10.67734 -4.54061,-10.47746 -7.41178,-2.85972 -1.02769,-0.79668 -0.67545,-2.08968 0.0516,-0.35603 4.19777,-20.23535 1.42686,-4.46456 0.98999,1.54817 0.8373,0.37307 0.37601,-0.0758 3.7407,-0.75111 9.74376,-4.22091 3.34268,-0.41863"
+     id="Dauphin"
+     inkscape:label="Dauphin, PA"
+     class="map-county"
+     onmouseout="hideTooltip();"
+     onmousemove="showTooltip(evt, 'Dauphin'); "
+     onclick="county_clicked('Dauphin');" />
+  <path
+     style="font-size:12px;fill:#d0d0d0;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:0.79424;stroke-linecap:butt;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-start:none"
+     d="m 374.91137,211.49349 7.52755,5.92121 22.94365,17.88469 -11.90712,6.63172 -9.97449,2.0736 -9.93353,4.51746 -0.28295,0.12256 -9.18131,-28.55944 10.80833,-8.59587"
+     id="Lebanon"
+     inkscape:label="Lebanon, PA"
+     class="map-county"
+     onmouseout="hideTooltip();"
+     onmousemove="showTooltip(evt, 'Lebanon'); "
+     onclick="county_clicked('Lebanon');" />
+  <path
+     style="font-size:12px;fill:#d0d0d0;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:0.79424;stroke-linecap:butt;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-start:none"
+     d="m 405.38257,235.29939 22.19019,17.7172 -5.33193,3.15249 -3.38139,16.12237 -0.17793,2.6224 0.0721,1.83628 0.50197,2.88153 -1.74731,5.32836 -1.99765,4.22419 -1.46634,2.46529 -5.45301,4.9148 -7.65038,0.27664 -0.49974,0.0129 0.0867,-0.48264 -0.3139,-0.71334 -11.19642,-15.67022 -12.37776,-15.20404 -1.68187,-0.73987 -2.12234,-0.0884 -4.90626,-1.08343 -6.25012,-6.104 11.90463,-8.23193 9.93345,-4.51639 9.97256,-2.07382 11.90841,-6.63129"
+     id="Lancaster"
+     inkscape:label="Lancaster, PA"
+     class="map-county"
+     onmouseout="hideTooltip();"
+     onmousemove="showTooltip(evt, 'Lancaster'); "
+     onclick="county_clicked('Lancaster');" />
+  <path
+     style="font-size:12px;fill:#d0d0d0;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:0.79424;stroke-linecap:butt;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-start:none"
+     d="m 453.09843,220.05495 -12.16103,21.66707 -13.36464,11.29457 -22.19019,-17.7172 -22.94365,-17.88469 10.35007,-2.33623 3.75224,-0.27279 1.65495,-0.50448 13.582,-6.14642 4.07559,-3.52408 0.67258,-3.1558 7.71503,-4.11501 28.85265,22.69308"
+     id="Berks"
+     inkscape:label="Berks, PA"
+     class="map-county"
+     onmouseout="hideTooltip();"
+     onmousemove="showTooltip(evt, 'Berks'); "
+     onclick="county_clicked('Berks');" />
+  <path
+     style="font-size:12px;fill:#d0d0d0;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:0.79424;stroke-linecap:butt;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-start:none"
+     d="m 398.94932,170.07604 16.33,3.25117 19.08801,17.65416 -10.12163,6.38055 -7.71464,4.1146 -0.67308,3.15616 -4.07467,3.52506 -13.58183,6.14557 -1.65438,0.50427 -3.75295,0.27248 -10.351,2.33575 -7.5262,-5.92021 -13.14115,-10.24936 24.47388,-12.82467 5.52918,-2.85981 1.51365,-8.50022 2.61766,-3.40358 3.07649,-3.57384"
+     id="Schuylkill"
+     inkscape:label="Schuylkill, PA"
+     class="map-county"
+     onmouseout="hideTooltip();"
+     onmousemove="showTooltip(evt, 'Schuylkill'); "
+     onclick="county_clicked('Schuylkill');" />
+  <path
+     style="font-size:12px;fill:#d0d0d0;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:0.79424;stroke-linecap:butt;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-start:none"
+     d="m 415.27934,173.3271 20.02138,-10.53034 -0.59968,-2.14899 -2.5263,-2.92844 0.0228,-2.18283 0.16168,-0.87361 0.29925,-0.41979 4.92242,-4.10626 0.35197,-0.18654 1.91216,-0.31782 1.38998,1.16001 2.24955,1.27405 10.00334,12.19002 -5.42009,4.63657 7.81455,13.10608 -10.28748,3.20329 -11.25521,5.77234 -19.08767,-17.65525"
+     id="Carbon"
+     inkscape:label="Carbon, PA"
+     class="map-county"
+     onmouseout="hideTooltip();"
+     onmousemove="showTooltip(evt, 'Carbon'); "
+     onclick="county_clicked('Carbon');" />
+  <path
+     style="font-size:12px;fill:#d0d0d0;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:0.79424;stroke-linecap:butt;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-start:none"
+     d="m 391.84826,126.13968 20.8711,-1.38778 11.9684,-4.25839 1.23478,-0.62867 0.27721,1.88107 1.47953,2.33022 4.15282,2.44565 4.2991,1.72872 4.37214,8.52774 0.54512,7.28592 0.43983,1.13419 0.93544,0.72408 2.38761,0.68806 -3.54983,4.18992 -1.38969,-1.1608 -1.9124,0.31636 -0.35246,0.18604 -4.92134,4.10693 -0.30068,0.41902 -0.1618,0.87519 -0.0241,2.18212 2.52636,2.92788 0.60019,2.14959 -20.02133,10.53025 -16.3297,-3.2524 -5.91577,-18.62289 -3.38978,-7.44043 -0.0643,-2.42255 0.34557,-8.29863 1.92978,-7.15003"
+     id="Luzerne"
+     inkscape:label="Luzerne, PA"
+     class="map-county"
+     onmouseout="hideTooltip();"
+     onmousemove="showTooltip(evt, 'Luzerne'); "
+     onclick="county_clicked('Luzerne');" />
+  <path
+     style="font-size:12px;fill:#d0d0d0;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:0.79424;stroke-linecap:butt;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-start:none"
+     d="m 433.79172,97.430487 19.69054,-0.69956 3.17495,39.361653 -1.49152,1.25783 -3.35482,1.65896 -6.99919,7.60107 -2.38641,-0.68724 -0.93559,-0.72297 -0.4408,-1.1363 -0.54455,-7.28538 -4.37313,-8.52787 -4.29821,-1.72861 -4.15241,-2.44559 -1.48015,-2.33014 -0.27734,-1.88122 4.49165,-8.24133 -2.41648,-1.73918 1.92959,-5.32693 3.19508,-6.456383 0.66792,-0.67421"
+     id="Lackawanna"
+     inkscape:label="Lackawanna, PA"
+     class="map-county"
+     onmouseout="hideTooltip();"
+     onmousemove="showTooltip(evt, 'Lackawanna'); "
+     onclick="county_clicked('Lackawanna');" />
+  <path
+     style="font-size:12px;fill:#d0d0d0;fill-rule:nonzero;stroke:#000000;stroke-width:0.79424;stroke-linecap:butt;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-start:none"
+     d="m 369.04623,62.5738 31.15752,-0.794396 3.51423,35.662363 -7.5986,11.582443 -45.37918,-3.69405 -4.66505,-0.52826 -4.99111,-41.661889 27.9621,-0.566271"
+     id="Bradford"
+     inkscape:label="Bradford, PA"
+     class="map-county"
+     onmouseout="hideTooltip();"
+     onmousemove="showTooltip(evt, 'Bradford'); "
+     onclick="county_clicked('Bradford');" />
+  <path
+     style="font-size:12px;fill:#d0d0d0;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:0.79424;stroke-linecap:butt;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-start:none"
+     d="m 403.30356,61.679482 47.15305,-1.716856 3.02568,36.768341 -19.69056,0.69955 -11.23826,0.20908 -18.74216,0.68178 -0.0932,-0.87951 -3.51418,-35.66235 3.09927,-0.0964"
+     id="Susquehanna"
+     inkscape:label="Susquehanna, PA"
+     class="map-county"
+     onmouseout="hideTooltip();"
+     onmousemove="showTooltip(evt, 'Susquehanna'); "
+     onclick="county_clicked('Susquehanna');" />
+  <path
+     style="font-size:12px;fill:#d0d0d0;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:0.79424;stroke-linecap:butt;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-start:none"
+     d="m 450.45661,59.962626 9.37233,-0.389047 1.35815,0.575166 3.88117,3.922153 1.10992,1.505674 1.45947,5.465165 8.9627,3.16784 8.13352,23.63489 -8.47839,15.646233 -9.90474,15.18776 -3.31943,9.1779 -11.22057,1.15576 3.35494,-1.6595 1.49145,-1.25753 -3.17496,-39.362003 -3.02568,-36.768328"
+     id="Wayne"
+     inkscape:label="Wayne, PA"
+     class="map-county"
+     onmouseout="hideTooltip();"
+     onmousemove="showTooltip(evt, 'Wayne'); "
+     onclick="county_clicked('Wayne');" />
+  <path
+     style="font-size:12px;fill:#d0d0d0;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:0.79424;stroke-linecap:butt;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-start:none"
+     d="m 484.73418,97.842417 1.19089,4.981513 2.67154,3.74444 1.90073,2.59301 7.28313,5.60219 1.19844,0.83438 5.98413,0.73883 3.37265,0.2237 4.9479,6.93617 -5.02164,2.41121 -2.52131,1.91318 -2.45838,3.3756 -0.58839,1.05721 -1.6148,3.74483 -0.38751,1.35154 0.25484,0.37719 -0.1566,1.68215 -1.00147,2.95196 -2.9569,4.52989 -3.75664,3.68497 -1.28179,1.25634 -2.81748,1.13363 -10.1414,-6.54213 1.89552,-10.6662 -17.65141,2.10327 3.32015,-9.17697 9.90482,-15.18869 8.47785,-15.644693"
+     id="Pike"
+     inkscape:label="Pike, PA"
+     class="map-county"
+     onmouseout="hideTooltip();"
+     onmousemove="showTooltip(evt, 'Pike'); "
+     onclick="county_clicked('Pike');" />
+  <path
+     style="font-size:12px;fill:#d0d0d0;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:0.79424;stroke-linecap:butt;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-start:none"
+     d="m 463.03164,137.85403 17.65042,-2.10174 -1.89516,10.66461 10.14163,6.54323 2.81688,-1.13408 1.28238,-1.25825 0.33234,0.59875 -10.95111,13.86314 -26.5539,16.96432 -7.81385,-13.10678 5.41906,-4.63588 -10.00225,-12.18996 -2.24992,-1.27401 3.54954,-4.18923 6.99877,-7.59908 11.22009,-1.15737"
+     id="Monroe"
+     inkscape:label="Monroe, PA"
+     class="map-county"
+     onmouseout="hideTooltip();"
+     onmousemove="showTooltip(evt, 'Monroe'); "
+     onclick="county_clicked('Monroe');" />
+  <path
+     style="font-size:12px;fill:#d0d0d0;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:0.79424;stroke-linecap:butt;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-start:none"
+     d="m 482.46316,165.0427 5.64572,9.71048 0.1436,0.63563 -0.11255,0.59365 -3.92253,7.3123 -1.92115,1.85734 -1.16975,-0.0489 -1.10593,-0.30977 -0.62075,0.0548 -1.82048,2.77997 -0.30637,6.22244 0.57428,7.52556 0.32905,1.00319 -10.27828,7.84363 -4.91815,-5.61508 -6.96067,-6.19131 -8.90058,-7.98211 -0.7694,-1.4286 -0.70037,-3.79711 10.28775,-3.20241 26.55337,-16.96341"
+     id="Northampton"
+     inkscape:label="Northampton, PA"
+     class="map-county"
+     onmouseout="hideTooltip();"
+     onmousemove="showTooltip(evt, 'Northampton'); "
+     onclick="county_clicked('Northampton');" />
+  <path
+     style="font-size:12px;fill:#d0d0d0;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:0.79424;stroke-linecap:butt;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-start:none"
+     d="m 445.62294,185.20906 0.70025,3.79715 0.77088,1.42801 8.89866,7.98165 6.96069,6.19166 4.91798,5.6156 -11.13086,12.65401 -3.64211,-2.82219 -28.85269,-22.69319 10.12138,-6.37963 11.25582,-5.77307"
+     id="Lehigh"
+     inkscape:label="Lehigh, PA"
+     class="map-county"
+     onmouseout="hideTooltip();"
+     onmousemove="showTooltip(evt, 'Lehigh'); "
+     onclick="county_clicked('Lehigh');" />
+  <path
+     style="font-size:12px;fill:#d0d0d0;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:0.79424;stroke-linecap:butt;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-start:none"
+     d="m 467.83572,258.8298 6.867,8.97385 5.59264,11.18247 -15.68531,7.26406 -14.2554,-3.07851 17.4804,-24.33815"
+     id="Delaware"
+     inkscape:label="Delaware, PA"
+     class="map-county"
+     onmouseout="hideTooltip();"
+     onmousemove="showTooltip(evt, 'Delaware'); "
+     onclick="county_clicked('Delaware');" />
+  <path
+     style="font-size:12px;fill:#d0d0d0;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:0.79424;stroke-linecap:butt;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-start:none"
+     d="m 456.74054,222.87714 37.59389,27.45946 -9.31712,7.16798 -3.78257,-3.62158 -5.52315,5.88622 3.4576,3.81364 -4.46647,4.22079 -6.867,-8.97385 -8.0733,-3.44537 -6.39094,-7.21631 -0.60701,-1.20008 -0.1953,-0.36688 -7.24633,-4.59604 -4.38569,-0.29204 12.1615,-21.6667 3.64176,2.82167"
+     id="Montgomery"
+     inkscape:label="Montgomery, PA"
+     class="map-county"
+     onmouseout="hideTooltip();"
+     onmousemove="showTooltip(evt, 'Montgomery'); "
+     onclick="county_clicked('Montgomery');" />
+  <path
+     style="font-size:12px;fill:#d0d0d0;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:0.79424;stroke-linecap:butt;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-start:none"
+     d="m 440.9374,241.72202 4.38535,0.29169 7.24708,4.59588 0.1917,0.36802 0.60852,1.19787 6.3904,7.21844 8.07318,3.44414 -17.48084,24.3405 -14.62358,12.47145 -27.15237,0.9222 5.45156,-4.91473 1.46645,-2.46526 1.99821,-4.22567 1.74639,-5.32732 -0.50139,-2.88178 -0.0682,-1.83671 0.17737,-2.62105 3.38138,-16.1217 5.33194,-3.15297 13.36444,-11.29467"
+     id="Chester"
+     inkscape:label="Chester, PA"
+     class="map-county"
+     onmouseout="hideTooltip();"
+     onmousemove="showTooltip(evt, 'Chester'); "
+     onclick="county_clicked('Chester');" />
 </svg>

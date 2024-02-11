@@ -1,3 +1,12 @@
+<% 
+=begin
+    Project Name: InKind Donations
+    FileName:/home/student5/RoJ-Spr23/src/app/views/inkinds/_show.html.erb
+    Description: Displays the show functionality for the Inkind. Displays multiple donations, and the date in a specific format
+    Last Modified: April 26, 2023
+=end
+%>
+
 <style>
 body {
     font-family: Helvetica;
@@ -22,17 +31,35 @@ h1 {
 
 <p>
   <strong>Date:</strong>
-  <%= @inkind.date %>
-</p>
-
-<p>
-  <strong>Value:</strong>
-  <%= @inkind.value %>
+  <%# turns date to string displayed as MM/DD/YYYY %>
+  <%= @inkind.date.strftime("%m/%d/%Y") %>
 </p>
 
 <p>
   <strong>Description:</strong>
-  <%= @inkind.description %>
+  <%# iterates through inkindentry for this field %>
+  <% @inkind.inkindentries.each do |donation| %>
+    <%= donation.description %>
+    <br>
+  <% end %>
+</p>
+
+<p>
+  <strong>Value:</strong>
+  <%# iterates through inkindentry for this field %>
+  <% @inkind.inkindentries.each do |donation| %>
+    <%= number_to_currency(donation.value, unit: "$") %>
+    <br>
+  <% end %>
+</p>
+
+<p>
+  <strong>Hours:</strong>
+  <%# iterates through inkindentry for this field %>
+  <% @inkind.inkindentries.each do |donation| %>
+    <%= donation.hours.present? ? "#{donation.hours}" : "" %>
+    <br>
+  <% end %>
 </p>
 
 <p>
@@ -55,4 +82,4 @@ h1 {
   <%= @inkind.donor_id %>
 </p>
 <%= link_to 'Edit', edit_inkind_path(@inkind) %> |
-<%= link_to 'Back', inkinds_path %>
+<%= link_to 'View Inkind Donations', inkinds_path %>

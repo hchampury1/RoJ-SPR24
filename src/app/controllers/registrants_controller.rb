@@ -1,3 +1,10 @@
+=begin
+Project name: ACCR Webinar
+Description: This project will keep track of the webinars and their respective speakers.
+Filename: registrants_controller.rb
+Description: Handles creation of registrants
+Last modified on: April 22, 2023
+=end
 # class RegistrantsController < ApplicationController
 #   before_action :set_registrant, only: %i[ show edit update destroy ]
 #   skip_before_action :authenticate_user!, only: [:show, :index, :new, :create, :destroy, :update ]
@@ -90,6 +97,7 @@ class RegistrantsController < ApplicationController
     @webinar.registrants.append(@registrant)
     # @registrant.webinars.append
     @webinar_name = @webinar.webinar_name
+    puts "Does the routing go here?\n\n\n\n\n\n\n\n\n"
   end
 
   # GET /registrants/1/edit
@@ -105,18 +113,33 @@ class RegistrantsController < ApplicationController
   
   # PATCH/PUT /registrants/1 or /registrants/1.json
   def update
-
-
+=begin The following code routes a user to the old payment system.
+This code is left in just in case it is needed for some reason...
+This code can be deleted if this old system is no longer in use.
+if @registrant.job == 'Private Attorney' or @registrant.job == 'Conflict/Contract Counsel'
+  redirect_to new_charge_path(@registrant.id)
+  return
+end
+=end
+    if registrant_params[:first_name].squish.empty?
+      @registrant.errors.add(:first_name, "cannot be blank.")
+    end
+    if registrant_params[:last_name].squish.empty?
+      @registrant.errors.add(:last_name, "cannot be blank.")
+    end
+    if registrant_params[:email].squish.empty?
+      @registrant.errors.add(:email, "cannot be blank.")
+    end
+    if registrant_params[:county].squish.empty?
+      @registrant.errors.add(:county, "cannot be blank.")
+    end
+    puts "\n\n\nRegistrant Params: #{registrant_params}\n\n\n"
     respond_to do |format|
-      if @registrant.update(registrant_params)
-        if @registrant.job == 'Private Attorney' or @registrant.job == 'Conflict/Contract Counsel'
-          redirect_to new_charge_path(@registrant.id)
-          return
-        end
+      if @registrant.errors.none? && @registrant.update(registrant_params)
         format.html { redirect_to registrant_url(@registrant), notice: "Registrant was successfully updated." }
         format.json { render :show, status: :ok, location: @registrant }
       else
-        format.html { render :edit, status: :unprocessable_entity }
+        format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @registrant.errors, status: :unprocessable_entity }
       end
     end
@@ -127,7 +150,7 @@ class RegistrantsController < ApplicationController
     @registrant.destroy
 
     respond_to do |format|
-      format.html { redirect_to registrants_url, notice: "Registrant was successfully destroyed." }
+      format.html { redirect_to webinars_url, notice: "Registrant was successfully destroyed." }
       format.json { head :no_content }
     end
   end

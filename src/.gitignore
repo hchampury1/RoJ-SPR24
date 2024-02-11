@@ -46,3 +46,7 @@ yarn.lock
 bret_tests/
 
 /src/.env
+
+# backup files:
+*~
+*.bak
