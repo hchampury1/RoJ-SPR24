@@ -307,6 +307,7 @@ module StatisticsHelper
     if user_hours == all_hours
       user_hours = 0
     end
+  end
 
   # Returns number of hours for categories in "Court" section
   def calculate_court

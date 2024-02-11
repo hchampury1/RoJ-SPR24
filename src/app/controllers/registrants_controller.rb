@@ -165,7 +165,6 @@ end
   # DELETE /registrants/1 or /registrants/1.json
   def destroy
     @registrant.destroy
-
     respond_to do |format|
       format.html { redirect_to webinars_url, notice: "Registrant was successfully destroyed." }
       format.json { head :no_content }
@@ -184,4 +183,7 @@ end
       params.require(:registrant).permit(:first_name, :last_name, :email, :webinar, :state, :county, :job, :listserv, :topics, :amount, :paid, :cleID)
 
     end
+  end
 end
+
+

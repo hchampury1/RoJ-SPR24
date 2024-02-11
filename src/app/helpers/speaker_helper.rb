@@ -5,4 +5,4 @@ module SpeakerHelper
         return WebinarsSpeaker.select(:webinar_id).where(speaker_id: @speaker.id)
     end
 
-
+end 
