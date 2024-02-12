@@ -1,7 +1,4 @@
-# Welcome to _PayPal Payment Mechanism_ of the _Rails of Justice Project_
-
-
-
+# Welcome to _Rails of Justice Project_
 
 
 
@@ -11,50 +8,38 @@
 * [CSC 415: SSH and vscode setup - Video 3](https://youtu.be/BTOIt7wjJxA)
 * [CSC 415: GitHub and vscode - Video 4](https://youtu.be/-1C81UCUtIM)
 
-### Guidelines for Maintaining and Improving PayPal Payment Mechanism
-* [Guidelines for Maintaining and Improving PayPal Payment Mechanism for Future Volunteers and Students](https://github.com/TCNJ-SE/RoJ-Spr23/blob/collab12-prototype1/docs/Guidelines%20for%20future%20volunteers.md)
-
-### Note for Users and Developers
-* [Email Functionality Solution Needed](https://github.com/TCNJ-SE/RoJ-Spr23/blob/main/docs/message_about_email.md)
 
 ### UML Diagrams of current ROJ implementation
 
 * [Class Diagram](https://github.com/TCNJ-SE/RoJ-Spr23/blob/main/docs/uml-diagrams/Rails%20of%20Justice%20-%20Class%20Diagram.png)
 * [Use Case Diagram](https://github.com/TCNJ-SE/RoJ-Spr23/blob/main/docs/uml-diagrams/Rails%20of%20Justice%20-%20Use%20Case%20Diagram.png)
 
-# Welcome to ADAS group and our project Web(inar)s of Justice
-Description
-The webinar page on the Rails of Justice website is still incomplete as there are several functions that still need to be polished, such as the page that displays the list of registrants. Additionally, it may be useful to ACCR to have additional functionality on the webinar page and polish the UI. Individuals registering for the webinar would also benefit from additional functionality. 
+### Overview
+The Registry of Justice (RoJ) is an all-encompassing application designed for the Advocacy for Criminal Case Reform (ACCR). Aimed at improving operational efficiency, enhancing communication, and streamlining event and volunteer management, RoJ integrates several modules within a single platform. These modules include Webinar Registration, Event Calendar, Call Organizer, In Kind Donations, Mail Manager, Mapping Justice, and Pro Bono Tracker, each developed to support ACCR in organizing webinars, managing events, tracking communications and donations, handling correspondence, visualizing justice-related data, and monitoring volunteer contributions.
 
-Objective
-The objective would be to make bug free Webinar and Event Calendar modules. This would include fixing everything that is broken about the modules and ensuring additional extensions are bug free. Some of the functions that we have identified as potentially in need of fixing are:
- The page which displays the list of registrants for a webinar includes blank lines and missing information which make it look broken.
-In the Event Calendar, when you select the “New Event” dropdown, you get the New Webinar page. However, not every event will necessarily be a webinar. 
-Adding an Event from the “Add Event” dropdown does not save any information nor store it onto the calendar.
-Changing UI to match the rest of the website?
-It’s likely additional issues will arise while we start to work on the website.
+### Features and Instructions
+#### Webinar Registration & Event Calendar
+Functionality: Facilitates the registration process for webinars and events, while allowing administrators to manage these events within a centralized calendar.
+Usage: Administrators can add, edit, or delete event listings through the Event Calendar section, where users can view and register for upcoming or past events.
 
-We have a few ideas for extensions. First we would change the navbar to read just "Webinars". Then we can move the "Webinar Registration" page under there, and here this will show the upcoming and past webinars. For the list of webinars we can have the speakers listed with a hyperlink that brings some sort of page to show speaker contact information and a little blurb about them. 
+#### Call Organizer
+Functionality: Provides a system for recording, organizing, and tracking phone calls with the capability to associate calls with specific cases or individuals.
+Usage: Admins can log new calls, edit existing records, and organize calls by case association or callback needs via the Call Organizer module.
 
-Another addition would be to have an "About" tab under the Webinar navbar. Here we could have a form that could submit a request for a specific webinar that would email ACCR with the request. With admin privilege, we attempt to have an export option where webinars can be selected and information such as the registrants, speakers, etc., could be made into a CSV file. Another feature would allow users to deregister from a webinar they registered for using their name and email. 
+#### In Kind Donations
+Functionality: Tracks non-monetary donations, such as goods or services, offering tools for managing and reviewing these contributions.
+Usage: Users input data on in-kind donations, which is then cataloged for easy access and management, supporting ACCR in acknowledging and handling these donations effectively.
 
-These features are innovative and new because the team creatively thought of them. They will benefit both admin and non-admin users. Similar systems may exist for different organizations. For example, Canvas has an option to attend Zoom meetings within the website. However, our additions would be specifically catered to the ACCR organization. 
+#### Mail Manager
+Functionality: A comprehensive system for managing mail entries, equipped with advanced search capabilities and customizable tags for efficient sorting and retrieval.
+Usage: Staff members have the ability to add, modify, or remove mail entries, and can utilize filters to search for mail by various criteria, including case status, recipient demographics, and keywords.
 
-### [Installation/Usage](docs/Team21/Installation.md)
-### [Guidelines](docs/Team21/Guidelines.md)
+#### Mapping Justice
+Functionality: An interactive map providing visual data representation related to capital punishment across Pennsylvania, including case statistics and demographic information.
+Usage: Users can explore the map to view detailed statistics by county, compare data across different regions, and gain insights into the state's justice dynamics.
 
-### [Test Case Design](docs/Team21/TestCaseDesign.docx)
-
-### [Team Code](docs/Team21/Team_21-Team_Code.md)
-
-### [Requirements and Analysis Information + Detailed Use Cases](docs/Team21/Elaboraton:RequirementsModelingandAnalysis.md)
-
-### Use Case
-![alt text](docs/Team21/UMLclass-WebofJusticeUseCase.png)
-
-### [Other Diagrams](docs/Team21/DesignDocuments.md)
-
-* [Class Diagram](https://github.com/TCNJ-SE/RoJ-Spr23/blob/main/docs/class-diagram.md)
-* [Use Case Diagram](https://github.com/TCNJ-SE/RoJ-Spr23/blob/main/docs/use-case.md)
+#### Pro Bono Tracker
+Functionality: Enables the recording and tracking of volunteer contributions using a timesheet-based approach, facilitating the management of time, money, and effort donated to the organization.
+Usage: Staff and volunteers can log their contributions, which are then compiled and stored for organizational review, planning, and recognition.
 
 
