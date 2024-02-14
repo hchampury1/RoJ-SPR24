@@ -1,11 +1,4 @@
 
-  # Project name: ACCR In Kinds Donations
-  # Description: In Kind Donation Manager
-  # Filename: index.html.erb
-  # Description: Controller used to manage in kind searches, creatings, uploads, deletes, etc
-  # Last modified on: 3/29/23
-  # Code written by Team 14
-
 
 class InkindsController < ApplicationController
   before_action :set_inkind, only: %i[ show edit update destroy ]
@@ -211,4 +204,6 @@ class InkindsController < ApplicationController
     def inkind_params
       params.require(:inkind).permit(:name, :date, :value, :hours, :description, :user, :genre, :donor_name, :donor_id, inkindentries_attributes: [:id, :description, :hours, :value])
     end
+
+  end
 end
