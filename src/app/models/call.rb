@@ -61,4 +61,4 @@ class << self
     return @results
   end
 end
-
+end 
