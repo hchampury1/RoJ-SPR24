@@ -1,1 +1,0 @@
-![Design Class](https://github.com/TCNJ-SE/RoJ-Spr23/blob/collab24-p2-team-code-branch/docs/uml-diagrams/SE_CAB24%20-%20Design%20Class%20Diagram.png)
