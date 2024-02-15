@@ -1,1 +1,0 @@
-![SSDs](https://github.com/TCNJ-SE/RoJ-Spr23/blob/collab24-p2-team-code-branch/docs/uml-diagrams/SE_CAB24%20-%20SSDs.png)
