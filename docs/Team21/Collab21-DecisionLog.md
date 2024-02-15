@@ -1,2 +1,0 @@
-We made a decision to include a requests functionality. This functionality allows users to put in a request to ACCR staff to do a certain webinar. Future developers have to validate and sanitize this input. 
-The decision to try and implement that the webinar turns green upon registering may lead to some technical debt since future developers will have to fix the back-end to make this feature work properly upon deregistering. We could only implement this feature partially to deliver and make certain deadlines.
