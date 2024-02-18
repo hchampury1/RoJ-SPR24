@@ -75,6 +75,6 @@ Rails.application.configure do
 
   # Setting up server for project
   # Add your below line 78, just like line 78 but with your own team server
-  config.hosts << "csc415-server41.hpc.tcnj.edu"
+  config.hosts.clear
 
 end
