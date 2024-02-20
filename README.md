@@ -11,7 +11,7 @@
 
 ### UML Diagrams of current ROJ implementation
 
-* [Class Diagram](https://github.com/TCNJ-SE/RoJ-Spr2024/blob/main/docs/class-diagram.md)
+* [Class Diagram](https://github.com/TCNJ-SE/RoJ-Spr2024/blob/main/docs/Rails%20of%20Justice%20-%20Class%20Diagram.png)
 * [Use Case Diagram](https://github.com/TCNJ-SE/RoJ-Spr2024/blob/main/docs/use-case.md)
 
 ### Overview
