@@ -44,7 +44,7 @@ If you encounter errors, make sure the PostgreSQL server has been started, or tr
   `sudo systemctl start postgresql`
 
   Restarting the server:
-  `sudo systemctl restart postgresql-13`
+  `sudo systemctl restart postgresql`
 
 * For MacOS:
 
