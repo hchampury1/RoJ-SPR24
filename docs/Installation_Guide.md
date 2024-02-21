@@ -67,22 +67,7 @@ Once bundle install and yarn install have successfully run you can begin to crea
     rake db:migrate
     
     rake db:seed
-    
-### Add your host to the environment settings
 
-* Navigate to src/config/environments/development.rb
-
-* If you are using the terminal, type vi development.rb and edit the file as described below 
-
-* If you are using VSCode, just edit it directly
-
-* Add this line to the code, replacing XX with your team's number. `config.hosts << "csc415-team12.hpc.tcnj.edu"`
-
-* Save (or write and quit if using terminal) and logout. If using VSCode, click the green icon in bottom left and hit close remote. If in terminal, type logout. 
-
-> **NOTE:** You must do this step for the changes to be applied.
-
-* Log back in or re-open the remote
     
 
 ### Finally, run the app.
