@@ -43,10 +43,6 @@ The user can hover over a county to view its statistics. Additionally, several c
         <%= text_field_tag :countyName, nil,
           placeholder: "County name",
             class: "form-control input-lg" %>
-        <span class="input-group-btn">
-          <%= submit_tag "Find Counties",
-             class: "btn btn-primary btn-lg" %>
-        </span>
       </div>
       <br>
       <div class="input-group input-group-lg">
@@ -54,10 +50,6 @@ The user can hover over a county to view its statistics. Additionally, several c
         <%= text_field_tag :minPop, nil,
           placeholder: "Min Population",
             class: "form-control input-lg" %>
-        <span class="input-group-btn">
-          <%= submit_tag "Find Counties",
-              class: "btn btn-primary btn-lg" %>
-        </span>
       </div>
       <br>
       <div class="input-group input-group-lg">
@@ -65,10 +57,6 @@ The user can hover over a county to view its statistics. Additionally, several c
         <%= text_field_tag :maxPop, nil,
           placeholder: "Max Population",
             class: "form-control input-lg" %>
-        <span class="input-group-btn">
-          <%= submit_tag "Find Counties",
-              class: "btn btn-primary btn-lg" %>
-        </span>
       </div>
       <br>
       <div class="input-group input-group-lg">
@@ -76,10 +64,6 @@ The user can hover over a county to view its statistics. Additionally, several c
         <%= text_field_tag :totalPend, nil,
           placeholder: "Total Pending Cases",
             class: "form-control input-lg" %>
-        <span class="input-group-btn">
-          <%= submit_tag "Find Counties",
-              class: "btn btn-primary btn-lg" %>
-        </span>
       </div>
       <br>
       <div class="input-group input-group-lg">
@@ -87,10 +71,6 @@ The user can hover over a county to view its statistics. Additionally, several c
         <%= text_field_tag :bPend, nil,
           placeholder: "Pending Cases(Black)",
             class: "form-control input-lg" %>
-        <span class="input-group-btn">
-          <%= submit_tag "Find Counties",
-              class: "btn btn-primary btn-lg" %>
-        </span>
       </div>
       <br>
       <div class="input-group input-group-lg">
@@ -98,10 +78,6 @@ The user can hover over a county to view its statistics. Additionally, several c
         <%= text_field_tag :wPend, nil,
           placeholder: "Pending Cases(White)",
             class: "form-control input-lg" %>
-        <span class="input-group-btn">
-          <%= submit_tag "Find Counties",
-              class: "btn btn-primary btn-lg" %>
-        </span>
       </div>
       <br>
       <div class="input-group input-group-lg">
@@ -109,21 +85,13 @@ The user can hover over a county to view its statistics. Additionally, several c
         <%= text_field_tag :oPend, nil,
           placeholder: "Pending Cases(Other)",
             class: "form-control input-lg" %>
-        <span class="input-group-btn">
-          <%= submit_tag "Find Counties",
-              class: "btn btn-primary btn-lg" %>
-        </span>
       </div>
       <br>
       <div class="input-group input-group-lg">
         <%= label_tag :totalCases, nil, class: "sr-only" %>
         <%= text_field_tag :totalCases, nil,
           placeholder: "Total Current Cases",
-            class: "form-control input-lg" %>
-        <span class="input-group-btn">
-          <%= submit_tag "Find Counties",
-              class: "btn btn-primary btn-lg" %>
-        </span>
+          class: "form-control input-lg" %>
       </div>
       <br>
       <div class="input-group input-group-lg">
@@ -131,10 +99,6 @@ The user can hover over a county to view its statistics. Additionally, several c
         <%= text_field_tag :bCase, nil,
           placeholder: "Current Cases(Black)",
             class: "form-control input-lg" %>
-        <span class="input-group-btn">
-          <%= submit_tag "Find Counties",
-              class: "btn btn-primary btn-lg" %>
-        </span>
       </div>
       <br>
       <div class="input-group input-group-lg">
@@ -142,10 +106,6 @@ The user can hover over a county to view its statistics. Additionally, several c
         <%= text_field_tag :wCase, nil,
           placeholder: "Current Cases(White)",
             class: "form-control input-lg" %>
-        <span class="input-group-btn">
-          <%= submit_tag "Find Counties",
-              class: "btn btn-primary btn-lg" %>
-        </span>
       </div>
       <br>
       <div class="input-group input-group-lg">
@@ -153,11 +113,12 @@ The user can hover over a county to view its statistics. Additionally, several c
         <%= text_field_tag :oCase, nil,
           placeholder: "Current Cases(Other)",
             class: "form-control input-lg" %>
-        <span class="input-group-btn">
-          <%= submit_tag "Find Counties",
-              class: "btn btn-primary btn-lg" %>
-        </span>
       </div>
+
+      <div class="input-group input-group-lg">
+        <%= submit_tag "Find Counties", class: "btn btn-primary btn-lg" %>
+      </div>
+
     <% end %>
   </section>
 
