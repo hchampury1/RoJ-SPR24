@@ -47,8 +47,8 @@ The user can hover over a county to view its statistics. Additionally, several c
           <%= submit_tag "Find Counties",
              class: "btn btn-primary btn-lg" %>
         </span>
-        <br>
       </div>
+      <br>
     <% end %>
   </section>
 
@@ -86,6 +86,9 @@ The user can hover over a county to view its statistics. Additionally, several c
   </table>
 <br><br>
 
+<div class="text-left">
+  <%= button_tag "Reset", type: "button", class: "btn btn-secondary btn-lg", onclick: "window.location.href = '#{upload_index_path}'" %>
+</div>
 
 <!-- Div for footer -->
 <div id="footer">
