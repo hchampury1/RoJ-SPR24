@@ -24,15 +24,55 @@ class UploadController < ApplicationController
     COLUMNS = ['name', 'num_cur_cases', 'num_cur_cases_b', 'num_cur_cases_w', 'num_cur_cases_o','population', 'num_dr', 'num_dr_b', 'num_dr_w', 'num_dr_o']
 
     def index
-        if params[:keywords].present?
-            # Get any keywords from search box
-            @keywords = params[:keywords]
-            # Use keywords to create new search term object
-            county_search_term = CountySearchTerm.new(@keywords)
-
-            @counties = County.where(name: params[:keywords])
+        if params[:countyName].present?
+            # Get any county name from search box
+            @countyName = params[:countyName]
+            @counties = County.where(name: params[:countyName])
+        elsif params[:minPop].present?
+            # Get any min population from search box
+            @minPop = params[:minPop]
+            min_pop = @minPop.to_i
+            @counties = County.where(population: min_pop)
+            Rails.logger.debug "SQL Query: #{@counties.to_sql}"
+        elsif params[:maxPop].present?
+            # Get any min population from search box
+            @maxPop = params[:maxPop]
+            max_pop = @maxPop.to_i
+            @counties = County.where(population: max_pop)
+        elsif params[:totalPend].present?
+            # Get any county name from search box
+            @totalPend = params[:totalPend]
+            @counties = County.where(num_cur_cases: params[:totalPend])
+        elsif params[:bPend].present?
+            # Get any county name from search box
+            @bPend = params[:bPend]
+            @counties = County.where(num_cur_cases_b: params[:bPend])
+        elsif params[:wPend].present?
+            # Get any county name from search box
+            @wPend = params[:wPend]
+            @counties = County.where(num_cur_cases_w: params[:wPend])
+        elsif params[:oPend].present?
+            # Get any county name from search box
+            @oPend = params[:oPend]
+            @counties = County.where(num_cur_cases_o: params[:oPend])
+        elsif params[:totalCases].present?
+            # Get any county name from search box
+            @totalCases = params[:totalCases]
+            @counties = County.where(num_dr: params[:totalCases])
+        elsif params[:bCase].present?
+            # Get any county name from search box
+            @bCase = params[:bCase]
+            @counties = County.where(num_dr_b: params[:bCase])
+        elsif params[:wCase].present?
+            # Get any county name from search box
+            @wCase = params[:wCase]
+            @counties = County.where(num_dr_w: params[:wCase])
+        elsif params[:oCase].present?
+            # Get any county name from search box
+            @oCase = params[:oCase]
+            @counties = County.where(num_dr_o: params[:oCase])
         else
-            @counties = County.order(:name)
+            @counties = County.order(:population)
         end
     end
     

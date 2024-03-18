@@ -39,8 +39,8 @@ The user can hover over a county to view its statistics. Additionally, several c
   <section class="search-form">
     <%= form_for :upload, method: :get do |f| %>
       <div class="input-group input-group-lg">
-        <%= label_tag :keywords, nil, class: "sr-only" %>
-        <%= text_field_tag :keywords, nil,
+        <%= label_tag :countyName, nil, class: "sr-only" %>
+        <%= text_field_tag :countyName, nil,
           placeholder: "County name",
             class: "form-control input-lg" %>
         <span class="input-group-btn">
@@ -49,6 +49,115 @@ The user can hover over a county to view its statistics. Additionally, several c
         </span>
       </div>
       <br>
+      <div class="input-group input-group-lg">
+        <%= label_tag :minPop, nil, class: "sr-only" %>
+        <%= text_field_tag :minPop, nil,
+          placeholder: "Min Population",
+            class: "form-control input-lg" %>
+        <span class="input-group-btn">
+          <%= submit_tag "Find Counties",
+              class: "btn btn-primary btn-lg" %>
+        </span>
+      </div>
+      <br>
+      <div class="input-group input-group-lg">
+        <%= label_tag :maxPop, nil, class: "sr-only" %>
+        <%= text_field_tag :maxPop, nil,
+          placeholder: "Max Population",
+            class: "form-control input-lg" %>
+        <span class="input-group-btn">
+          <%= submit_tag "Find Counties",
+              class: "btn btn-primary btn-lg" %>
+        </span>
+      </div>
+      <br>
+      <div class="input-group input-group-lg">
+        <%= label_tag :totalPend, nil, class: "sr-only" %>
+        <%= text_field_tag :totalPend, nil,
+          placeholder: "Total Pending Cases",
+            class: "form-control input-lg" %>
+        <span class="input-group-btn">
+          <%= submit_tag "Find Counties",
+              class: "btn btn-primary btn-lg" %>
+        </span>
+      </div>
+      <br>
+      <div class="input-group input-group-lg">
+        <%= label_tag :bPend, nil, class: "sr-only" %>
+        <%= text_field_tag :bPend, nil,
+          placeholder: "Pending Cases(Black)",
+            class: "form-control input-lg" %>
+        <span class="input-group-btn">
+          <%= submit_tag "Find Counties",
+              class: "btn btn-primary btn-lg" %>
+        </span>
+      </div>
+      <br>
+      <div class="input-group input-group-lg">
+        <%= label_tag :wPend, nil, class: "sr-only" %>
+        <%= text_field_tag :wPend, nil,
+          placeholder: "Pending Cases(White)",
+            class: "form-control input-lg" %>
+        <span class="input-group-btn">
+          <%= submit_tag "Find Counties",
+              class: "btn btn-primary btn-lg" %>
+        </span>
+      </div>
+      <br>
+      <div class="input-group input-group-lg">
+        <%= label_tag :oPend, nil, class: "sr-only" %>
+        <%= text_field_tag :oPend, nil,
+          placeholder: "Pending Cases(Other)",
+            class: "form-control input-lg" %>
+        <span class="input-group-btn">
+          <%= submit_tag "Find Counties",
+              class: "btn btn-primary btn-lg" %>
+        </span>
+      </div>
+      <br>
+      <div class="input-group input-group-lg">
+        <%= label_tag :totalCases, nil, class: "sr-only" %>
+        <%= text_field_tag :totalCases, nil,
+          placeholder: "Total Current Cases",
+            class: "form-control input-lg" %>
+        <span class="input-group-btn">
+          <%= submit_tag "Find Counties",
+              class: "btn btn-primary btn-lg" %>
+        </span>
+      </div>
+      <br>
+      <div class="input-group input-group-lg">
+        <%= label_tag :bCase, nil, class: "sr-only" %>
+        <%= text_field_tag :bCase, nil,
+          placeholder: "Current Cases(Black)",
+            class: "form-control input-lg" %>
+        <span class="input-group-btn">
+          <%= submit_tag "Find Counties",
+              class: "btn btn-primary btn-lg" %>
+        </span>
+      </div>
+      <br>
+      <div class="input-group input-group-lg">
+        <%= label_tag :wCase, nil, class: "sr-only" %>
+        <%= text_field_tag :wCase, nil,
+          placeholder: "Current Cases(White)",
+            class: "form-control input-lg" %>
+        <span class="input-group-btn">
+          <%= submit_tag "Find Counties",
+              class: "btn btn-primary btn-lg" %>
+        </span>
+      </div>
+      <br>
+      <div class="input-group input-group-lg">
+        <%= label_tag :oCase, nil, class: "sr-only" %>
+        <%= text_field_tag :oCase, nil,
+          placeholder: "Current Cases(Other)",
+            class: "form-control input-lg" %>
+        <span class="input-group-btn">
+          <%= submit_tag "Find Counties",
+              class: "btn btn-primary btn-lg" %>
+        </span>
+      </div>
     <% end %>
   </section>
 
