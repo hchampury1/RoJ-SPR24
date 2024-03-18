@@ -9,6 +9,7 @@
 class UploadController < ApplicationController
     skip_before_action :authenticate_user!
     before_action :get_county, only: %i[edit]
+    helper_method :sort_column, :sort_direction
     #CONSTANTS definition
     #MAX_UPLOADS indicates the max number of previous file uploads that are kept in storage
     MAX_UPLOADS = 6
@@ -37,8 +38,12 @@ class UploadController < ApplicationController
         input[:num_dr_w] = params[:wCase] if params[:wCase].present?
         input[:num_dr_o] = params[:oCase] if params[:oCase].present?
 
-        @counties = County.where(input)
-        @counties = @counties.order(:name)
+        if input.present?
+            @counties = County.where(input)
+            @counties = County.order(:name)
+        else
+            @counties = County.order(sort_column + ' ' + (sort_direction || "asc"))
+        end
         render :index
     end
     
@@ -98,6 +103,15 @@ class UploadController < ApplicationController
     end
 
     private
+    # This function returns the column name to sort bys
+    def sort_column
+         @counties = County.column_names.include?(params[:sort]) ? params[:sort] : "id"
+    end
+    # This function returns the sort direction to sort by
+    def sort_direction
+        %w[asc desc].include?(params[:direction]) ? params[:direction] : nil
+    end
+
     #This function ensures the file has a .csv extension
     def csv?(file)
         if file.original_filename.ends_with?('.csv')

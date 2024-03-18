@@ -123,15 +123,24 @@ The user can hover over a county to view its statistics. Additionally, several c
   </section>
 
 <!-- Displays the Pro Bono Hours in a table -->
+  <div class = "text-center" >
+    <% if sort_column.present? && sort_direction.present? %>
+      <% direction_text = sort_direction == "asc" ? "ascending order" : "descending order" %>
+      <p>Note: Data is sorted in <%= direction_text %>!</p>
+    <% else %>
+      <p>Note: The following entries are unsorted. To sort your entries, please click on a column to sort by.</p>
+    <% end %>
+  </div>
+
   <table class="table table-hover table-striped">
     <thead>
       <tr>
-        <th scope="col">County</th>
-        <th style="text-align: center" scope="col">Population</th>
-        <th style="text-align: center" scope="col">Total Number of Pending Cases</th>
-        <th style="text-align: center" scope="col">Pending Cases: Black/White/Other</th>        
-        <th style="text-align: center" scope="col">Total Number of Current Death Sentence Cases</th>
-        <th style="text-align: center" scope="col">Current Death Sentence Cases Black/White/Other</th>
+        <th scope="col"><%= sortable "name", "County"%></th>
+        <th scope="col"><%= sortable "population", "Population"%></th>
+        <th scope="col">Total Number of Pending Cases</th>
+        <th scope="col">Pending Cases: Black/White/Other</th>        
+        <th scope="col">Total Number of Current Death Sentence Cases</th>
+        <th scope="col">Current Death Sentence Cases Black/White/Other</th>
         <!-- <th scope="col">Description</th> -->
         <% if can?(:access, :rails_admin) %>
         <th scope="col">Actions</th>
