@@ -214,10 +214,10 @@ ActiveRecord::Schema.define(version: 2024_02_11_060949) do
     t.text "topics"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "deregistered"
     t.integer "amount"
     t.boolean "paid"
     t.string "state"
-    t.string "deregistered"
     t.string "cleID", default: "None"
   end
 
