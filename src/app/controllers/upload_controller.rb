@@ -40,7 +40,6 @@ class UploadController < ApplicationController
 
         if input.present?
             @counties = County.where(input)
-            @counties = County.order(:name)
         else
             @counties = County.order(sort_column + ' ' + (sort_direction || "asc"))
         end
