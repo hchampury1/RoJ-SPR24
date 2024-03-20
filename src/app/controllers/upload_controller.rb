@@ -43,6 +43,10 @@ class UploadController < ApplicationController
         else
             @counties = County.order(sort_column + ' ' + (sort_direction || "asc"))
         end
+
+        if @counties.empty?
+            flash.now[:alert] = "No Results Found!"
+        end
         render :index
     end
     
@@ -102,11 +106,11 @@ class UploadController < ApplicationController
     end
 
     private
-    # This function returns the column name to sort bys
+    #Returns column name to be sorted
     def sort_column
          @counties = County.column_names.include?(params[:sort]) ? params[:sort] : "id"
     end
-    # This function returns the sort direction to sort by
+    #Returns sorting direction: ascending or descending
     def sort_direction
         %w[asc desc].include?(params[:direction]) ? params[:direction] : nil
     end

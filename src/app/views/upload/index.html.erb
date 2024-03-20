@@ -16,106 +16,108 @@ The user can hover over a county to view its statistics. Additionally, several c
   <br>
   <h4 class="text-center">Upload your spreadsheet with new data here in order to update the map. </h4> 
 
-  <!-- To download copy of current data -->
-  <h5 class="text-center">Click <a href='downloadcsv'> here</a> to download the current data spreadsheet.</h5>
   <br/>
   <div class="text-center">
   <!-- Rendering form partial for file upload -->
   <%= render 'form' %>
   </div>
   </div>
+  <br>
 <% end %>
 <!-- To display flash notice and error messages -->
 <% flash.each do |type, msg| %>
     <div style="font-weight:bold;text-align:center">
       <%= msg %>
     </div>
+    <br>
 <% end %>
-<br>
+
+<!-- To download copy of current data -->
+<h5 class="text-center">Click <a href='downloadcsv'> here</a> to download the current data spreadsheet.</h5>
 
 <br>
   <!-- Creates Search Bars & Search Button -->
   <h5 class="text-center">Search Counties</h5>
   <section class="search-form">
     <%= form_for :upload, method: :get do |f| %>
-      <div class="input-group input-group">
+      <div class="input-group">
         <%= label_tag :countyName, nil, class: "sr-only" %>
         <%= text_field_tag :countyName, nil,
           placeholder: "County Name",
             class: "form-control input" %>
       </div>
       <br>
-      <div class="input-group input-group">
+      <div class="input-group">
         <%= label_tag :minPop, nil, class: "sr-only" %>
         <%= text_field_tag :minPop, nil,
           placeholder: "Min Population",
             class: "form-control input" %>
       </div>
       <br>
-      <div class="input-group input-group">
+      <div class="input-group">
         <%= label_tag :maxPop, nil, class: "sr-only" %>
         <%= text_field_tag :maxPop, nil,
           placeholder: "Max Population",
             class: "form-control input" %>
       </div>
       <br>
-      <div class="input-group input-group">
+      <div class="input-group">
         <%= label_tag :totalPend, nil, class: "sr-only" %>
         <%= text_field_tag :totalPend, nil,
           placeholder: "Total Pending Cases",
             class: "form-control input" %>
       </div>
       <br>
-      <div class="input-group input-group">
+      <div class="input-group">
         <%= label_tag :bPend, nil, class: "sr-only" %>
         <%= text_field_tag :bPend, nil,
           placeholder: "Pending Cases(Black)",
             class: "form-control input" %>
       </div>
       <br>
-      <div class="input-group input-group">
+      <div class="input-group">
         <%= label_tag :wPend, nil, class: "sr-only" %>
         <%= text_field_tag :wPend, nil,
           placeholder: "Pending Cases(White)",
             class: "form-control input" %>
       </div>
       <br>
-      <div class="input-group input-group">
+      <div class="input-group">
         <%= label_tag :oPend, nil, class: "sr-only" %>
         <%= text_field_tag :oPend, nil,
           placeholder: "Pending Cases(Other)",
             class: "form-control input" %>
       </div>
       <br>
-      <div class="input-group input-group">
+      <div class="input-group">
         <%= label_tag :totalCases, nil, class: "sr-only" %>
         <%= text_field_tag :totalCases, nil,
           placeholder: "Total Current Cases",
           class: "form-control input" %>
       </div>
       <br>
-      <div class="input-group input-group">
+      <div class="input-group">
         <%= label_tag :bCase, nil, class: "sr-only" %>
         <%= text_field_tag :bCase, nil,
           placeholder: "Current Cases(Black)",
             class: "form-control input" %>
       </div>
       <br>
-      <div class="input-group input-group">
+      <div class="input-group">
         <%= label_tag :wCase, nil, class: "sr-only" %>
         <%= text_field_tag :wCase, nil,
           placeholder: "Current Cases(White)",
             class: "form-control input" %>
       </div>
       <br>
-      <div class="input-group input-group">
+      <div class="input-group">
         <%= label_tag :oCase, nil, class: "sr-only" %>
         <%= text_field_tag :oCase, nil,
           placeholder: "Current Cases(Other)",
             class: "form-control input" %>
       </div>
 
-      <div class="input-group input-group">
+      <div class="input-group">
         <%= submit_tag "Search", class: "btn btn-primary btn" %>
       </div>
 
@@ -176,7 +178,7 @@ The user can hover over a county to view its statistics. Additionally, several c
 
 <!-- Reset button to refresh table -->
 <div class="text-left">
-  <%= button_tag "Reset", type: "button", class: "btn btn-secondary btn-lg", onclick: "window.location.href = '#{upload_index_path}'" %>
+  <%= button_tag "Reset", type: "button", class: "btn btn-secondary", onclick: "window.location.href = '#{upload_index_path}'" %>
 </div>
 
 <!-- Div for footer -->
