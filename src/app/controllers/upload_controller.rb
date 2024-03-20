@@ -37,7 +37,8 @@ class UploadController < ApplicationController
         input[:num_dr_b] = params[:bCase] if params[:bCase].present?
         input[:num_dr_w] = params[:wCase] if params[:wCase].present?
         input[:num_dr_o] = params[:oCase] if params[:oCase].present?
-
+        
+        session[:search_results] = input 
         if input.present?
             @counties = County.where(input)
         else
@@ -46,7 +47,7 @@ class UploadController < ApplicationController
 
         if @counties.empty?
             flash.now[:alert] = "No Results Found!"
-        end
+        end     
         render :index
     end
     
@@ -73,9 +74,21 @@ class UploadController < ApplicationController
 
     #This function allows the user to download a copy of the current data for easy viewing as well as modification
     def downloadcsv
-        send_file("#{Rails.root}/app/assets/data/map_data.csv",
-        filename: "current_data.csv",
-        type: "application/csv")
+        input = session[:search_results]
+        @counties = County.where(input)
+        if @counties.nil? || @counties.empty?
+            redirect_to upload_index_path
+            return
+        end
+        #Saves data if data fou
+        csv_data = CSV.generate(headers: true) do |data|
+            data << COLUMNS
+            @counties.each do |el|
+              data << COLUMNS.map { |col| el[col] }
+            end
+        end
+        #Creates dowmload file
+        send_data csv_data, filename: "current_data.csv", type: "application/csv"
     end
 
     #This function allows the user to upload a csv file with new data for the map. It performs input validations.
