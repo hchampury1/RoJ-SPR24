@@ -155,24 +155,24 @@ The user can hover over a county to view its statistics. Additionally, several c
       </tr>
     </thead>
     <% @counties.each do |county| %>
-    <tr>
-      <td scope="col"><%= county.name%></td>
-      <td style="text-align: center" scope="col"><%= county.population%></td>
-      <td style="text-align: center" scope="col"><%= county.num_cur_cases%></td>
-      <td style="text-align: center" scope="col"><%= county.num_cur_cases_b%></td>
-      <td style="text-align: center" scope="col"><%= county.num_cur_cases_w%></td>
-      <td style="text-align: center" scope="col"><%= county.num_cur_cases_o%></td>
-      <td style="text-align: center" scope="col"><%= county.num_dr%></td>
-      <td style="text-align: center" scope="col"><%= county.num_dr_b%></td>
-      <td style="text-align: center" scope="col"><%= county.num_dr_w%></td>
-      <td style="text-align: center" scope="col"><%= county.num_dr_o%></td>
-      <% if can?(:access, :rails_admin) %>
-      <td>
-        <%= link_to 'Edit ', upload_edit_path(county)%>
-      </td>
-      <% end %>
-    </tr>
-  <% end %>
+      <tr>
+        <td scope="col"><%= county.name%></td>
+        <td style="text-align: center" scope="col"><%= county.population%></td>
+        <td style="text-align: center" scope="col"><%= county.num_cur_cases%></td>
+        <td style="text-align: center" scope="col"><%= county.num_cur_cases_b%></td>
+        <td style="text-align: center" scope="col"><%= county.num_cur_cases_w%></td>
+        <td style="text-align: center" scope="col"><%= county.num_cur_cases_o%></td>
+        <td style="text-align: center" scope="col"><%= county.num_dr%></td>
+        <td style="text-align: center" scope="col"><%= county.num_dr_b%></td>
+        <td style="text-align: center" scope="col"><%= county.num_dr_w%></td>
+        <td style="text-align: center" scope="col"><%= county.num_dr_o%></td>
+        <% if can?(:access, :rails_admin) %>
+        <td>
+          <%= link_to 'Edit ', upload_edit_path(county)%>
+        </td>
+        <% end %>
+      </tr>
+    <% end %>
   </table>
 <br><br>
 

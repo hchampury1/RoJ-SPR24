@@ -1,7 +1,7 @@
 #Project name: Mapping Justice
 #Description: For our ACCR Collaborative Project we have created an interactive map of PA. The map is color coded by cases + death sentences and population. 
 #The user can hover over a county to view its statistics. Additionally, several counties can be clicked to generate charts
-#Filename: map_controller.rb
+#Filename: upload_controller.rb
 #Description: The upload controller performs multiple functionalities including allowing the user to download current data and upload new data files. 
 #During the upload process, it performs file validation, adds to the current database, and maintains records of previous uploads.
 #Last modified on: 4/23/2023
