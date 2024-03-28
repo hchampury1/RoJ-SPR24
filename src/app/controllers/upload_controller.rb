@@ -9,6 +9,7 @@
 class UploadController < ApplicationController
     skip_before_action :authenticate_user!
     before_action :get_county, only: %i[edit]
+    helper_method :sort_column, :sort_direction
     #CONSTANTS definition
     #MAX_UPLOADS indicates the max number of previous file uploads that are kept in storage
     MAX_UPLOADS = 6
@@ -24,16 +25,30 @@ class UploadController < ApplicationController
     COLUMNS = ['name', 'num_cur_cases', 'num_cur_cases_b', 'num_cur_cases_w', 'num_cur_cases_o','population', 'num_dr', 'num_dr_b', 'num_dr_w', 'num_dr_o']
 
     def index
-        if params[:keywords].present?
-            # Get any keywords from search box
-            @keywords = params[:keywords]
-            # Use keywords to create new search term object
-            county_search_term = CountySearchTerm.new(@keywords)
-
-            @counties = County.where(name: params[:keywords])
+        input = {}
+        input[:name] = params[:countyName] if params[:countyName].present?
+        input[:population] = params[:minPop] if params[:minPop].present?
+        input[:population] = params[:maxPop] if params[:maxPop].present?
+        input[:num_cur_cases] = params[:totalPend] if params[:totalPend].present?
+        input[:num_cur_cases_b] = params[:bPend] if params[:bPend].present?
+        input[:num_cur_cases_w] = params[:wPend] if params[:wPend].present?
+        input[:num_cur_cases_o] = params[:oPend] if params[:oPend].present?
+        input[:num_dr] = params[:totalCases] if params[:totalCases].present?
+        input[:num_dr_b] = params[:bCase] if params[:bCase].present?
+        input[:num_dr_w] = params[:wCase] if params[:wCase].present?
+        input[:num_dr_o] = params[:oCase] if params[:oCase].present?
+        
+        session[:search_results] = input 
+        if input.present?
+            @counties = County.where(input)
         else
-            @counties = County.order(:name)
+            @counties = County.order(sort_column + ' ' + (sort_direction || "asc"))
         end
+
+        if @counties.empty?
+            flash.now[:alert] = "No Results Found!"
+        end     
+        render :index
     end
     
     def edit
@@ -59,9 +74,21 @@ class UploadController < ApplicationController
 
     #This function allows the user to download a copy of the current data for easy viewing as well as modification
     def downloadcsv
-        send_file("#{Rails.root}/app/assets/data/map_data.csv",
-        filename: "current_data.csv",
-        type: "application/csv")
+        input = session[:search_results]
+        @counties = County.where(input)
+        if @counties.nil? || @counties.empty?
+            redirect_to upload_index_path
+            return
+        end
+        #Saves data if data fou
+        csv_data = CSV.generate(headers: true) do |data|
+            data << COLUMNS
+            @counties.each do |el|
+              data << COLUMNS.map { |col| el[col] }
+            end
+        end
+        #Creates dowmload file
+        send_data csv_data, filename: "current_data.csv", type: "application/csv"
     end
 
     #This function allows the user to upload a csv file with new data for the map. It performs input validations.
@@ -92,6 +119,15 @@ class UploadController < ApplicationController
     end
 
     private
+    #Returns column name to be sorted
+    def sort_column
+         @counties = County.column_names.include?(params[:sort]) ? params[:sort] : "id"
+    end
+    #Returns sorting direction: ascending or descending
+    def sort_direction
+        %w[asc desc].include?(params[:direction]) ? params[:direction] : nil
+    end
+
     #This function ensures the file has a .csv extension
     def csv?(file)
         if file.original_filename.ends_with?('.csv')

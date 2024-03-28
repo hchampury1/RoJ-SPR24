@@ -38,6 +38,9 @@ Usage: Staff members have the ability to add, modify, or remove mail entries, an
 Functionality: An interactive map providing visual data representation related to capital punishment across Pennsylvania, including case statistics and demographic information.
 Usage: Users can explore the map to view detailed statistics by county, compare data across different regions, and gain insights into the state's justice dynamics.
 
+###### County Data
+Functionality: Search feature that allows you to search/sort specific data from the Mapping Justice data shown in the visual data presentation. Users can search using multiple types of data and sort by column type by using the arrows or clicking the column title. Users can also download data based on search query. Users can lastly, reset the page after entering a search query.
+
 #### Pro Bono Tracker
 Functionality: Enables the recording and tracking of volunteer contributions using a timesheet-based approach, facilitating the management of time, money, and effort donated to the organization.
 Usage: Staff and volunteers can log their contributions, which are then compiled and stored for organizational review, planning, and recognition.
