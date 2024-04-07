@@ -3,7 +3,7 @@
 The user can hover over a county to view its statistics. Additionally, several counties can be clicked to generate charts-->
 <!-- Filename: index.html.erb -->
 <!-- Description: The file generates the view for the upload map data functionality. -->
-<!-- Last modified on: 3/20/2024 -->
+<!-- Last modified on: 4/7/2024 -->
 
 <div class="container" style= "padding bottom: 10px !important">
 <br/>
@@ -36,88 +36,78 @@ The user can hover over a county to view its statistics. Additionally, several c
 <h5 class="text-center">Click <a href='downloadcsv'> here</a> to download the current data spreadsheet.</h5>
 
 <br>
-  <!-- Creates Search Bars & Search Button -->
+  <!-- Creates Search Bars for Multi-search & Search Button -->
   <h5 class="text-center">Search Counties</h5>
   <section class="search-form">
     <%= form_for :upload, method: :get do |f| %>
-      <div class="input-group">
-        <%= label_tag :countyName, nil, class: "sr-only" %>
-        <%= text_field_tag :countyName, nil,
-          placeholder: "County Name",
-            class: "form-control input" %>
+      <div class="select-group">
+        County: <%= label_tag :countyName, nil, class: "sr-only" %>
+        <%= select_tag :countyName, options_for_select(@county_names, params[:countyName]), include_blank: true, include_blank: '-- Select County --', class: "form-control input" %>
       </div>
       <br>
-      <div class="input-group">
-        <%= label_tag :minPop, nil, class: "sr-only" %>
-        <%= text_field_tag :minPop, nil,
-          placeholder: "Min Population",
-            class: "form-control input" %>
+      <div class="select-group">
+          Population: 
+          <%= label_tag :pop, nil, class: "sr-only" %>
+          <%= select_tag :pop, options_for_select(@pop, params[:pop]), include_blank: true, include_blank: '-- Select Population --', class: "form-control input" %>
+      </div>
+      <div>
+        <!--
+          <%= label_tag :minpop, nil, class: "sr-only" %>
+          <%= select_tag :minpop, options_for_select(@min_pop), include_blank: true, include_blank: '-- Select Min Population --', class: "form-control input" %>
+          <%= label_tag :maxPop, nil, class: "sr-only" %>
+          <%= select_tag :maxPop, options_for_select(@max_pop), include_blank: true, include_blank: '-- Select Max Population --', class: "form-control input" %>
+        -->
       </div>
       <br>
-      <div class="input-group">
-        <%= label_tag :maxPop, nil, class: "sr-only" %>
-        <%= text_field_tag :maxPop, nil,
-          placeholder: "Max Population",
-            class: "form-control input" %>
-      </div>
-      <br>
-      <div class="input-group">
+      <div class="select-group">
+        Total Pending Cases: 
         <%= label_tag :totalPend, nil, class: "sr-only" %>
-        <%= text_field_tag :totalPend, nil,
-          placeholder: "Total Pending Cases",
-            class: "form-control input" %>
+        <%= select_tag :totalPend, options_for_select(@totalPend, params[:totalPend]), include_blank: true, include_blank: '-- Select Total Pending Cases --', class: "form-control input" %>
       </div>
       <br>
-      <div class="input-group">
+      <div class="select-group">
+        Pending Cases(Black):
         <%= label_tag :bPend, nil, class: "sr-only" %>
-        <%= text_field_tag :bPend, nil,
-          placeholder: "Pending Cases(Black)",
-            class: "form-control input" %>
+        <%= select_tag :bPend, options_for_select(@bPend, params[:bPend]), include_blank: true, include_blank: '-- Select Pending Cases(Black) --', class: "form-control input" %>
       </div>
       <br>
-      <div class="input-group">
+      <div class="select-group">
+        Pending Cases(White):
         <%= label_tag :wPend, nil, class: "sr-only" %>
-        <%= text_field_tag :wPend, nil,
-          placeholder: "Pending Cases(White)",
-            class: "form-control input" %>
+        <%= select_tag :wPend, options_for_select(@wPend, params[:wPend]), include_blank: true, include_blank: '-- Select Pending Cases(White) --', class: "form-control input" %>
       </div>
       <br>
-      <div class="input-group">
+      <div class="select-group">
+        Pending Cases(Other):
         <%= label_tag :oPend, nil, class: "sr-only" %>
-        <%= text_field_tag :oPend, nil,
-          placeholder: "Pending Cases(Other)",
-            class: "form-control input" %>
+        <%= select_tag :oPend, options_for_select(@oPend, params[:oPend]), include_blank: true, include_blank: '-- Select Pending Cases(Other) --', class: "form-control input" %>
       </div>
       <br>
-      <div class="input-group">
+      <div class="select-group">
+        Total Current Cases:
         <%= label_tag :totalCases, nil, class: "sr-only" %>
-        <%= text_field_tag :totalCases, nil,
-          placeholder: "Total Current Cases",
-          class: "form-control input" %>
+        <%= select_tag :totalCases, options_for_select(@totalCur, params[:totalCases]), include_blank: true, include_blank: '-- Select Total Current Cases --', class: "form-control input" %>
       </div>
       <br>
-      <div class="input-group">
+      <div class="select-group">
+        Current Cases(Black):
         <%= label_tag :bCase, nil, class: "sr-only" %>
-        <%= text_field_tag :bCase, nil,
-          placeholder: "Current Cases(Black)",
-            class: "form-control input" %>
+        <%= select_tag :bCase, options_for_select(@bCase, params[:bCase]), include_blank: true, include_blank: '-- Select Current Cases(Black) --', class: "form-control input" %>
       </div>
       <br>
-      <div class="input-group">
+      <div class="select-group">
+        Current Cases(White):
         <%= label_tag :wCase, nil, class: "sr-only" %>
-        <%= text_field_tag :wCase, nil,
-          placeholder: "Current Cases(White)",
-            class: "form-control input" %>
+        <%= select_tag :wCase, options_for_select(@wCase, params[:wCase]), include_blank: true, include_blank: '-- Select Current Cases(White) --', class: "form-control input" %>
       </div>
       <br>
-      <div class="input-group">
+      <div class="select-group">
+        Current Cases(Other):
         <%= label_tag :oCase, nil, class: "sr-only" %>
-        <%= text_field_tag :oCase, nil,
-          placeholder: "Current Cases(Other)",
-            class: "form-control input" %>
+        <%= select_tag :oCase, options_for_select(@oCase, params[:oCase]), include_blank: true, include_blank: '-- Select Current Cases(Other) --', class: "form-control input" %>
       </div>
 
-      <div class="input-group">
+      <div class="select-group">
         <%= submit_tag "Search", class: "btn btn-primary btn" %>
       </div>
 
@@ -150,7 +140,7 @@ The user can hover over a county to view its statistics. Additionally, several c
         <th scope="col" style="text-align: center"><%= sortable "num_dr_o", "Current (Other)"%></th>
         <!-- <th scope="col">Description</th> -->
         <% if can?(:access, :rails_admin) %>
-        <th scope="col">Actions</th>
+          <th scope="col">Actions</th>
         <% end %>
       </tr>
     </thead>
