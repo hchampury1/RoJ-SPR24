@@ -52,11 +52,9 @@ class UploadController < ApplicationController
         @select_oCase = params[:oCase]
 
         # Search parameters
-        input = {}
+        input = session[:search_results] || {}
         input[:name] = params[:countyName] if params[:countyName].present?
         input[:population] = params[:pop] if params[:pop].present?
-        #input[:population] = params[:minPop] if params[:minPop].present?
-        #input[:population] = params[:maxPop] if params[:maxPop].present?input[:num_cur_cases] = params[:totalPend] if params[:totalPend].present?
         input[:num_cur_cases_b] = params[:bPend] if params[:bPend].present?
         input[:num_cur_cases_w] = params[:wPend] if params[:wPend].present?
         input[:num_cur_cases_o] = params[:oPend] if params[:oPend].present?
@@ -70,6 +68,10 @@ class UploadController < ApplicationController
         # Will filter table results base on search parameters
         if input.present?
             @counties = County.where(input)
+            # Sorts search results in table
+            if params[:sort].present? && County.column_names.include?(params[:sort])
+                @counties = @counties.order(params[:sort] + ' ' + (params[:direction] || "asc"))
+            end
         else
             @counties = County.order(sort_column + ' ' + (sort_direction || "asc"))
         end

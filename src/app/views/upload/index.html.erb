@@ -106,7 +106,7 @@ The user can hover over a county to view its statistics. Additionally, several c
         <%= label_tag :oCase, nil, class: "sr-only" %>
         <%= select_tag :oCase, options_for_select(@oCase, params[:oCase]), include_blank: true, include_blank: '-- Select Current Cases(Other) --', class: "form-control input" %>
       </div>
-
+      <br>
       <div class="select-group">
         <%= submit_tag "Search", class: "btn btn-primary btn" %>
       </div>
