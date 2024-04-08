@@ -4,7 +4,7 @@
 #Filename: upload_controller.rb
 #Description: The upload controller performs multiple functionalities including allowing the user to download current data and upload new data files. 
 #During the upload process, it performs file validation, adds to the current database, and maintains records of previous uploads.
-#Last modified on: 4/23/2023
+#Last modified on: 4/7/2024
 
 class UploadController < ApplicationController
     skip_before_action :authenticate_user!
@@ -62,9 +62,11 @@ class UploadController < ApplicationController
         @search_results = @search_results.where(input) if input.present?
 
         # Sorts search results in table
+        # Sorts if not input found
         if input.blank? && params[:sort].present? && County.column_names.include?(params[:sort])
             @search_results = @orig_counties.order(sort_column + ' ' + (sort_direction || "asc"))
         end
+        # Sorts if input found
         if input.present? && params[:sort].present? && County.column_names.include?(params[:sort])
             @search_results = @search_results.order(sort_column + ' ' + (sort_direction || "asc"))
         end
