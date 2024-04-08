@@ -39,7 +39,7 @@ Functionality: An interactive map providing visual data representation related t
 Usage: Users can explore the map to view detailed statistics by county, compare data across different regions, and gain insights into the state's justice dynamics.
 
 ###### County Data
-Functionality: Search feature that allows you to search/sort specific data from the Mapping Justice data shown in the visual data presentation. Users can search using multiple types of data and sort by column type by using the arrows or clicking the column title. Users can also download data based on search query. Users can lastly, reset the page after entering a search query.
+Functionality: Search feature that allows you to search/sort county data from the Mapping Justice data shown in the visual data presentation. Users can search using multiple constraints and sort by columns using either the arrows or column title. These constraints can be selected via a dropdown menu and clicking the "Search" button. Users can also download data based on search query by click the link labeled "here." Users can lastly, reset the page after entering a search query that will clear the search results in the table as well as the dropdown menus. Users can sort search results after query once, before it clears the results and sorts the original data.
 
 #### Pro Bono Tracker
 Functionality: Enables the recording and tracking of volunteer contributions using a timesheet-based approach, facilitating the management of time, money, and effort donated to the organization.
