@@ -1,3 +1,4 @@
+# Opensource	Maintenance	and	Communication	
 ## Guidlines & Processes for Project
 ### Where will community member discuss and organize issues & bugs
 - Github "Issues": tab at the top of the Github repository used to report bugs, request features, ask questions allowing contributors to find issues easily and work on them
