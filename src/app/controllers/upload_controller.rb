@@ -23,9 +23,11 @@ class UploadController < ApplicationController
     'York']   
     #COLUMNS represents the expected values for headers in uploaded data
     COLUMNS = ['name', 'num_cur_cases', 'num_cur_cases_b', 'num_cur_cases_w', 'num_cur_cases_o','population', 'num_dr', 'num_dr_b', 'num_dr_w', 'num_dr_o']
-    before_action :set_orig_counties
     
     def index
+        # Set original counties to data from current session or to all countiess
+        @orig_counties = session[:search_results].present? ? County.where(session[:search_results]) : County.all
+        
         # Grab values for dropdowns
         @county_names = County.pluck(:name).uniq.sort
         @pop = County.pluck(:population).uniq.sort
@@ -56,15 +58,18 @@ class UploadController < ApplicationController
         session[:search_results] = input
         
         # Will filter results base on if search parameters exist
-        @search_results = @orig_counties
+        @search_results = County.all
         @search_results = @search_results.where(input) if input.present?
 
         # Sorts search results in table
-        if params[:sort].present? && County.column_names.include?(params[:sort])
+        if input.blank? && params[:sort].present? && County.column_names.include?(params[:sort])
+            @search_results = @orig_counties.order(sort_column + ' ' + (sort_direction || "asc"))
+        end
+        if input.present? && params[:sort].present? && County.column_names.include?(params[:sort])
             @search_results = @search_results.order(sort_column + ' ' + (sort_direction || "asc"))
         end
 
-        # Flashes an alert if no results
+        # Flashes an alert isf no results
         flash.now[:alert] = "No Results Found!" if @search_results.empty?
         
         render :index
@@ -138,11 +143,6 @@ class UploadController < ApplicationController
     end
 
     private
-    # Saves orignal counties from csv file
-    def set_orig_counties
-        @orig_counties = County.all
-    end
-
     #Returns column name to be sorted
     def sort_column
          @counties = County.column_names.include?(params[:sort]) ? params[:sort] : "id"
