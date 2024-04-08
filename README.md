@@ -1,18 +1,17 @@
 # Welcome to _Rails of Justice Project_
 
-
-
 ### Video Tutorials for Installation
 * [CSC 415: Virtual Machine Setup Tutorial - Video 1](https://youtu.be/IMb4cCGBQFA)
 * [CSC 415: SSH Key Setup - Video 2](https://youtu.be/fbyiFgUZDMs)
 * [CSC 415: SSH and vscode setup - Video 3](https://youtu.be/BTOIt7wjJxA)
 * [CSC 415: GitHub and vscode - Video 4](https://youtu.be/-1C81UCUtIM)
 
-
 ### UML Diagrams of current ROJ implementation
-
 * [Class Diagram](https://github.com/TCNJ-SE/RoJ-Spr2024/blob/main/docs/Rails%20of%20Justice%20-%20Class%20Diagram.png)
 * [Use Case Diagram](https://github.com/TCNJ-SE/RoJ-Spr2024/blob/main/docs/Rails%20of%20Justice%20-%20Use%20Case%20Diagram.png)
+
+### Contribution Documentation
+* [HC:Contribute](https://github.com/TCNJ-SE/RoJ-Spr24-HC/blob/prototype3/docs/HC%3AContribute.md)
 
 ### Overview
 The Registry of Justice (RoJ) is an all-encompassing application designed for the Advocacy for Criminal Case Reform (ACCR). Aimed at improving operational efficiency, enhancing communication, and streamlining event and volunteer management, RoJ integrates several modules within a single platform. These modules include Webinar Registration, Event Calendar, Call Organizer, In Kind Donations, Mail Manager, Mapping Justice, and Pro Bono Tracker, each developed to support ACCR in organizing webinars, managing events, tracking communications and donations, handling correspondence, visualizing justice-related data, and monitoring volunteer contributions.
