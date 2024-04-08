@@ -23,7 +23,8 @@ class UploadController < ApplicationController
     'York']   
     #COLUMNS represents the expected values for headers in uploaded data
     COLUMNS = ['name', 'num_cur_cases', 'num_cur_cases_b', 'num_cur_cases_w', 'num_cur_cases_o','population', 'num_dr', 'num_dr_b', 'num_dr_w', 'num_dr_o']
-
+    before_action :set_orig_counties
+    
     def index
         # Grab values for dropdowns
         @county_names = County.pluck(:name).uniq.sort
@@ -39,20 +40,8 @@ class UploadController < ApplicationController
         @wCase = County.pluck(:num_dr_w).uniq.sort
         @oCase = County.pluck(:num_dr_o).uniq.sort
 
-        # Get type of search parameters
-        @select_county = params[:countName]
-        @select_pop = params[:pop]
-        @select_totalPen = params[:totalPend]
-        @select_bPend = params[:bPend]
-        @select_wPend = params[:wPend]
-        @select_oPend = params[:oPend]
-        @select_totalCur = params[:totalCur]
-        @select_bCase = params[:bCase]
-        @select_wCase = params[:wCase]
-        @select_oCase = params[:oCase]
-
         # Search parameters
-        input = session[:search_results] || {}
+        input = {}
         input[:name] = params[:countyName] if params[:countyName].present?
         input[:population] = params[:pop] if params[:pop].present?
         input[:num_cur_cases_b] = params[:bPend] if params[:bPend].present?
@@ -63,23 +52,21 @@ class UploadController < ApplicationController
         input[:num_dr_w] = params[:wCase] if params[:wCase].present?
         input[:num_dr_o] = params[:oCase] if params[:oCase].present?
         
+        #Saves search parameters
         session[:search_results] = input
         
-        # Will filter table results base on search parameters
-        if input.present?
-            @counties = County.where(input)
-            # Sorts search results in table
-            if params[:sort].present? && County.column_names.include?(params[:sort])
-                @counties = @counties.order(params[:sort] + ' ' + (params[:direction] || "asc"))
-            end
-        else
-            @counties = County.order(sort_column + ' ' + (sort_direction || "asc"))
+        # Will filter results base on if search parameters exist
+        @search_results = @orig_counties
+        @search_results = @search_results.where(input) if input.present?
+
+        # Sorts search results in table
+        if params[:sort].present? && County.column_names.include?(params[:sort])
+            @search_results = @search_results.order(sort_column + ' ' + (sort_direction || "asc"))
         end
 
         # Flashes an alert if no results
-        if @counties.empty?
-            flash.now[:alert] = "No Results Found!"
-        end     
+        flash.now[:alert] = "No Results Found!" if @search_results.empty?
+        
         render :index
     end
     
@@ -151,6 +138,11 @@ class UploadController < ApplicationController
     end
 
     private
+    # Saves orignal counties from csv file
+    def set_orig_counties
+        @orig_counties = County.all
+    end
+
     #Returns column name to be sorted
     def sort_column
          @counties = County.column_names.include?(params[:sort]) ? params[:sort] : "id"

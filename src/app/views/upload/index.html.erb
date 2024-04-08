@@ -110,9 +110,12 @@ The user can hover over a county to view its statistics. Additionally, several c
       <div class="select-group">
         <%= submit_tag "Search", class: "btn btn-primary btn" %>
       </div>
-
     <% end %>
   </section>
+  <!-- Reset button to refresh table -->
+  <div class="text-left">
+    <%= button_tag "Reset", type: "button", class: "btn btn-secondary", onclick: "window.location.href = '#{upload_index_path}'" %>
+  </div>
 
   <!-- Displays note if data is sorted -->
   <div class = "text-center" >
@@ -128,7 +131,8 @@ The user can hover over a county to view its statistics. Additionally, several c
   <table class="table table-hover table-striped">
     <thead>
       <tr>
-        <th scope="col"><%= sortable "name", "County"%></th>
+        <th scope="col"></th>
+        <th scope="col" style="text-align: center"><%= sortable "name", "County"%></th>
         <th scope="col" style="text-align: center"><%= sortable "population", "Population"%></th>
         <th scope="col" style="text-align: center"><%= sortable "num_cur_cases", "Total Pending Cases"%></th>
         <th scope="col" style="text-align: center"><%= sortable "num_cur_cases_b", "Pending (Black)"%></th> 
@@ -144,9 +148,10 @@ The user can hover over a county to view its statistics. Additionally, several c
         <% end %>
       </tr>
     </thead>
-    <% @counties.each do |county| %>
+    <% @search_results.each_with_index do |county, index| %>
       <tr>
-        <td scope="col"><%= county.name%></td>
+        <td><%= index + 1 %></td>
+        <td style="text-align: center" scope="col"><%= county.name%></td>
         <td style="text-align: center" scope="col"><%= county.population%></td>
         <td style="text-align: center" scope="col"><%= county.num_cur_cases%></td>
         <td style="text-align: center" scope="col"><%= county.num_cur_cases_b%></td>
@@ -157,19 +162,14 @@ The user can hover over a county to view its statistics. Additionally, several c
         <td style="text-align: center" scope="col"><%= county.num_dr_w%></td>
         <td style="text-align: center" scope="col"><%= county.num_dr_o%></td>
         <% if can?(:access, :rails_admin) %>
-        <td>
-          <%= link_to 'Edit ', upload_edit_path(county)%>
-        </td>
+          <td>
+            <%= link_to 'Edit ', upload_edit_path(county)%>
+          </td>
         <% end %>
       </tr>
     <% end %>
   </table>
 <br><br>
-
-<!-- Reset button to refresh table -->
-<div class="text-left">
-  <%= button_tag "Reset", type: "button", class: "btn btn-secondary", onclick: "window.location.href = '#{upload_index_path}'" %>
-</div>
 
 <!-- Div for footer -->
 <div id="footer">
