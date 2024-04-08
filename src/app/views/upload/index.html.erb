@@ -42,70 +42,70 @@ The user can hover over a county to view its statistics. Additionally, several c
   <section class="search-form">
     <%= form_for :upload, method: :get do |f| %>
       <div class="select-group">
-        County: <%= label_tag :countyName, nil, class: "sr-only" %>
-        <%= select_tag :countyName, options_for_select(@county_names, params[:countyName]), include_blank: true, include_blank: '-- Select County --', class: "form-control input" %>
+        <h6>County:</h6>
+        <%= select_tag :countyName, options_for_select(@county_names, params[:countyName]), include_blank: '-- Select County --', class: "form-control input" %>
       </div>
       <br>
       <div class="select-group">
-          Population: 
+        <h6>Population:</h6>
           <%= label_tag :pop, nil, class: "sr-only" %>
-          <%= select_tag :pop, options_for_select(@pop, params[:pop]), include_blank: true, include_blank: '-- Select Population --', class: "form-control input" %>
+          <%= select_tag :pop, options_for_select(@pop, params[:pop]), include_blank: '-- Select Population --', class: "form-control input" %>
       </div>
       <div>
         <!--
           <%= label_tag :minpop, nil, class: "sr-only" %>
-          <%= select_tag :minpop, options_for_select(@min_pop), include_blank: true, include_blank: '-- Select Min Population --', class: "form-control input" %>
+          <%= select_tag :minpop, options_for_select(@min_pop), include_blank: '-- Select Min Population --', class: "form-control input" %>
           <%= label_tag :maxPop, nil, class: "sr-only" %>
-          <%= select_tag :maxPop, options_for_select(@max_pop), include_blank: true, include_blank: '-- Select Max Population --', class: "form-control input" %>
+          <%= select_tag :maxPop, options_for_select(@max_pop), include_blank: '-- Select Max Population --', class: "form-control input" %>
         -->
       </div>
       <br>
       <div class="select-group">
-        Total Pending Cases: 
+        <h6>Total Pending Cases:</h6>
         <%= label_tag :totalPend, nil, class: "sr-only" %>
-        <%= select_tag :totalPend, options_for_select(@totalPend, params[:totalPend]), include_blank: true, include_blank: '-- Select Total Pending Cases --', class: "form-control input" %>
+        <%= select_tag :totalPend, options_for_select(@totalPend, params[:totalPend]), include_blank: '-- Select Total Pending Cases --', class: "form-control input" %>
       </div>
       <br>
       <div class="select-group">
-        Pending Cases(Black):
+        <h6>Pending Cases(Black):</h6>
         <%= label_tag :bPend, nil, class: "sr-only" %>
-        <%= select_tag :bPend, options_for_select(@bPend, params[:bPend]), include_blank: true, include_blank: '-- Select Pending Cases(Black) --', class: "form-control input" %>
+        <%= select_tag :bPend, options_for_select(@bPend, params[:bPend]), include_blank: '-- Select Pending Cases(Black) --', class: "form-control input" %>
       </div>
       <br>
       <div class="select-group">
-        Pending Cases(White):
+        <h6>Pending Cases(White):</h6>
         <%= label_tag :wPend, nil, class: "sr-only" %>
-        <%= select_tag :wPend, options_for_select(@wPend, params[:wPend]), include_blank: true, include_blank: '-- Select Pending Cases(White) --', class: "form-control input" %>
+        <%= select_tag :wPend, options_for_select(@wPend, params[:wPend]), include_blank: '-- Select Pending Cases(White) --', class: "form-control input" %>
       </div>
       <br>
       <div class="select-group">
-        Pending Cases(Other):
+        <h6>Pending Cases(Other):</h6>
         <%= label_tag :oPend, nil, class: "sr-only" %>
-        <%= select_tag :oPend, options_for_select(@oPend, params[:oPend]), include_blank: true, include_blank: '-- Select Pending Cases(Other) --', class: "form-control input" %>
+        <%= select_tag :oPend, options_for_select(@oPend, params[:oPend]), include_blank: '-- Select Pending Cases(Other) --', class: "form-control input" %>
       </div>
       <br>
       <div class="select-group">
-        Total Current Cases:
+        <h6>Total Current Cases:</h6>
         <%= label_tag :totalCases, nil, class: "sr-only" %>
-        <%= select_tag :totalCases, options_for_select(@totalCur, params[:totalCases]), include_blank: true, include_blank: '-- Select Total Current Cases --', class: "form-control input" %>
+        <%= select_tag :totalCases, options_for_select(@totalCur, params[:totalCases]), include_blank: '-- Select Total Current Cases --', class: "form-control input" %>
       </div>
       <br>
       <div class="select-group">
-        Current Cases(Black):
+        <h6>Current Cases(Black):</h6>
         <%= label_tag :bCase, nil, class: "sr-only" %>
-        <%= select_tag :bCase, options_for_select(@bCase, params[:bCase]), include_blank: true, include_blank: '-- Select Current Cases(Black) --', class: "form-control input" %>
+        <%= select_tag :bCase, options_for_select(@bCase, params[:bCase]), include_blank: '-- Select Current Cases(Black) --', class: "form-control input" %>
       </div>
       <br>
       <div class="select-group">
-        Current Cases(White):
+        <h6>Current Cases(White):</h6>
         <%= label_tag :wCase, nil, class: "sr-only" %>
-        <%= select_tag :wCase, options_for_select(@wCase, params[:wCase]), include_blank: true, include_blank: '-- Select Current Cases(White) --', class: "form-control input" %>
+        <%= select_tag :wCase, options_for_select(@wCase, params[:wCase]), include_blank: '-- Select Current Cases(White) --', class: "form-control input" %>
       </div>
       <br>
       <div class="select-group">
-        Current Cases(Other):
+        <h6>Current Cases(Other):</h6>
         <%= label_tag :oCase, nil, class: "sr-only" %>
-        <%= select_tag :oCase, options_for_select(@oCase, params[:oCase]), include_blank: true, include_blank: '-- Select Current Cases(Other) --', class: "form-control input" %>
+        <%= select_tag :oCase, options_for_select(@oCase, params[:oCase]), include_blank: '-- Select Current Cases(Other) --', class: "form-control input" %>
       </div>
       <br>
       <div class="select-group">
