@@ -1,16 +1,6 @@
 # Welcome to _Rails of Justice Project_
 
-### Video Tutorials for Installation
-* [CSC 415: Virtual Machine Setup Tutorial - Video 1](https://youtu.be/IMb4cCGBQFA)
-* [CSC 415: SSH Key Setup - Video 2](https://youtu.be/fbyiFgUZDMs)
-* [CSC 415: SSH and vscode setup - Video 3](https://youtu.be/BTOIt7wjJxA)
-* [CSC 415: GitHub and vscode - Video 4](https://youtu.be/-1C81UCUtIM)
-
-### UML Diagrams of current ROJ implementation
-* [Class Diagram](https://github.com/TCNJ-SE/RoJ-Spr2024/blob/main/docs/Rails%20of%20Justice%20-%20Class%20Diagram.png)
-* [Use Case Diagram](https://github.com/TCNJ-SE/RoJ-Spr2024/blob/main/docs/Rails%20of%20Justice%20-%20Use%20Case%20Diagram.png)
-
-### Contribution Documentation
+## Contribution Documentation
 * [HC:Contribute](https://github.com/TCNJ-SE/RoJ-Spr24-HC/blob/prototype3/docs/HC%3AContribute.md)
 
 ### Overview
