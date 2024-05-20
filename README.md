@@ -14,7 +14,7 @@
 * [HC:Contribute](https://github.com/TCNJ-SE/RoJ-Spr24-HC/blob/prototype3/docs/HC%3AContribute.md)
 
 ### Overview
-The Registry of Justice (RoJ) is an all-encompassing application designed for the Advocacy for Criminal Case Reform (ACCR). Aimed at improving operational efficiency, enhancing communication, and streamlining event and volunteer management, RoJ integrates several modules within a single platform. These modules include Webinar Registration, Event Calendar, Call Organizer, In Kind Donations, Mail Manager, Mapping Justice, and Pro Bono Tracker, each developed to support ACCR in organizing webinars, managing events, tracking communications and donations, handling correspondence, visualizing justice-related data, and monitoring volunteer contributions.
+Rails of Justice (RoJ) is aimed at improving operational efficiency, enhancing communication, and streamlining event and volunteer management for ACCR staff members. RoJ integrates several modules within a single platform, including Webinar Registration, Event Calendar, Call Organizer, In Kind Donations, Mail Manager, Mapping Justice, and Pro Bono Tracker.
 
 ### Features and Instructions
 #### Webinar Registration & Event Calendar
