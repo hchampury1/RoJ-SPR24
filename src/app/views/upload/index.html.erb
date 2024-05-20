@@ -3,7 +3,7 @@
 The user can hover over a county to view its statistics. Additionally, several counties can be clicked to generate charts-->
 <!-- Filename: index.html.erb -->
 <!-- Description: The file generates the view for the upload map data functionality. -->
-<!-- Last modified on: 3/20/2024 -->
+<!-- Last modified on: 4/7/2024 -->
 
 <div class="container" style= "padding bottom: 10px !important">
 <br/>
@@ -14,6 +14,7 @@ The user can hover over a county to view its statistics. Additionally, several c
 <% if can?(:access, :rails_admin) %>
   <h4 class="text-center">Please fill out information below in order to update the map. </h4> 
   <br>
+  <!-- Allows admin to upload data via csv -->
   <h4 class="text-center">Upload your spreadsheet with new data here in order to update the map. </h4> 
 
   <br/>
@@ -36,93 +37,87 @@ The user can hover over a county to view its statistics. Additionally, several c
 <h5 class="text-center">Click <a href='downloadcsv'> here</a> to download the current data spreadsheet.</h5>
 
 <br>
-  <!-- Creates Search Bars & Search Button -->
+  <!-- Creates Drop Downs for Multi-search & Search Button -->
   <h5 class="text-center">Search Counties</h5>
   <section class="search-form">
     <%= form_for :upload, method: :get do |f| %>
-      <div class="input-group">
-        <%= label_tag :countyName, nil, class: "sr-only" %>
-        <%= text_field_tag :countyName, nil,
-          placeholder: "County Name",
-            class: "form-control input" %>
+      <div class="select-group">
+        <h6>County:</h6>
+        <%= select_tag :countyName, options_for_select(@county_names, params[:countyName]), include_blank: '-- Select County --', class: "form-control input" %>
       </div>
       <br>
-      <div class="input-group">
-        <%= label_tag :minPop, nil, class: "sr-only" %>
-        <%= text_field_tag :minPop, nil,
-          placeholder: "Min Population",
-            class: "form-control input" %>
+      <div class="select-group">
+        <h6>Population:</h6>
+          <%= label_tag :pop, nil, class: "sr-only" %>
+          <%= select_tag :pop, options_for_select(@pop, params[:pop]), include_blank: '-- Select Population --', class: "form-control input" %>
+      </div>
+      <div>
+        <!--
+          <%= label_tag :minpop, nil, class: "sr-only" %>
+          <%= select_tag :minpop, options_for_select(@min_pop), include_blank: '-- Select Min Population --', class: "form-control input" %>
+          <%= label_tag :maxPop, nil, class: "sr-only" %>
+          <%= select_tag :maxPop, options_for_select(@max_pop), include_blank: '-- Select Max Population --', class: "form-control input" %>
+        -->
       </div>
       <br>
-      <div class="input-group">
-        <%= label_tag :maxPop, nil, class: "sr-only" %>
-        <%= text_field_tag :maxPop, nil,
-          placeholder: "Max Population",
-            class: "form-control input" %>
-      </div>
-      <br>
-      <div class="input-group">
+      <div class="select-group">
+        <h6>Total Pending Cases:</h6>
         <%= label_tag :totalPend, nil, class: "sr-only" %>
-        <%= text_field_tag :totalPend, nil,
-          placeholder: "Total Pending Cases",
-            class: "form-control input" %>
+        <%= select_tag :totalPend, options_for_select(@totalPend, params[:totalPend]), include_blank: '-- Select Total Pending Cases --', class: "form-control input" %>
       </div>
       <br>
-      <div class="input-group">
+      <div class="select-group">
+        <h6>Pending Cases(Black):</h6>
         <%= label_tag :bPend, nil, class: "sr-only" %>
-        <%= text_field_tag :bPend, nil,
-          placeholder: "Pending Cases(Black)",
-            class: "form-control input" %>
+        <%= select_tag :bPend, options_for_select(@bPend, params[:bPend]), include_blank: '-- Select Pending Cases(Black) --', class: "form-control input" %>
       </div>
       <br>
-      <div class="input-group">
+      <div class="select-group">
+        <h6>Pending Cases(White):</h6>
         <%= label_tag :wPend, nil, class: "sr-only" %>
-        <%= text_field_tag :wPend, nil,
-          placeholder: "Pending Cases(White)",
-            class: "form-control input" %>
+        <%= select_tag :wPend, options_for_select(@wPend, params[:wPend]), include_blank: '-- Select Pending Cases(White) --', class: "form-control input" %>
       </div>
       <br>
-      <div class="input-group">
+      <div class="select-group">
+        <h6>Pending Cases(Other):</h6>
         <%= label_tag :oPend, nil, class: "sr-only" %>
-        <%= text_field_tag :oPend, nil,
-          placeholder: "Pending Cases(Other)",
-            class: "form-control input" %>
+        <%= select_tag :oPend, options_for_select(@oPend, params[:oPend]), include_blank: '-- Select Pending Cases(Other) --', class: "form-control input" %>
       </div>
       <br>
-      <div class="input-group">
+      <div class="select-group">
+        <h6>Total Current Cases:</h6>
         <%= label_tag :totalCases, nil, class: "sr-only" %>
-        <%= text_field_tag :totalCases, nil,
-          placeholder: "Total Current Cases",
-          class: "form-control input" %>
+        <%= select_tag :totalCases, options_for_select(@totalCur, params[:totalCases]), include_blank: '-- Select Total Current Cases --', class: "form-control input" %>
       </div>
       <br>
-      <div class="input-group">
+      <div class="select-group">
+        <h6>Current Cases(Black):</h6>
         <%= label_tag :bCase, nil, class: "sr-only" %>
-        <%= text_field_tag :bCase, nil,
-          placeholder: "Current Cases(Black)",
-            class: "form-control input" %>
+        <%= select_tag :bCase, options_for_select(@bCase, params[:bCase]), include_blank: '-- Select Current Cases(Black) --', class: "form-control input" %>
       </div>
       <br>
-      <div class="input-group">
+      <div class="select-group">
+        <h6>Current Cases(White):</h6>
         <%= label_tag :wCase, nil, class: "sr-only" %>
-        <%= text_field_tag :wCase, nil,
-          placeholder: "Current Cases(White)",
-            class: "form-control input" %>
+        <%= select_tag :wCase, options_for_select(@wCase, params[:wCase]), include_blank: '-- Select Current Cases(White) --', class: "form-control input" %>
       </div>
       <br>
-      <div class="input-group">
+      <div class="select-group">
+        <h6>Current Cases(Other):</h6>
         <%= label_tag :oCase, nil, class: "sr-only" %>
-        <%= text_field_tag :oCase, nil,
-          placeholder: "Current Cases(Other)",
-            class: "form-control input" %>
+        <%= select_tag :oCase, options_for_select(@oCase, params[:oCase]), include_blank: '-- Select Current Cases(Other) --', class: "form-control input" %>
       </div>
-
-      <div class="input-group">
+      <br>
+      <div class="select-group">
         <%= submit_tag "Search", class: "btn btn-primary btn" %>
       </div>
-
     <% end %>
   </section>
+
+  <!-- Reset button to refresh table -->
+  <div class="text-left">
+    <%= button_tag "Clear Search Results", type: "button", class: "btn btn-secondary", onclick: "window.location.href = '#{upload_index_path}'" %>
+  </div>
 
   <!-- Displays note if data is sorted -->
   <div class = "text-center" >
@@ -138,7 +133,9 @@ The user can hover over a county to view its statistics. Additionally, several c
   <table class="table table-hover table-striped">
     <thead>
       <tr>
-        <th scope="col"><%= sortable "name", "County"%></th>
+        <!-- Sorting functionality that sorts data based on column -->
+        <th scope="col"></th>
+        <th scope="col" style="text-align: center"><%= sortable "name", "County"%></th>
         <th scope="col" style="text-align: center"><%= sortable "population", "Population"%></th>
         <th scope="col" style="text-align: center"><%= sortable "num_cur_cases", "Total Pending Cases"%></th>
         <th scope="col" style="text-align: center"><%= sortable "num_cur_cases_b", "Pending (Black)"%></th> 
@@ -148,38 +145,38 @@ The user can hover over a county to view its statistics. Additionally, several c
         <th scope="col" style="text-align: center"><%= sortable "num_dr_b", "Current (Black)"%></th>
         <th scope="col" style="text-align: center"><%= sortable "num_dr_w", "Current (White)"%></th>
         <th scope="col" style="text-align: center"><%= sortable "num_dr_o", "Current (Other)"%></th>
+       
+        <!-- Additional table view for admin -->
         <!-- <th scope="col">Description</th> -->
         <% if can?(:access, :rails_admin) %>
-        <th scope="col">Actions</th>
+          <th scope="col">Actions</th>
         <% end %>
       </tr>
     </thead>
-    <% @counties.each do |county| %>
-    <tr>
-      <td scope="col"><%= county.name%></td>
-      <td style="text-align: center" scope="col"><%= county.population%></td>
-      <td style="text-align: center" scope="col"><%= county.num_cur_cases%></td>
-      <td style="text-align: center" scope="col"><%= county.num_cur_cases_b%></td>
-      <td style="text-align: center" scope="col"><%= county.num_cur_cases_w%></td>
-      <td style="text-align: center" scope="col"><%= county.num_cur_cases_o%></td>
-      <td style="text-align: center" scope="col"><%= county.num_dr%></td>
-      <td style="text-align: center" scope="col"><%= county.num_dr_b%></td>
-      <td style="text-align: center" scope="col"><%= county.num_dr_w%></td>
-      <td style="text-align: center" scope="col"><%= county.num_dr_o%></td>
-      <% if can?(:access, :rails_admin) %>
-      <td>
-        <%= link_to 'Edit ', upload_edit_path(county)%>
-      </td>
-      <% end %>
-    </tr>
-  <% end %>
+    <% @search_results.each_with_index do |county, index| %>
+      <tr>
+        <td><%= index + 1 %></td>
+        <td style="text-align: center" scope="col"><%= county.name%></td>
+        <td style="text-align: center" scope="col"><%= county.population%></td>
+        <td style="text-align: center" scope="col"><%= county.num_cur_cases%></td>
+        <td style="text-align: center" scope="col"><%= county.num_cur_cases_b%></td>
+        <td style="text-align: center" scope="col"><%= county.num_cur_cases_w%></td>
+        <td style="text-align: center" scope="col"><%= county.num_cur_cases_o%></td>
+        <td style="text-align: center" scope="col"><%= county.num_dr%></td>
+        <td style="text-align: center" scope="col"><%= county.num_dr_b%></td>
+        <td style="text-align: center" scope="col"><%= county.num_dr_w%></td>
+        <td style="text-align: center" scope="col"><%= county.num_dr_o%></td>
+       
+        <!-- Additional table view for admin to edit data -->
+        <% if can?(:access, :rails_admin) %>
+          <td>
+            <%= link_to 'Edit ', upload_edit_path(county)%>
+          </td>
+        <% end %>
+      </tr>
+    <% end %>
   </table>
 <br><br>
-
-<!-- Reset button to refresh table -->
-<div class="text-left">
-  <%= button_tag "Reset", type: "button", class: "btn btn-secondary", onclick: "window.location.href = '#{upload_index_path}'" %>
-</div>
 
 <!-- Div for footer -->
 <div id="footer">

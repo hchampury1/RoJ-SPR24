@@ -1,18 +1,17 @@
 # Welcome to _Rails of Justice Project_
 
-
-
 ### Video Tutorials for Installation
 * [CSC 415: Virtual Machine Setup Tutorial - Video 1](https://youtu.be/IMb4cCGBQFA)
 * [CSC 415: SSH Key Setup - Video 2](https://youtu.be/fbyiFgUZDMs)
 * [CSC 415: SSH and vscode setup - Video 3](https://youtu.be/BTOIt7wjJxA)
 * [CSC 415: GitHub and vscode - Video 4](https://youtu.be/-1C81UCUtIM)
 
-
 ### UML Diagrams of current ROJ implementation
-
 * [Class Diagram](https://github.com/TCNJ-SE/RoJ-Spr2024/blob/main/docs/Rails%20of%20Justice%20-%20Class%20Diagram.png)
 * [Use Case Diagram](https://github.com/TCNJ-SE/RoJ-Spr2024/blob/main/docs/Rails%20of%20Justice%20-%20Use%20Case%20Diagram.png)
+
+### Contribution Documentation
+* [HC:Contribute](https://github.com/TCNJ-SE/RoJ-Spr24-HC/blob/prototype3/docs/HC%3AContribute.md)
 
 ### Overview
 The Registry of Justice (RoJ) is an all-encompassing application designed for the Advocacy for Criminal Case Reform (ACCR). Aimed at improving operational efficiency, enhancing communication, and streamlining event and volunteer management, RoJ integrates several modules within a single platform. These modules include Webinar Registration, Event Calendar, Call Organizer, In Kind Donations, Mail Manager, Mapping Justice, and Pro Bono Tracker, each developed to support ACCR in organizing webinars, managing events, tracking communications and donations, handling correspondence, visualizing justice-related data, and monitoring volunteer contributions.
@@ -39,7 +38,7 @@ Functionality: An interactive map providing visual data representation related t
 Usage: Users can explore the map to view detailed statistics by county, compare data across different regions, and gain insights into the state's justice dynamics.
 
 ###### County Data
-Functionality: Search feature that allows you to search/sort specific data from the Mapping Justice data shown in the visual data presentation. Users can search using multiple types of data and sort by column type by using the arrows or clicking the column title. Users can also download data based on search query. Users can lastly, reset the page after entering a search query.
+Functionality: Search feature that allows you to search/sort county data from the Mapping Justice data shown in the visual data presentation. Users can search using multiple constraints and sort by columns using either the arrows or column title. These constraints can be selected via a dropdown menu and clicking the "Search" button. Users can also download data based on search query by click the link labeled "here." Users can lastly, reset the page after entering a search query that will clear the search results in the table as well as the dropdown menus. Users can sort search results after query once, before it clears the results and sorts the original data.
 
 #### Pro Bono Tracker
 Functionality: Enables the recording and tracking of volunteer contributions using a timesheet-based approach, facilitating the management of time, money, and effort donated to the organization.

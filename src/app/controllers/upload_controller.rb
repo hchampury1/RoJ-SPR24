@@ -1,10 +1,10 @@
 #Project name: Mapping Justice
 #Description: For our ACCR Collaborative Project we have created an interactive map of PA. The map is color coded by cases + death sentences and population. 
 #The user can hover over a county to view its statistics. Additionally, several counties can be clicked to generate charts
-#Filename: map_controller.rb
+#Filename: upload_controller.rb
 #Description: The upload controller performs multiple functionalities including allowing the user to download current data and upload new data files. 
 #During the upload process, it performs file validation, adds to the current database, and maintains records of previous uploads.
-#Last modified on: 4/23/2023
+#Last modified on: 4/7/2024
 
 class UploadController < ApplicationController
     skip_before_action :authenticate_user!
@@ -23,13 +23,29 @@ class UploadController < ApplicationController
     'York']   
     #COLUMNS represents the expected values for headers in uploaded data
     COLUMNS = ['name', 'num_cur_cases', 'num_cur_cases_b', 'num_cur_cases_w', 'num_cur_cases_o','population', 'num_dr', 'num_dr_b', 'num_dr_w', 'num_dr_o']
-
+    
     def index
+        # Set original counties to data from current session or to all countiess
+        @orig_counties = session[:search_results].present? ? County.where(session[:search_results]) : County.all
+        
+        # Grab values for dropdowns
+        @county_names = County.pluck(:name).uniq.sort
+        @pop = County.pluck(:population).uniq.sort
+        @min_pop = County.pluck(:population).uniq.sort
+        @max_pop = County.pluck(:population).uniq.sort
+        @totalPend = County.pluck(:num_cur_cases).uniq.sort
+        @bPend = County.pluck(:num_cur_cases_b).uniq.sort
+        @wPend = County.pluck(:num_cur_cases_w).uniq.sort
+        @oPend = County.pluck(:num_cur_cases_o).uniq.sort
+        @totalCur = County.pluck(:num_dr).uniq.sort
+        @bCase = County.pluck(:num_dr_b).uniq.sort
+        @wCase = County.pluck(:num_dr_w).uniq.sort
+        @oCase = County.pluck(:num_dr_o).uniq.sort
+
+        # Search parameters
         input = {}
         input[:name] = params[:countyName] if params[:countyName].present?
-        input[:population] = params[:minPop] if params[:minPop].present?
-        input[:population] = params[:maxPop] if params[:maxPop].present?
-        input[:num_cur_cases] = params[:totalPend] if params[:totalPend].present?
+        input[:population] = params[:pop] if params[:pop].present?
         input[:num_cur_cases_b] = params[:bPend] if params[:bPend].present?
         input[:num_cur_cases_w] = params[:wPend] if params[:wPend].present?
         input[:num_cur_cases_o] = params[:oPend] if params[:oPend].present?
@@ -38,16 +54,26 @@ class UploadController < ApplicationController
         input[:num_dr_w] = params[:wCase] if params[:wCase].present?
         input[:num_dr_o] = params[:oCase] if params[:oCase].present?
         
-        session[:search_results] = input 
-        if input.present?
-            @counties = County.where(input)
-        else
-            @counties = County.order(sort_column + ' ' + (sort_direction || "asc"))
+        #Saves search parameters
+        session[:search_results] = input
+        
+        # Will filter results base on if search parameters exist
+        @search_results = County.all
+        @search_results = @search_results.where(input) if input.present?
+
+        # Sorts search results in table
+        # Sorts if not input found
+        if input.blank? && params[:sort].present? && County.column_names.include?(params[:sort])
+            @search_results = @orig_counties.order(sort_column + ' ' + (sort_direction || "asc"))
+        end
+        # Sorts if input found
+        if input.present? && params[:sort].present? && County.column_names.include?(params[:sort])
+            @search_results = @search_results.order(sort_column + ' ' + (sort_direction || "asc"))
         end
 
-        if @counties.empty?
-            flash.now[:alert] = "No Results Found!"
-        end     
+        # Flashes an alert isf no results
+        flash.now[:alert] = "No Results Found!" if @search_results.empty?
+        
         render :index
     end
     
